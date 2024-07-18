@@ -1,4 +1,4 @@
-curl -L https://nixos.org/nix/install | sh
+# curl -L https://nixos.org/nix/install | sh
 
 
 
