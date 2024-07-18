@@ -162,7 +162,7 @@
                 "visual-studio-code"
                 "vlc"
                 "warp"
-                "xquartz"
+                # "xquartz"
                 "zotero"
                 "utm"
               ];
