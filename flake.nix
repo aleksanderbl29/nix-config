@@ -35,6 +35,7 @@
             '';
             system.keyboard.enableKeyMapping = true;
             system.keyboard.remapCapsLockToControl = true;
+            system.defaults.WindowManager.EnableStandardClickToShowDesktop = false;
             fonts.packages =
               [ (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; }) ];
             services.nix-daemon.enable = true;
@@ -62,7 +63,7 @@
                 "2048 Game" = 871033113;
                 "AdGuard for Safari" = 1440147259;
                 "Be Focused" = 973134470;
-                "Bitwarden" = 1352778147;
+                # "Bitwarden" = 1352778147;
                 "Disk Speed Test" = 425264550;
                 "Fantastical" = 975937182;
                 "Flappy Golf 2" = 1154174205;
@@ -78,7 +79,7 @@
                 # "Sudoku" = 1489692148;
                 # "Sudoku 9x9" = 903089432;
                 "Super Stickman Golf 3" = 1071253172;
-                "Tailscale" = 1475387142;
+                # "Tailscale" = 1475387142;
                 "Telegram" = 747648890;
                 "Trello" = 1278508951;
                 "Unsplash Wallpapers" = 1284863847;
@@ -95,14 +96,17 @@
               ];
               casks =
               [
-                "microsoft-office"
-                "arc"
-                "fantastical"
-                "messenger"
+                # "microsoft-office"
+                # "arc"
+                # "fantastical"
+                # "messenger"
                 "alacritty"
+                "aldente"
                 "alt-tab"
                 "amethyst"
                 "balenaetcher"
+                "bitwarden"
+                "dropbox"
                 "element"
                 # "font-meslo-lg-nerd-font"
                 "geekbench"
@@ -162,6 +166,7 @@
                 "pandoc"
                 # "r", link: false
                 "starship"
+                "tailscale"
                 "tere"
                 "tmux"
                 "tree"
@@ -176,7 +181,6 @@
               autohide = false;
               expose-group-by-app = true;
               magnification = true;
-              largesize = 78;
               mru-spaces = false;
               orientation = "bottom";
               persistent-apps =
@@ -202,11 +206,45 @@
               show-recents = false;
               show-process-indicators = true;
               # tilesize = 64;
-              tilesize = 72;
+              # tilesize = 72;
+              tilesize = 68;
+              # largesize = 78;
+              largesize = 74;
               wvous-bl-corner = 5;
               wvous-br-corner = 14;
               wvous-tl-corner = 1;
               wvous-tr-corner = 1;
+            };
+            system.defaults.CustomUserPreferences = {
+              "com.apple.finder" = {
+                ShowExternalHardDrivesOnDesktop = true;
+                ShowHardDrivesOnDesktop = false;
+                ShowMountedServersOnDesktop = true;
+                ShowRemovableMediaOnDesktop = true;
+                _FXSortFoldersFirst = true;
+                FXDefaultSearchScope = "SCcf";      # When performing a search, search the current folder by default
+              };
+              "com.apple.desktopservices" = {
+                # Avoid creating .DS_Store files on network or USB volumes
+                DSDontWriteNetworkStores = true;
+                DSDontWriteUSBStores = true;
+              };
+              "com.apple.screensaver" = {
+                # Ask for pswd 60 seconds after screensaver starts
+                askForPassword = 1;
+                askForPasswordDelay = 60;
+              };
+              "com.apple.SoftwareUpdate" = {
+                AutomaticCheckEnabled = true;
+                # Check for software updates daily, not just once per week
+                ScheduleFrequency = 1;
+                # Download newly available updates in background
+                AutomaticDownload = 1;
+                # Install System data files & security updates
+                CriticalUpdateInstall = 1;
+              };
+              "com.apple.commerce".AutoUpdate = true;          # Turn on app auto-update
+              "com.apple.diskmanagement".DiskEject = false;    # Turn off disk eject warning
             };
           })
           inputs.home-manager.darwinModules.home-manager
@@ -235,7 +273,8 @@
                       enableCompletion = true;
                       enableAutosuggestions = true;
                       enableSyntaxHighlighting = true;
-                      shellAliases = { ls = "ls --color=auto -F"; };
+                      # shellAliases = { ls = "ls --color=auto -F"; };
+                      shellAliases = { ls = "ls --color=auto"; };
                       # promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
                     };
                   };
