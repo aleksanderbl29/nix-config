@@ -64,7 +64,7 @@
       "imageoptim"
       "iterm2"
       "latest"
-      "lm-studio"
+      # "lm-studio"
       "obsidian"
       "orbstack"
       "pgadmin4"
