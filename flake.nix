@@ -17,22 +17,41 @@
   # pwnvim.url = "github:zmre/pwnvim";
   };
   outputs = inputs@{ nixpkgs, home-manager, darwin, ... }: {
-    darwinConfigurations.Aleksanders-MacBook-Pro =
-      darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        pkgs = import nixpkgs { system = "aarch64-darwin"; };
-        modules = [
-          ./modules/darwin
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              # extraSpecialArgs = { inherit pkgs; };
-              users.aleksanderbang-larsen.imports = [ ./modules/home-manager ];
-            };
-          }
-        ];
-      };
+    darwinConfigurations = {
+      Aleksanders-MacBook-Pro =
+        darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          pkgs = import nixpkgs { system = "aarch64-darwin"; };
+          modules = [
+            ./modules/darwin
+            home-manager.darwinModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                # extraSpecialArgs = { inherit pkgs; };
+                users.aleksanderbang-larsen.imports = [ ./modules/home-manager ];
+              };
+            }
+          ];
+        };
+      Macbook-Air-tilhrende-Aleksander =
+        darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          pkgs = import nixpkgs { system = "aarch64-darwin"; };
+          modules = [
+            ./modules/darwin
+            home-manager.darwinModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                # extraSpecialArgs = { inherit pkgs; };
+                users.aleksanderbang-larsen.imports = [ ./modules/home-manager ];
+              };
+            }
+          ];
+        };
+    };
   };
 }
