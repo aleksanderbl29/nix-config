@@ -37,8 +37,8 @@
         };
       Macbook-Air-tilhrende-Aleksander =
         darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          pkgs = import nixpkgs { system = "aarch64-darwin"; };
+          system = "x86_64-darwin";
+          pkgs = import nixpkgs { system = "x86_64-darwin"; };
           modules = [
             ./modules/darwin
             home-manager.darwinModules.home-manager
