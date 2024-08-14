@@ -13,6 +13,10 @@ curl -L https://nixos.org/nix/install | sh
 
 - Install Rosetta (if on M-series mac)
 
+```{bash}
+softwareupdate --install-rosetta --agree-to-license
+```
+
 - Install git
 
 ```{bash}
