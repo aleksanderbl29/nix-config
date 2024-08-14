@@ -11,6 +11,8 @@ curl -L https://nixos.org/nix/install | sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
+- Install Rosetta (if on M-series mac)
+
 - Install git
 
 ```{bash}
