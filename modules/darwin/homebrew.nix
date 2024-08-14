@@ -86,7 +86,7 @@
       "vlc"
       "warp"
       # "xquartz"
-      "zotero"
+      # "zotero"
       "utm"
     ];
     brews = [
