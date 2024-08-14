@@ -11,6 +11,7 @@
   system.stateVersion = 4;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
+    extra-platforms = x86_64-darwin aarch64-darwin
   '';
 
   users.users.aleksanderbang-larsen.home = "/Users/aleksanderbang-larsen";
