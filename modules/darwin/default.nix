@@ -20,9 +20,13 @@
   environment = {
     shells = with pkgs; [ bash zsh ];
     loginShell = pkgs.zsh;
-    systemPackages = [ pkgs.coreutils ];
     systemPath = [ "/opt/homebrew/bin" ];
     pathsToLink = [ "/Applications" ];
+    systemPackages = with pkgs; [
+      coreutils
+      git
+      vim
+    ];
   };
 
   # system.defaults.WindowManager.EnableStandardClickToShowDesktop = false;
