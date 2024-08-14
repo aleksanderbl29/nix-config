@@ -37,9 +37,10 @@
     InitialKeyRepeat = 15;
     KeyRepeat = 1;
     NSNavPanelExpandedStateForSaveMode = true;
-    "com.apple.mouse.tapBehavior" = 1;
+    # "com.apple.mouse.tapBehavior" = 1;
     ApplePressAndHoldEnabled = false;
   };
+  system.defaults.trackpad.Clicking = true;
   system.stateVersion = 4;
   system.defaults.dock = {
     autohide = false;
