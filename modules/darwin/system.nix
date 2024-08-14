@@ -19,6 +19,11 @@
     NSNavPanelExpandedStateForSaveMode = true;
     # "com.apple.mouse.tapBehavior" = 1;
     ApplePressAndHoldEnabled = false;
+    AppleLanguages = ["da_dk"];
+    AppleLocale = "da_DK@currency=DKK";
+    AppleMeasurementUnits = "Centimeters";
+    AppleMetricUnits = true;
+    AppleTemperatureUnit = "Celsius";
   };
   system.defaults.trackpad.Clicking = true;
   system.defaults.CustomUserPreferences = {
