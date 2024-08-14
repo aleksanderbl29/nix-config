@@ -11,6 +11,20 @@ curl -L https://nixos.org/nix/install | sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
+- Install git
+
+```{bash}
+brew intall git
+```
+
+- Clone this repo
+
+```{bash}
+mkdir ~/src/
+cd ~/src/
+git clone https://github.com/aleksanderbl29/nix-config nix-mbp
+```
+
 - Enable experimental nix features
 
 ```{bash}
