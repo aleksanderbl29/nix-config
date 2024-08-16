@@ -5,8 +5,9 @@
     enable = true;
     onActivation = {
       cleanup = "zap";
-      autoUpdate = false;
+      autoUpdate = true;
       upgrade = true;
+      cleanup = true;
     };
     caskArgs = {
       appdir = "~/Applications";
@@ -86,7 +87,7 @@
       "vlc"
       "warp"
       # "xquartz"
-      # "zotero"
+      "zotero"
       "utm"
     ];
     brews = [
