@@ -21,6 +21,7 @@
       enable = true;
       enableZshIntegration = true;
       useTheme = "powerlevel10k_lean";
+      # useTheme = "robbyrussell";
     };
 
     git = {
