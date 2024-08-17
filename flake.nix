@@ -16,11 +16,15 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, darwin, home-manager, ... }: {
+  outputs = inputs@{ self, nixpkgs, darwin, home-manager, ... }:
+  let
+    system = "aarch64-darwin";
+    user = "aleksanderbang-larsen";
+  in {
     darwinConfigurations = {
       Aleksanders-MacBook-Pro = darwin.lib.darwinSystem {
-          system = "aarch64-darwin";
-          pkgs = import nixpkgs { system = "aarch64-darwin"; };
+          inherit system;
+          pkgs = import nixpkgs { system = system; };
           modules = [
             ./modules/darwin
             home-manager.darwinModules.home-manager {
@@ -28,7 +32,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 # extraSpecialArgs = { inherit pkgs; };
-                users.aleksanderbang-larsen.imports = [ ./modules/home-manager ];
+                users.${user}.imports = [ ./modules/home-manager ];
               };
             }
           ];
@@ -43,7 +47,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 # extraSpecialArgs = { inherit pkgs; };
-                users.aleksanderbang-larsen.imports = [ ./modules/home-manager ];
+                users.${user}.imports = [ ./modules/home-manager ];
               };
             }
           ];
