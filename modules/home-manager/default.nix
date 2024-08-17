@@ -39,6 +39,7 @@
       shellAliases = {
         ls = "ls --color=auto -F";
         nixswitch = "darwin-rebuild switch --flake ~/src/nix-mbp/";
+        nix-cd = "cd ~/src/nix-mbp";
       };
       oh-my-zsh = {
         enable = true;
