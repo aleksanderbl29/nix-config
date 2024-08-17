@@ -7,7 +7,6 @@
       cleanup = "zap";
       autoUpdate = true;
       upgrade = true;
-      cleanup = true;
     };
     caskArgs = {
       appdir = "~/Applications";
