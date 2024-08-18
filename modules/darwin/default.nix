@@ -18,6 +18,8 @@
 
   programs.zsh.enable = true;
 
+  nix.gc.automatic = true;
+
   environment = {
     shells = with pkgs; [ bash zsh ];
     loginShell = pkgs.zsh;
