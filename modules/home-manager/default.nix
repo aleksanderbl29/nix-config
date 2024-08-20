@@ -40,6 +40,7 @@
         ls = "ls --color=auto -F";
         nixswitch = "darwin-rebuild switch --flake ~/src/nix-mbp/";
         nix-cd = "cd ~/src/nix-mbp";
+        renv-commit = "git add renv.lock && git commit -m 'Update renv snapshot'";
       };
       oh-my-zsh = {
         enable = true;
