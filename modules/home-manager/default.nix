@@ -1,4 +1,8 @@
-{ pkgs, ...}: {
+{ pkgs, ...}:
+let
+  user = "aleksanderbang-larsen";
+in
+{
   home.stateVersion = "22.11";
   home.packages = with pkgs; [
     curl
@@ -42,6 +46,7 @@
         nix-cd = "cd ~/src/nix-mbp";
         renv-commit = "git add renv.lock && git commit -m 'Update renv snapshot'";
         ropen = "open *.Rproj";
+        onedrive = "cd '/Users/${ user }/OneDrive - Aarhus Universitet'";
       };
       oh-my-zsh = {
         enable = true;
