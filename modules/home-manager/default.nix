@@ -47,6 +47,7 @@ in
         renv-commit = "git add renv.lock && git commit -m 'Update renv snapshot'";
         ropen = "open *.Rproj";
         onedrive = "cd '/Users/${ user }/OneDrive - Aarhus Universitet'";
+        g-drive = "cd '/Users/${ user }//Library/CloudStorage/GoogleDrive-aleksanderbl@live.dk/Mit drev/'";
       };
       oh-my-zsh = {
         enable = true;
