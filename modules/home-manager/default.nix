@@ -48,6 +48,7 @@ in
         ropen = "open *.Rproj";
         onedrive = "cd '/Users/${ user }/OneDrive - Aarhus Universitet'";
         g-drive = "cd '/Users/${ user }//Library/CloudStorage/GoogleDrive-aleksanderbl@live.dk/Mit drev/'";
+        fu-commit = "git add flake.lock && git commit -m 'Update flake.lock'";
       };
       oh-my-zsh = {
         enable = true;
