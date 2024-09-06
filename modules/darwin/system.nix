@@ -14,8 +14,6 @@
 
   system.defaults = {
     loginwindow.LoginwindowText = ''
-
-
     Velkommen til Aleksanders Mac
 
 
