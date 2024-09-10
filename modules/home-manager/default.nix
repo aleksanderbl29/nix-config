@@ -46,9 +46,9 @@ in
         nix-cd = "cd ~/src/nix-mbp";
         renv-commit = "git add renv.lock && git commit -m 'Update renv snapshot'";
         ropen = "open *.Rproj";
-        onedrive = "cd '/Users/${ user }/OneDrive - Aarhus Universitet'";
-        g-drive = "cd '/Users/${ user }//Library/CloudStorage/GoogleDrive-aleksanderbl@live.dk/Mit drev/'";
-        dropbox = "cd' /Users/${ user }/Dropbox'";
+        onedrive = "cd /Users/${ user }/Library/CloudStorage/OneDrive-AarhusUniversitet";
+        g-drive = "cd '/Users/${ user }/Library/CloudStorage/GoogleDrive-aleksanderbl@live.dk/Mit drev/'";
+        dropbox = "cd '/Users/${ user }/Library/CloudStorage/Dropbox'";
         fu-commit = "git add flake.lock && git commit -m 'Update flake.lock'";
       };
       oh-my-zsh = {
