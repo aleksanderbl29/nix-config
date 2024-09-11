@@ -13,6 +13,7 @@ in
     zsh-autosuggestions
     zsh-syntax-highlighting
     pyenv
+    pre-commit
   ];
 
   programs = {
@@ -54,6 +55,7 @@ in
         us_pres_elec = "cd '${ od_loc }/7 - US Presidential Election/US_pres_elec'";
         pol_geo_ds = "cd '${ od_loc }/7 - Politisk geo-data-science med R/pol_geo_ds'";
         fu-commit = "git add flake.lock && git commit -m 'Update flake.lock'";
+        open_nix = "nix-cd && code .";
       };
       oh-my-zsh = {
         enable = true;
