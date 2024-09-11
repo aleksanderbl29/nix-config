@@ -100,6 +100,7 @@
       "gh"
       "git"
       "graphviz"
+      "gdal"
       "helm"
       # "htop"
       "imagemagick"
