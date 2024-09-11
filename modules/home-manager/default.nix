@@ -1,6 +1,7 @@
 { pkgs, ...}:
 let
   user = "aleksanderbang-larsen";
+  od_loc = "/Users/${ user }/Library/CloudStorage/OneDrive-AarhusUniversitet";
 in
 {
   home.stateVersion = "22.11";
@@ -11,6 +12,7 @@ in
     oh-my-zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
+    pyenv
   ];
 
   programs = {
@@ -46,9 +48,11 @@ in
         nix-cd = "cd ~/src/nix-mbp";
         renv-commit = "git add renv.lock && git commit -m 'Update renv snapshot'";
         ropen = "open *.Rproj";
-        onedrive = "cd /Users/${ user }/Library/CloudStorage/OneDrive-AarhusUniversitet";
+        onedrive = "cd ${ od_loc }";
         g-drive = "cd '/Users/${ user }/Library/CloudStorage/GoogleDrive-aleksanderbl@live.dk/Mit drev/'";
         dropbox = "cd '/Users/${ user }/Library/CloudStorage/Dropbox'";
+        us_pres_elec = "cd '${ od_loc }/7 - US Presidential Election/US_pres_elec'";
+        pol_geo_ds = "cd '${ od_loc }/7 - Politisk geo-data-science med R/pol_geo_ds'";
         fu-commit = "git add flake.lock && git commit -m 'Update flake.lock'";
       };
       oh-my-zsh = {
