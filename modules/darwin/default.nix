@@ -14,6 +14,11 @@
     extra-platforms = x86_64-darwin aarch64-darwin
   '';
 
+  environment.variables = {
+    LC_ALL = "da_DK.UTF-8";
+    LANG = "da_DK.UTF-8";
+  };
+
   users.users.aleksanderbang-larsen.home = "/Users/aleksanderbang-larsen";
 
   programs.zsh.enable = true;
