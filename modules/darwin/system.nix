@@ -66,12 +66,5 @@
     "com.apple.commerce".AutoUpdate = true;          # Turn on app auto-update
     "com.apple.diskmanagement".DiskEject = false;    # Turn off disk eject warning
 
-    "com.apple.symbolichotkeys" = {                  # Found on reddit https://www.reddit.com/r/NixOS/comments/17n3tcn/setting_keyboard_shortcuts_in_nix_darwin/
-      AppleSymbolicHotKeys = {
-        "64" = {
-          enabled = false;
-        };
-      };
-    };
   };
 }
