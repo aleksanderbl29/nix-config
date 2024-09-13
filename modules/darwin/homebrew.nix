@@ -100,8 +100,6 @@
       "gh"
       "git"
       "graphviz"
-      "gdal"
-      "pkg-config"
       "helm"
       # "htop"
       "imagemagick"
