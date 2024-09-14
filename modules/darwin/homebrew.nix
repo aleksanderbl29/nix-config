@@ -100,7 +100,6 @@
       "gh"
       "git"
       "graphviz"
-      "gdal"
       "helm"
       # "htop"
       "imagemagick"
@@ -115,7 +114,6 @@
       "node"
       "openjdk"
       "pandoc"
-      "pkg-config"
       # "r", link: false
       "starship"
       "tailscale"
