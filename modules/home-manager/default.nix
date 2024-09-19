@@ -14,6 +14,7 @@ in
     zsh-syntax-highlighting
     pyenv
     pre-commit
+    uv
   ];
 
   programs = {

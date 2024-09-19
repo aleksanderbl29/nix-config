@@ -87,6 +87,7 @@
       "warp"
       # "xquartz"
       "zotero"
+      "zen-browser"
       "utm"
     ];
     brews = [
