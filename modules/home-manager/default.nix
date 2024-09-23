@@ -57,6 +57,7 @@ in
         pol_geo_ds = "cd '${ od_loc }/7 - Politisk geo-data-science med R/pol_geo_ds'";
         fu-commit = "git add flake.lock && git commit -m 'Update flake.lock'";
         open_nix = "nix-cd && code .";
+        posit = "open -a 'Positron' .";
       };
       oh-my-zsh = {
         enable = true;
