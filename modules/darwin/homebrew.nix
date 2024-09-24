@@ -68,6 +68,7 @@
       "obsidian"
       "orbstack"
       "pgadmin4"
+			"positron"
       "postman"
       "quarto"
       "r"
