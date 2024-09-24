@@ -15,6 +15,7 @@ in
     pyenv
     pre-commit
     uv
+    ruby
   ];
 
   programs = {
