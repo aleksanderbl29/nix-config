@@ -9,7 +9,7 @@
       upgrade = true;
     };
     caskArgs = {
-      appdir = "~/Applications";
+      appdir = "/Applications";
     };
     global.brewfile = true;
     masApps = {
