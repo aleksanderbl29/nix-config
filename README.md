@@ -50,4 +50,5 @@ nix run nix-darwin -- switch --flake ~/src/nix-mbp/
 
 ```{bash}
 darwin-rebuild switch --flake ~/src/nix-mbp/
+# Also alias nixswitch
 ```
