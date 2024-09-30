@@ -37,6 +37,9 @@ in
       enable = true;
       userEmail = "github@aleksanderbl.dk";
       userName = "aleksanderbl29";
+      extraConfig = {
+        push = { autoSetupRemote = true; };
+      };
     };
 
 
