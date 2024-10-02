@@ -61,7 +61,7 @@ in
         fu-commit = "git add flake.lock && git commit -m 'Update flake.lock'";
         open_nix = "nix-cd && code .";
         posit = "open -a 'Positron' .";
-        t7 = "cv '/Volumes/T7 Shield/developer'";
+        t7 = "cd '/Volumes/T7 Shield/developer'";
       };
       oh-my-zsh = {
         enable = true;
