@@ -34,6 +34,7 @@
       coreutils
       git
       vim
+      ncdu
     ];
   };
 
