@@ -16,6 +16,9 @@ in
     pyenv
     pre-commit
     uv
+    azure-cli
+    devenv
+    bruno
   ];
 
   programs = {
@@ -68,8 +71,6 @@ in
         enable = true;
         plugins = [
           "git"
-          # "zsh-autosuggestions"
-          # "zsh-syntax-highlighting"
         ];
       };
     };

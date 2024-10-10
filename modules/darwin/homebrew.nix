@@ -92,7 +92,6 @@
       "utm"
     ];
     brews = [
-      "azure-cli"
       "gcc"
       "btop"
       "cmatrix"
@@ -116,7 +115,6 @@
       "node"
       "openjdk"
       "pandoc"
-      # "r", link: false
       "starship"
       "tailscale"
       "tere"

@@ -1,16 +1,16 @@
-{ nixpkgs, nix-homebrew, homebrew-core, homebrew-cask , ...}:
+{ pkgs, ...}:
 {
-  nix-homebrew = {
-    # Install Homebrew under the default prefix
-    enable = true;
+  nix-homebrew.darwinModules.nix-homebrew = {
+      # Install Homebrew under the default prefix
+      enable = true;
 
-    # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
-    enableRosetta = true;
+      # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+      enableRosetta = true;
 
-    # User owning the Homebrew prefix
-    user = "aleksanderbang-larsen";
+      # User owning the Homebrew prefix
+      user = "aleksanderbang-larsen";
 
-    # Automatically migrate existing Homebrew installations
-    autoMigrate = true;
+      # Automatically migrate existing Homebrew installations
+      autoMigrate = true;
   };
 }

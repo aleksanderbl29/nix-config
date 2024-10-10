@@ -3,7 +3,7 @@
   ...
 }: {
   imports = [
-    ./homebrew.nix
+    # ./homebrew.nix
     ./system.nix
     ./dock.nix
   ];
@@ -21,8 +21,6 @@
     LC_ALL = "da_DK.UTF-8";
     LANG = "da_DK.UTF-8";
   };
-
-
 
   users.users.aleksanderbang-larsen.home = "/Users/aleksanderbang-larsen";
 
