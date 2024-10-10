@@ -9,15 +9,20 @@
   ];
 
   system.stateVersion = 4;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-    extra-platforms = x86_64-darwin aarch64-darwin
-  '';
+  nix = {
+    extraOptions = ''
+      experimental-features = nix-command flakes
+      extra-platforms = x86_64-darwin aarch64-darwin
+    '';
+    settings.trusted-users = [ "aleksanderbang-larsen" ];
+  };
 
   environment.variables = {
     LC_ALL = "da_DK.UTF-8";
     LANG = "da_DK.UTF-8";
   };
+
+
 
   users.users.aleksanderbang-larsen.home = "/Users/aleksanderbang-larsen";
 
