@@ -2,6 +2,7 @@
 let
   user = "aleksanderbang-larsen";
   od_loc = "/Users/${ user }/Library/CloudStorage/OneDrive-AarhusUniversitet";
+  cloud_stor = "/Users/${ user }/Library/CloudStorage";
 in
 {
   home.stateVersion = "22.11";
@@ -54,8 +55,8 @@ in
         renv-commit = "git add renv.lock && git commit -m 'Update renv snapshot'";
         ropen = "open *.Rproj";
         onedrive = "cd ${ od_loc }";
-        g-drive = "cd '/Users/${ user }/Library/CloudStorage/GoogleDrive-aleksanderbl@live.dk/Mit drev/'";
-        dropbox = "cd '/Users/${ user }/Library/CloudStorage/Dropbox'";
+        g-drive = "cd '${ cloud_stor }/GoogleDrive-aleksanderbl@live.dk/Mit drev/'";
+        dropbox = "cd '${ cloud_stor }/Dropbox'";
         us_pres_elec = "cd '${ od_loc }/7 - US Presidential Election/US_pres_elec'";
         pol_geo_ds = "cd '${ od_loc }/7 - Politisk geo-data-science med R/pol_geo_ds'";
         fu-commit = "git add flake.lock && git commit -m 'Update flake.lock'";
