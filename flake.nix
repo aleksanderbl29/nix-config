@@ -37,7 +37,7 @@
           pkgs = import nixpkgs { system = m1; };
           modules = [
             ./modules/darwin
-            ./modules/homebrew
+            # ./modules/homebrew
             home-manager.darwinModules.home-manager {
               home-manager = {
                 useGlobalPkgs = true;
