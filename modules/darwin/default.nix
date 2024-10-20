@@ -3,7 +3,7 @@
   ...
 }: {
   imports = [
-    # ./homebrew.nix
+    ./homebrew.nix
     ./system.nix
     ./dock.nix
   ];
