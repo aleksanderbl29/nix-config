@@ -56,6 +56,7 @@
       "alt-tab"
       "amethyst"
       "balenaetcher"
+      "bentobox"
       "bitwarden"
       "dropbox"
       "element"
