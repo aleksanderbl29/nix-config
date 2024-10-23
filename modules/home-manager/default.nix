@@ -3,6 +3,13 @@ let
   user = "aleksanderbang-larsen";
   od_loc = "/Users/${ user }/Library/CloudStorage/OneDrive-AarhusUniversitet";
   cloud_stor = "/Users/${ user }/Library/CloudStorage";
+  tex = (pkgs.texlive.combine {
+    inherit (pkgs.texlive) scheme-medium
+      dvisvgm dvipng wrapfig amsmath ulem hyperref capt-of
+      titling framed inconsolata collection-fontsrecommended;
+      #(setq org-latex-compiler "lualatex")
+      #(setq org-preview-latex-default-process 'dvisvgm)
+  });
 in
 {
   home.stateVersion = "22.11";
@@ -20,6 +27,7 @@ in
     devenv
     bruno
     alacritty
+    tex # This is defined above
   ];
 
   programs = {
@@ -75,5 +83,6 @@ in
         ];
       };
     };
+
   };
 }
