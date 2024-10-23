@@ -19,6 +19,7 @@ in
     azure-cli
     devenv
     bruno
+    alacritty
   ];
 
   programs = {

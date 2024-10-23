@@ -51,7 +51,6 @@
       # "arc"
       # "fantastical"
       # "messenger"
-      "alacritty"
       "aldente"
       "alt-tab"
       "amethyst"
