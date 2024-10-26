@@ -83,6 +83,10 @@ in
         ];
       };
     };
-
   };
+
+  home.file = {
+    ".Rprofile".source = ../dots/.Rprofile;
+  };
+
 }
