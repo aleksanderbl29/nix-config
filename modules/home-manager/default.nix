@@ -86,7 +86,7 @@ in
   };
 
   home.file = {
-    ".Rprofile".source = ../dots/.Rprofile;
+    ".Rprofile".source = ../../dots/.Rprofile;
   };
 
 }
