@@ -1,7 +1,8 @@
 options(
   citation.bibtex.max = 999,
   repos = c(
-    CRAN = "https://cran.rstudio.com/",
+    CRAN = "https://cloud.r-project.org",
+    # CRAN = "https://cran.rstudio.com/",
     aleksanderbl29 = "https://aleksanderbl29.r-universe.dev",
     gadenbuie = 'https://gadenbuie.r-universe.dev'
   ),
