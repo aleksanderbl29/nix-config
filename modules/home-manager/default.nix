@@ -75,6 +75,7 @@ in
         open_nix = "nix-cd && code .";
         posit = "open -a 'Positron' .";
         t7 = "cd '/Volumes/T7 Shield/developer'";
+        test-snapshot-update = "git add tests/testthat/_snaps/ && git commit -m 'Update test snapshots'";
       };
       oh-my-zsh = {
         enable = true;
