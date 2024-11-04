@@ -36,7 +36,6 @@
       "Telegram" = 747648890;
       "Trello" = 1278508951;
       "Unsplash Wallpapers" = 1284863847;
-      "WhatsApp" = 1147396723;
       "WireGuard" = 1451685025;
     };
     taps = [
@@ -86,6 +85,7 @@
       "visual-studio-code"
       "vlc"
       "warp"
+      "whatsapp"
       # "xquartz"
       "zotero"
       "zen-browser"
