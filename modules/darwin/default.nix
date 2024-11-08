@@ -30,7 +30,6 @@
 
   environment = {
     shells = with pkgs; [ bash zsh ];
-    # loginShell = pkgs.zsh;
     systemPath = [ "/opt/homebrew/bin" ];
     pathsToLink = [ "/Applications" ];
     systemPackages = with pkgs; [
