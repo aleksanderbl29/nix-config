@@ -28,6 +28,7 @@ in
     bruno
     alacritty
     tex # This is defined above
+    devenv
   ];
 
   programs = {

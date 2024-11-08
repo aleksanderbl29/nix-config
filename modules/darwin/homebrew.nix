@@ -78,7 +78,7 @@
       "sonos"
       "spotify"
       "stats"
-      "tad"
+      # "tad"
       "transmission"
       "unnaturalscrollwheels"
       "vanilla"
