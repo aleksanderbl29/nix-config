@@ -30,7 +30,6 @@ in
     # tex # This is defined above
     # devenv
     nodejs_20
-    nodePackages.npm
     gdal
   ];
 
