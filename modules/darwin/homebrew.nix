@@ -112,7 +112,7 @@
       "neovim"
       "netcat"
       "nmap"
-      "node"
+      # "node"
       "openjdk"
       "pandoc"
       "starship"
