@@ -30,7 +30,6 @@ in
     # tex # This is defined above
     # devenv
     nodejs_20
-    gdal
   ];
 
   programs = {

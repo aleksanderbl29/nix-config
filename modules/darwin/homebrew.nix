@@ -98,6 +98,7 @@
       "cowsay"
       "cryptography"
       "docker"
+      "gdal"
       "gh"
       "git"
       "graphviz"
