@@ -27,8 +27,8 @@ in
     devenv
     bruno
     alacritty
-    tex # This is defined above
-    devenv
+    # tex # This is defined above
+    # devenv
   ];
 
   programs = {
