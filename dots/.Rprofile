@@ -3,6 +3,7 @@ options(
   repos = c(
     CRAN = "https://cloud.r-project.org",
     # CRAN = "https://cran.rstudio.com/",
+    rOpenGov = "https://ropengov.r-universe.dev",
     aleksanderbl29 = "https://aleksanderbl29.r-universe.dev",
     gadenbuie = 'https://gadenbuie.r-universe.dev'
   ),
