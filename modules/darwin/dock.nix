@@ -9,7 +9,8 @@
     orientation = "bottom";
     persistent-apps =
     [
-      "/Applications/Arc.app"
+      # "/Applications/Arc.app"
+      "/Users/aleksanderbang-larsen/Applications/Zen Browser.app"
       "/Applications/Fantastical.app"
       "/Applications/Spotify.app"
       "/System/Applications/Messages.app"
