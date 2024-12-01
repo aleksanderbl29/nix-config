@@ -45,3 +45,8 @@ if (interactive() && requireNamespace("rsthemes", quietly = TRUE)) {
     "base16 Default Dark {rsthemes}", "base16 IR Black {rsthemes}"
   ))
 }
+
+if (interactive() && requireNamespace("foghorn", quietly = TRUE)) {
+  # Check CRAN status for my packages
+  foghorn::summary_cran_results(email = "contact@aleksanderbl.dk")
+}
