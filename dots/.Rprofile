@@ -47,6 +47,9 @@ if (interactive() && requireNamespace("rsthemes", quietly = TRUE)) {
 }
 
 if (interactive() && requireNamespace("foghorn", quietly = TRUE)) {
-  # Check CRAN status for my packages
-  foghorn::summary_cran_results(email = "contact@aleksanderbl.dk")
+  tryCatch({
+    foghorn::summary_cran_results(email = "contact@aleksanderbl.dk")
+  }, error = function(e) {
+    message("Error in foghorn::summary_cran_results: ", e$message)
+  })
 }
