@@ -26,7 +26,7 @@ in
     azure-cli
     devenv
     bruno
-    alacritty
+    # alacritty
     # tex # This is defined above
     # devenv
     nodejs_20
