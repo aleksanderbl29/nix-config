@@ -21,11 +21,11 @@
       "Fantastical" = 975937182;
       # "Flappy Golf 2" = 1154174205;
       "Home Assistant" = 1099568401;
-      "Hop" = 1092825540;
+      # "Hop" = 1092825540;
       # "Magnet" = 441258766;
       # "Microsoft Remote Desktop" = 1295203466;
       "Numbers" = 409203825;
-      "Octagon" = 691956219;
+      # "Octagon" = 691956219;
       "OpenSpeedTest-Server" = 1579499874;
       "QuickShade" = 931571202;
       "Speedtest" = 1153157709;
@@ -64,7 +64,7 @@
       # "geekbench"
       # "imageoptim"
       "iterm2"
-      "latest"
+      # "latest"
       # "lm-studio"
       "obsidian"
       "orbstack"
@@ -81,11 +81,11 @@
       "spotify"
       "stats"
       # "tad"
-      "transmission"
+      # "transmission"
       "unnaturalscrollwheels"
       "vanilla"
       "visual-studio-code"
-      "vlc"
+      # "vlc"
       "warp"
       # "whatsapp"
       # "xquartz"
