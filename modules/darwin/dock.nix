@@ -3,7 +3,7 @@
 }: {
   system.defaults.dock = {
     autohide = false;
-    expose-group-by-app = true;
+    expose-group-apps = true;
     magnification = true;
     mru-spaces = false;
     orientation = "bottom";
