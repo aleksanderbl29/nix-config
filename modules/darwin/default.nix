@@ -41,8 +41,9 @@
   };
 
   # system.defaults.WindowManager.EnableStandardClickToShowDesktop = false;
-  fonts.packages =
-    [ (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; }) ];
+  fonts.packages = with pkgs; [
+    nerd-fonts.meslo-lg
+  ];
 
   services.nix-daemon.enable = true;
 
