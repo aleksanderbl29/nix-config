@@ -50,7 +50,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.${mac_useruser}.imports = [ ./modules/home-manager ];
+                users.${mac_user}.imports = [ ./modules/home-manager ];
               };
             }
           ];
