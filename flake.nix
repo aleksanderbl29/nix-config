@@ -1,5 +1,5 @@
 {
-  description = "aleksanders systems";
+  description = "aleksander's systems";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -15,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
       flake = false;
@@ -24,12 +24,20 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+
   };
 
   outputs = inputs@{ self, nixpkgs, darwin, home-manager, nix-homebrew, homebrew-cask, homebrew-core, ... }:
   let
     m1 = "aarch64-darwin";
-    user = "aleksanderbang-larsen";
+    rpi = "aarch64-linux";
+    n100 = "x86_64-linux";
+    mac_user = "aleksanderbang-larsen";
+    user = "aleksander";
   in {
     darwinConfigurations = {
       Aleksanders-MacBook-Pro = darwin.lib.darwinSystem {
@@ -42,7 +50,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.${user}.imports = [ ./modules/home-manager ];
+                users.${mac_useruser}.imports = [ ./modules/home-manager ];
               };
             }
           ];
@@ -56,7 +64,7 @@
               home-manager = {
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.${user}.imports = [ ./modules/home-manager ];
+                users.${mac_user}.imports = [ ./modules/home-manager ];
               };
             }
           ];
