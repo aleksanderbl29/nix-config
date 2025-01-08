@@ -100,7 +100,7 @@
       "cowsay"
       "cryptography"
       "docker"
-      "gdal"
+      # "gdal"
       "gh"
       "git"
       "graphviz"
