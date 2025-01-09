@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   ...
 }: {
@@ -16,7 +17,6 @@
     '';
     settings = {
       trusted-users = [ "aleksanderbang-larsen" ];
-      allowUnfree = true;
     };
   };
 

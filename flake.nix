@@ -39,25 +39,27 @@
     mac_user = "aleksanderbang-larsen";
     user = "aleksander";
 
-    nixpkgsConfig = {
-      config = {
-        allowUnfree = true;
-      };
-    };
-
     mkDarwinConfig = system: darwin.lib.darwinSystem {
       inherit system;
-      pkgs = import nixpkgs ({
+      pkgs = import nixpkgs {
         inherit system;
-      } // nixpkgsConfig);
+        config = {
+          allowUnfree = true;
+        };
+      };
       modules = [
         ./modules/darwin
-        ({ nixpkgs = nixpkgsConfig; })
         home-manager.darwinModules.home-manager {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.${mac_user}.imports = [ ./modules/home-manager ];
+            extraSpecialArgs = {
+              inherit (nixpkgs.config) allowUnfree;
+            };
+            users.${mac_user} = { pkgs, ... }: {
+              nixpkgs.config.allowUnfree = true;  # Add this line
+              imports = [ ./modules/home-manager ];
+            };
           };
         }
       ];

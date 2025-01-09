@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ config, pkgs, ...}:
 let
   user = "aleksanderbang-larsen";
   od_loc = "/Users/${ user }/Library/CloudStorage/OneDrive-AarhusUniversitet";
@@ -26,7 +26,7 @@ in
     azure-cli
     devenv
     bruno
-    positron-bin
+    # positron-bin
     # alacritty
     # tex # This is defined above
     # devenv
