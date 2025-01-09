@@ -7,7 +7,7 @@ on:
       - ".github/workflows/update-flake-lock.yml"
   workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: '0 0 * * 0' # runs weekly on Sunday at 00:00
+    - cron: '50 8 * * 3' # runs every Wednesday at 08:50
 
 permissions:
   contents: write
