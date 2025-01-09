@@ -1,17 +1,20 @@
 # nix-config
 
 - Install Nix
+
 ```{bash}
-curl -L https://nixos.org/nix/install | sh
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --determinate
 ```
 
 - Install homebrew
+  - Don't do this if the machine should use nix-homebrew
 
 ```{bash}
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 - Install Rosetta (if on M-series mac)
+  - Maybe do this?
 
 ```{bash}
 softwareupdate --install-rosetta --agree-to-license

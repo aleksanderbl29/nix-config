@@ -26,6 +26,7 @@ in
     azure-cli
     devenv
     bruno
+    positron-bin
     # alacritty
     # tex # This is defined above
     # devenv

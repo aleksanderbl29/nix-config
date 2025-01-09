@@ -38,37 +38,34 @@
     n100 = "x86_64-linux";
     mac_user = "aleksanderbang-larsen";
     user = "aleksander";
+
+    nixpkgsConfig = {
+      config = {
+        allowUnfree = true;
+      };
+    };
+
+    mkDarwinConfig = system: darwin.lib.darwinSystem {
+      inherit system;
+      pkgs = import nixpkgs ({
+        inherit system;
+      } // nixpkgsConfig);
+      modules = [
+        ./modules/darwin
+        ({ nixpkgs = nixpkgsConfig; })
+        home-manager.darwinModules.home-manager {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.${mac_user}.imports = [ ./modules/home-manager ];
+          };
+        }
+      ];
+    };
   in {
     darwinConfigurations = {
-      Aleksanders-MacBook-Pro = darwin.lib.darwinSystem {
-          system = m1;
-          pkgs = import nixpkgs { system = m1; };
-          modules = [
-            ./modules/darwin
-            # ./modules/homebrew
-            home-manager.darwinModules.home-manager {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${mac_user}.imports = [ ./modules/home-manager ];
-              };
-            }
-          ];
-        };
-      Macbook-Air-tilhrende-Aleksander = darwin.lib.darwinSystem {
-          system = "x86_64-darwin";
-          pkgs = import nixpkgs { system = "x86_64-darwin"; };
-          modules = [
-            ./modules/darwin
-            home-manager.darwinModules.home-manager {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${mac_user}.imports = [ ./modules/home-manager ];
-              };
-            }
-          ];
-        };
+      Aleksanders-MacBook-Pro = mkDarwinConfig m1;
+      Macbook-Air-tilhrende-Aleksander = mkDarwinConfig "x86_64-darwin";
     };
   };
 }

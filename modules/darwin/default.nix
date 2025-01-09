@@ -14,7 +14,10 @@
       experimental-features = nix-command flakes
       extra-platforms = x86_64-darwin aarch64-darwin
     '';
-    settings.trusted-users = [ "aleksanderbang-larsen" ];
+    settings = {
+      trusted-users = [ "aleksanderbang-larsen" ];
+      allowUnfree = true;
+    };
   };
 
   environment.variables = {
