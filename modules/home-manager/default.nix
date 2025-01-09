@@ -54,6 +54,7 @@ in
       userName = "aleksanderbl29";
       extraConfig = {
         push = { autoSetupRemote = true; };
+        init.defaultBranch = "main";
       };
     };
 
