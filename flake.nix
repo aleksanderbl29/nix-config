@@ -48,7 +48,7 @@
       };
       modules = [
         ./machines/darwin              # shared darwin config
-        ./machines/darwin/${hostname}  # machine-specific config
+        ./machines/darwin/${hostname}.nix  # machine-specific config
 
         home-manager.darwinModules.home-manager {
           home-manager = {
@@ -60,7 +60,8 @@
             users.${mac_user} = { pkgs, ... }: {
               nixpkgs.config.allowUnfree = true;
               imports = [
-                ./home        # shared home-manager config for all machines
+                ./home              # shared home-manager config for all machines
+                ./home/darwin.nix   # shared home-manager config for all darwin machines
               ];
             };
           };

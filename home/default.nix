@@ -1,8 +1,6 @@
 { config, pkgs, ...}:
 let
   user = "aleksanderbang-larsen";
-  od_loc = "/Users/${ user }/Library/CloudStorage/OneDrive-AarhusUniversitet";
-  cloud_stor = "/Users/${ user }/Library/CloudStorage";
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive) scheme-medium
       dvisvgm dvipng wrapfig amsmath ulem hyperref capt-of
@@ -15,7 +13,7 @@ in
   imports = [
     ./git.nix
     ./zsh.nix
-  ]
+  ];
 
   home.stateVersion = "22.11";
   home.packages = with pkgs; [
