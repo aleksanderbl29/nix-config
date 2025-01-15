@@ -91,9 +91,9 @@
     };
   in {
     darwinConfigurations = {
-      Aleksanders-MacBook-Pro = mkDarwinConfig {
+      aleks-old-mbp = mkDarwinConfig {
         system = m1;
-        hostname = "Aleksanders-MacBook-Pro";
+        hostname = "aleks-old-mbp";
       };
       aleks-mbp = mkDarwinConfig {
         system = m1;
