@@ -39,16 +39,17 @@
     mac_user = "aleksanderbang-larsen";
     user = "aleksander";
 
-    mkDarwinConfig = system: darwin.lib.darwinSystem {
+    # Configure nix-darwin machines
+    mkDarwinConfig = { system, hostname }: darwin.lib.darwinSystem {
       inherit system;
       pkgs = import nixpkgs {
         inherit system;
-        config = {
-          allowUnfree = true;
-        };
+        config = { allowUnfree = true; };
       };
       modules = [
-        ./modules/darwin
+        ./machines/darwin              # shared darwin config
+        ./machines/darwin/${hostname}  # machine-specific config
+
         home-manager.darwinModules.home-manager {
           home-manager = {
             useGlobalPkgs = true;
@@ -57,8 +58,31 @@
               inherit (nixpkgs.config) allowUnfree;
             };
             users.${mac_user} = { pkgs, ... }: {
-              nixpkgs.config.allowUnfree = true;  # Add this line
-              imports = [ ./modules/home-manager ];
+              nixpkgs.config.allowUnfree = true;
+              imports = [
+                ./home        # shared home-manager config for all machines
+              ];
+            };
+          };
+        }
+      ];
+    };
+
+    # Configure nixos machines
+    mkNixosConfig = { system, hostname }: nixpkgs.lib.nixosSystem {
+      inherit system;
+      modules = [
+        ./machines/nixos              # shared nixos config
+        ./machines/nixos/${hostname}  # machine-specific config
+
+        home-manager.nixosModules.home-manager {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.${user} = { pkgs, ... }: {
+              imports = [
+                ./home    # same shared home-manager config
+              ];
             };
           };
         }
@@ -66,8 +90,29 @@
     };
   in {
     darwinConfigurations = {
-      Aleksanders-MacBook-Pro = mkDarwinConfig m1;
-      Macbook-Air-tilhrende-Aleksander = mkDarwinConfig "x86_64-darwin";
+      Aleksanders-MacBook-Pro = mkDarwinConfig {
+        system = m1;
+        hostname = "Aleksanders-MacBook-Pro";
+      };
+      aleks-mbp = mkDarwinConfig {
+        system = m1;
+        hostname = "aleks-mbp";
+      };
+      Macbook-Air-tilhrende-Aleksander = mkDarwinConfig {
+        system = "x86_64-darwin";
+        hostname = "intel";
+      };
+    };
+
+    nixosConfigurations = {
+      n100 = mkNixosConfig {
+        system = n100;
+        hostname = "n100";
+      };
+      rpi = mkNixosConfig {
+        system = rpi;
+        hostname = "rpi";
+      };
     };
   };
 }
