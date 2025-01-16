@@ -28,10 +28,22 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
+    homebrew-services = {
+      url = "github:Homebrew/homebrew-services";
+      flake = false;
+    };
+    homebrew-sshpass = {
+      url = "github:hudochenkov/homebrew-sshpass";
+      flake = false;
+    };
+    homebrew-speedtest = {
+      url = "github:teamookla/homebrew-speedtest";
+      flake = false;
+    };
 
   };
 
-  outputs = inputs@{ self, nixpkgs, darwin, home-manager, nix-homebrew, homebrew-cask, homebrew-core, ... }:
+  outputs = inputs@{ self, nixpkgs, darwin, home-manager, nix-homebrew, homebrew-cask, homebrew-core, homebrew-bundle, ... }:
   let
     m1 = "aarch64-darwin";
     rpi = "aarch64-linux";
@@ -42,6 +54,7 @@
     # Configure nix-darwin machines
     mkDarwinConfig = { system, hostname }: darwin.lib.darwinSystem {
       inherit system;
+      specialArgs = { inherit inputs; };
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
@@ -49,6 +62,8 @@
       modules = [
         ./machines/darwin              # shared darwin config
         ./machines/darwin/${hostname}.nix  # machine-specific config
+
+        inputs.nix-homebrew.darwinModules.nix-homebrew
 
         home-manager.darwinModules.home-manager {
           home-manager = {
@@ -113,6 +128,10 @@
       rpi = mkNixosConfig {
         system = rpi;
         hostname = "rpi";
+      };
+      hyperhdr = mkNixosConfig {
+        system = rpi;
+        hostname = "hyperhdr";
       };
     };
   };

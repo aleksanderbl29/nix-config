@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -31,9 +32,22 @@
 
   nix.gc.automatic = true;
 
+  nix-homebrew = {
+    enable = true;
+    enableRosetta = true;
+    user = "aleksanderbang-larsen";
+    mutableTaps = false;
+    taps = {
+      "homebrew/homebrew-core" = inputs.homebrew-core;
+      "homebrew/homebrew-cask" = inputs.homebrew-cask;
+      "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
+      "homebrew/services" = inputs.homebrew-services;
+      "hudochenkov/homebrew-sshpass" = inputs.homebrew-sshpass;
+      "teamookla/homebrew-speedtest" = inputs.homebrew-speedtest;
+    };
+  };
+
   environment = {
-    shells = with pkgs; [ bash zsh ];
-    systemPath = [ "/opt/homebrew/bin" ];
     pathsToLink = [ "/Applications" ];
     systemPackages = with pkgs; [
       coreutils

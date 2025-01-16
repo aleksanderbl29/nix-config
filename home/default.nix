@@ -1,6 +1,5 @@
 { config, pkgs, ...}:
 let
-  user = "aleksanderbang-larsen";
   tex = (pkgs.texlive.combine {
     inherit (pkgs.texlive) scheme-medium
       dvisvgm dvipng wrapfig amsmath ulem hyperref capt-of
@@ -32,7 +31,6 @@ in
     # positron-bin
     # alacritty
     # tex # This is defined above
-    # devenv
     nodejs_20
   ];
 

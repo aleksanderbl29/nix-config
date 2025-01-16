@@ -38,13 +38,6 @@
       # "Unsplash Wallpapers" = 1284863847;
       "WireGuard" = 1451685025;
     };
-    taps = [
-      "gcenx/wine"
-      "homebrew/bundle"
-      "homebrew/services"
-      "hudochenkov/sshpass"
-      "teamookla/speedtest"
-    ];
     casks = [
       "microsoft-office"
       "font-latin-modern"
@@ -58,6 +51,7 @@
       # "balenaetcher"
       "bentobox"
       "bitwarden"
+      # "cursor"
       "dropbox"
       "element"
       # "font-meslo-lg-nerd-font"
@@ -73,7 +67,7 @@
       # "postman"
       "quarto"
       "r"
-      "raspberry-pi-imager"
+      # "raspberry-pi-imager"
       "raycast"
       "rstudio"
       "slack"
