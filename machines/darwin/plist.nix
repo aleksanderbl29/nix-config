@@ -1,24 +1,21 @@
-{ ... }:
+{ username, ... }:
 let
   bentobox = "org.friendlyventures.BentoBox.plist";
 in
 {
   system.activationScripts.copyPreferences = {
     text = ''
-      echo "Copying bentobox preferences to /Library/Preferences/"
+      echo "Copying bentobox preferences to user Library/Preferences"
       SOURCE="./dots/${ bentobox }"
-      DEST="/Library/Preferences/${ bentobox }"
+      DEST="/Users/${username}/Library/Preferences/${ bentobox }"
 
-      # Ensure we have root permissions
-      if [ ! -w "/Library/Preferences" ]; then
-        echo "Requesting root permissions to copy file"
-        sudo mkdir -p "/Library/Preferences"
-      fi
+      # Ensure the directory exists
+      mkdir -p "/Users/${username}/Library/Preferences"
 
       # Copy file and set proper permissions
-      sudo cp "$SOURCE" "$DEST"
-      sudo chown root:admin "$DEST"
-      sudo chmod 644 "$DEST"
+      cp "$SOURCE" "$DEST"
+      chown ${username}:staff "$DEST"
+      chmod 644 "$DEST"
     '';
   };
 }

@@ -11,6 +11,8 @@
     ./plist.nix
   ];
 
+  _module.args.username = "aleksanderbang-larsen";  # or make it configurable
+
   system.stateVersion = 4;
   nix = {
     extraOptions = ''
