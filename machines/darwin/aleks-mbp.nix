@@ -5,7 +5,7 @@ in
 {
   nix = {
     settings = {
-      trusted-users = [ ${user} ];
+      trusted-users = [ user ];
     };
   };
 
