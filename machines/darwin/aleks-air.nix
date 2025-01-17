@@ -26,6 +26,6 @@ in
   };
 
   nix-homebrew = {
-    enableRosetta = false;
+    enableRosetta = lib.mkForce false;
   };
 }
