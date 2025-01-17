@@ -115,10 +115,6 @@
         system = m1;
         hostname = "aleks-mbp";
       };
-      Macbook-Air-tilhrende-Aleksander = mkDarwinConfig {
-        system = "x86_64-darwin";
-        hostname = "intel";
-      };
       aleks-air = mkDarwinConfig {
         system = "x86_64-darwin";
         hostname = "aleks-air";
