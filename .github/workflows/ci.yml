@@ -49,12 +49,12 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
       
-      - name: Install nixfmt
-        run: nix-env -iA nixpkgs.nixfmt
+      - name: Setup Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
       
       - name: Check Nix formatting
         run: |
-          find . -name "*.nix" -type f -exec nixfmt -c {} \;
+          nix run nixpkgs#nixfmt -- --check $(find . -name "*.nix" -type f)
 
   check-deadlinks:
     runs-on: ubuntu-latest
@@ -64,7 +64,9 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
       
+      - name: Setup Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+      
       - name: Check for dead links in Nix files
         run: |
-          nix-env -iA nixpkgs.deadnix
-          deadnix . --fail
+          nix run nixpkgs#deadnix -- . --fail
