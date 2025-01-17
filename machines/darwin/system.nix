@@ -35,7 +35,6 @@
     NSNavPanelExpandedStateForSaveMode = true;
     # "com.apple.mouse.tapBehavior" = 1;
     ApplePressAndHoldEnabled = false;
-    LSPrefferedWebBroser = "app.zen-browser.zen";
   };
 
   system.defaults.CustomUserPreferences = {
