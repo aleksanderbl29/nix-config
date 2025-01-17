@@ -11,16 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
-      
+
       - name: Setup Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@main
-      
+
       - name: Check Flake Inputs
         run: nix flake check
-      
+
       - name: Validate NixOS Configurations
         run: |
           # Check each NixOS system configuration
@@ -45,13 +45,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
-      
+
       - name: Setup Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@main
-      
+
       - name: Check Nix formatting
         run: |
           nix run nixpkgs#nixfmt -- --check $(find . -name "*.nix" -type f)
@@ -60,13 +60,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
-      
+
       - name: Setup Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@main
-      
+
       - name: Check for dead links in Nix files
         run: |
           nix run nixpkgs#deadnix -- . --fail
