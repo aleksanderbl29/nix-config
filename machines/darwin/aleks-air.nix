@@ -24,4 +24,8 @@ in
   environment = {
     systemPath = [ "/opt/homebrew/bin" ];
   };
+
+  nix-homebrew = {
+    enableRosetta = false;
+  };
 }
