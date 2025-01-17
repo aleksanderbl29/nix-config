@@ -20,8 +20,8 @@ in
         onedrive = "cd ${ od_loc }";
         g-drive = "cd '${ cloud_stor }/GoogleDrive-aleksanderbl@live.dk/Mit drev/'";
         dropbox = "cd '${ cloud_stor }/Dropbox'";
-        us_pres_elec = "cd '${ od_loc }/7 - US Presidential Election/US_pres_elec'";
-        pol_geo_ds = "cd '${ od_loc }/7 - Politisk geo-data-science med R/pol_geo_ds'";
+        # us_pres_elec = "cd '${ od_loc }/Afsluttet/7 - US Presidential Election/US_pres_elec'";
+        pol_geo_ds = "cd '${ od_loc }/Afsluttet/7 - Politisk geo-data-science med R/pol_geo_ds'";
         t7 = "cd '/Volumes/T7 Shield/developer'";
       };
     };
