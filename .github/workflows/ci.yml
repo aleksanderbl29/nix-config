@@ -1,0 +1,70 @@
+name: Nix Configuration Validation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-nix-flake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      
+      - name: Setup Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+      
+      - name: Check Flake Inputs
+        run: nix flake check
+      
+      - name: Validate NixOS Configurations
+        run: |
+          # Check each NixOS system configuration
+          for system in nixos/*; do
+            if [ -d "$system" ]; then
+              echo "Checking NixOS configuration: $system"
+              nix eval .#nixosConfigurations.$(basename $system).config
+            fi
+          done
+
+      - name: Validate Darwin Configurations
+        run: |
+          # Check each Darwin system configuration
+          for system in darwin/*; do
+            if [ -d "$system" ]; then
+              echo "Checking Darwin configuration: $system"
+              nix eval .#darwinConfigurations.$(basename $system).config
+            fi
+          done
+
+  check-formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      
+      - name: Install nixfmt
+        run: nix-env -iA nixpkgs.nixfmt
+      
+      - name: Check Nix formatting
+        run: |
+          find . -name "*.nix" -type f -exec nixfmt -c {} \;
+
+  check-deadlinks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+      
+      - name: Check for dead links in Nix files
+        run: |
+          nix-env -iA nixpkgs.deadnix
+          deadnix . --fail
