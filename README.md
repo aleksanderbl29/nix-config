@@ -1,57 +1,45 @@
 # nix-config
 
-- Install Nix
+## Installation Steps
 
-```{bash}
+### 1. Install Nix using Determinate Systems installer
+
+```zsh
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --determinate
 ```
 
-- Install homebrew
-  - Don't do this if the machine should use nix-homebrew
+### 2. Clone this repo
 
-```{bash}
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+- Use git in a temporary nix-shell
+
+```zsh
+nix-shell -p git
 ```
 
-- Install Rosetta (if on M-series mac)
-  - Maybe do this?
+Clone the repo
 
-```{bash}
-softwareupdate --install-rosetta --agree-to-license
+```zsh
+mkdir ~/nix-config
+cd ~/nix-config
+git clone https://github.com/aleksanderbl29/nix-config .
 ```
 
-- Install git
+### 3. Build the system for the first time
 
-```{bash}
-brew intall git
+MacOS
+
+```zsh
+nix run nix-darwin -- switch --flake ~/nix-config/
 ```
 
-- Clone this repo
+NixOS
 
-```{bash}
-mkdir ~/src/
-cd ~/src/
-git clone https://github.com/aleksanderbl29/nix-config nix-mbp
+```zsh
+sudo nixos-rebuild switch --flake ~/nix-config#
 ```
 
-- Enable experimental nix features
+All subsequent rebuilds can be done with the same command on all systems
 
-```{bash}
-mkdir -p ~/.config/nix
-cat <<EOF > ~/.config/nix/nix.conf
-experimental-features = nix-command flakes
-EOF
-```
-
-- Nix run
-
-```{bash}
-nix run nix-darwin -- switch --flake ~/src/nix-mbp/
-```
-
-- Rebuild
-
-```{bash}
-darwin-rebuild switch --flake ~/src/nix-mbp/
-# Also alias nixswitch
+```zsh
+nixswitch
 ```
