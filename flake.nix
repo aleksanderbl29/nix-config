@@ -90,7 +90,7 @@
       inherit system;
       modules = [
         ./machines/nixos              # shared nixos config
-        ./machines/nixos/${hostname}  # machine-specific config
+        ./machines/nixos/${hostname}.nix  # machine-specific config
 
         home-manager.nixosModules.home-manager {
           home-manager = {
