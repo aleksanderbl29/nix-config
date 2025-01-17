@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 let
   user = "aleksander";
 in
