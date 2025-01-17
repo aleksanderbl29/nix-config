@@ -8,6 +8,7 @@
     ./homebrew.nix
     ./system.nix
     ./dock.nix
+    ./plist.nix
   ];
 
   system.stateVersion = 4;
