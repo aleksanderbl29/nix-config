@@ -77,6 +77,7 @@
               imports = [
                 ./home              # shared home-manager config for all machines
                 ./home/darwin.nix   # shared home-manager config for all darwin machines
+                ./home/${hostname}.nix  # machine-specific home-manager config
               ];
             };
           };
@@ -117,6 +118,10 @@
       Macbook-Air-tilhrende-Aleksander = mkDarwinConfig {
         system = "x86_64-darwin";
         hostname = "intel";
+      };
+      aleks-air = mkDarwinConfig {
+        system = "x86_64-darwin";
+        hostname = "aleks-air";
       };
     };
 

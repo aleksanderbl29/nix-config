@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    # ./homebrew.nix
+    ./homebrew.nix
     ./system.nix
     ./dock.nix
   ];
@@ -41,7 +41,7 @@
       "homebrew/homebrew-core" = inputs.homebrew-core;
       "homebrew/homebrew-cask" = inputs.homebrew-cask;
       "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
-      "homebrew/services" = inputs.homebrew-services;
+      "homebrew/homebrew-services" = inputs.homebrew-services;
       "hudochenkov/homebrew-sshpass" = inputs.homebrew-sshpass;
       "teamookla/homebrew-speedtest" = inputs.homebrew-speedtest;
     };
