@@ -60,6 +60,8 @@
   # system.defaults.WindowManager.EnableStandardClickToShowDesktop = false;
   fonts.packages = with pkgs; [
     nerd-fonts.meslo-lg
+    lmodern
+    lmmath
   ];
 
   services.nix-daemon.enable = true;
