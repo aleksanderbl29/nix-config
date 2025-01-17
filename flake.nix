@@ -126,14 +126,10 @@
     };
 
     nixosConfigurations = {
-      n100 = mkNixosConfig {
-        system = n100;
-        hostname = "n100";
-      };
-      rpi = mkNixosConfig {
-        system = rpi;
-        hostname = "rpi";
-      };
+      # n100 = mkNixosConfig {
+      #   system = n100;
+      #   hostname = "n100";
+      # };
       hyperhdr = mkNixosConfig {
         system = rpi;
         hostname = "hyperhdr";
