@@ -22,10 +22,12 @@
         ls = "ls --color=auto -F";
 
         # Nix specifics
-        nixswitch = "darwin-rebuild switch --flake ~/src/nix-mbp/";
-        nix-cd = "cd ~/src/nix-mbp";
+        nixswitch = if pkgs.stdenv.isDarwin
+          then "darwin-rebuild switch --flake ~/nix-config/"
+          else "sudo nixos-rebuild switch --flake ~/nix-config/";
+        nix-cd = "cd ~/nix-config/";
         fu-commit = "nix flake update && git add flake.lock && git commit -m 'Update flake.lock'";
-        open_nix = "nix-cd && code .";
+        open-nix = "nix-cd && code .";
 
         # R specific
         renv-commit = "git add renv.lock && git commit -m 'Update renv snapshot'";
