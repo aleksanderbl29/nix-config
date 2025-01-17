@@ -3,7 +3,7 @@
     enable = true;
 
     userSettings = {
-      "workbench.iconTheme" = material-icon-theme;
+      "workbench.iconTheme" = "material-icon-theme";
     };
   };
 }
