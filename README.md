@@ -8,7 +8,13 @@
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --determinate
 ```
 
-### 2. Clone this repo
+### 2. Install Xcode Command Line Tools (if on mac)
+
+```zsh
+xcode-select --install
+```
+
+### 3. Clone this repo
 
 - Use git in a temporary nix-shell
 
@@ -26,7 +32,7 @@ git clone https://github.com/aleksanderbl29/nix-config .
 
 Exit the nix-shell after cloning the repo.
 
-### 3. Build the system for the first time
+### 4. Build the system for the first time
 
 You don't have to specify the hostname as long as the machine hostname is one of the outputs in `flake.nix`.
 
