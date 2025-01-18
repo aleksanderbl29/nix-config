@@ -70,7 +70,6 @@
   services.nix-daemon.enable = true;
 
   # Make sure xcode cli-tools are installed
-  system.defaults.AppleSymbolicHotKeys = {};  # needed as a base
   system.activationScripts.extraActivation.text = ''
     # Install Xcode CLI tools
     if ! /usr/bin/xcode-select -p &> /dev/null; then
