@@ -1,6 +1,6 @@
 { ... }:
 let
-  user = "aleksanderbang-larsen";
+  user = "aleksander";
   od_loc = "/Users/${ user }/Library/CloudStorage/OneDrive-AarhusUniversitet";
   cloud_stor = "/Users/${ user }/Library/CloudStorage";
 in

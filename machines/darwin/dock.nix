@@ -10,7 +10,7 @@
     persistent-apps =
     [
       # "/Applications/Arc.app"
-      "/Users/aleksanderbang-larsen/Applications/Zen Browser.app"
+      "/Users/aleksander/Applications/Zen Browser.app"
       "/Applications/Fantastical.app"
       "/Applications/Spotify.app"
       "/System/Applications/Messages.app"
@@ -26,7 +26,7 @@
     ];
     persistent-others =
     [
-      "/Users/aleksanderbang-larsen/Downloads"
+      "/Users/aleksander/Downloads"
     ];
     show-recents = false;
     show-process-indicators = true;

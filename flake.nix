@@ -48,7 +48,7 @@
     m1 = "aarch64-darwin";
     rpi = "aarch64-linux";
     n100 = "x86_64-linux";
-    mac_user = "aleksanderbang-larsen";
+    mac_user = "aleksander";
     user = "aleksander";
 
     # Configure nix-darwin machines

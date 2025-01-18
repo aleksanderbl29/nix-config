@@ -2304,7 +2304,7 @@
 			<key>Window Type</key>
 			<integer>0</integer>
 			<key>Working Directory</key>
-			<string>/Users/aleksanderbang-larsen/tinker</string>
+			<string>/Users/aleksander/tinker</string>
 		</dict>
 		<dict>
 			<key>ASCII Anti Aliased</key>
@@ -2791,7 +2791,7 @@
 			<key>Window Type</key>
 			<integer>0</integer>
 			<key>Working Directory</key>
-			<string>/Users/aleksanderbang-larsen</string>
+			<string>/Users/aleksander</string>
 		</dict>
 	</array>
 	<key>OpenArrangementAtStartup</key>

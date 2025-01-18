@@ -15,7 +15,7 @@ options(
   )
 )
 
-# if (!"/Users/aleksanderbang-larsen/Library/Caches/org.R-project.R/R/renv/sandbox/macos/R-4.4/aarch64-apple-darwin20/f7156815" %in%
+# if (!"/Users/aleksander/Library/Caches/org.R-project.R/R/renv/sandbox/macos/R-4.4/aarch64-apple-darwin20/f7156815" %in%
 #     .libPaths()) {
 #   .libPaths("~/Library/Caches/org.R-project.R/R/renv/cache/v5/macos/R-4.4/aarch64-apple-darwin20")
 #   }

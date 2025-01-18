@@ -1,6 +1,6 @@
 { ... }:
 let
-  user = "aleksanderbang-larsen";
+  user = "aleksander";
 in
 {
   environment = {

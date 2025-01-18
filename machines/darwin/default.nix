@@ -11,7 +11,7 @@
     ./plist.nix
   ];
 
-  _module.args.username = "aleksanderbang-larsen";  # or make it configurable
+  _module.args.username = "aleksander";  # or make it configurable
 
   system.stateVersion = 4;
   nix = {
@@ -20,7 +20,7 @@
       extra-platforms = x86_64-darwin aarch64-darwin
     '';
     settings = {
-      trusted-users = [ "aleksanderbang-larsen" ];
+      trusted-users = [ "aleksander" ];
     };
   };
 
@@ -29,7 +29,7 @@
     LANG = "da_DK.UTF-8";
   };
 
-  users.users.aleksanderbang-larsen.home = "/Users/aleksanderbang-larsen";
+  users.users.aleksander.home = "/Users/aleksander";
 
   programs.zsh.enable = true;
 
@@ -38,7 +38,7 @@
   nix-homebrew = {
     enable = true;
     enableRosetta = true;
-    user = "aleksanderbang-larsen";
+    user = "aleksander";
     mutableTaps = false;
     taps = {
       "homebrew/homebrew-core" = inputs.homebrew-core;
