@@ -69,8 +69,21 @@
 
   services.nix-daemon.enable = true;
 
+  # Make sure xcode cli-tools are installed
+  system.defaults.AppleSymbolicHotKeys = {};  # needed as a base
+  system.activationScripts.extraActivation.text = ''
+    # Install Xcode CLI tools
+    if ! /usr/bin/xcode-select -p &> /dev/null; then
+      echo "Installing Xcode CLI tools..."
+      touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
+      PROD=$(/usr/sbin/softwareupdate -l | grep "\*.*Command Line" | tail -n 1 | sed 's/^[^C]* //')
+      /usr/sbin/softwareupdate -i "$PROD" --verbose
+      rm /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress
+    fi
+  '';
+
+  # Following line should allow us to avoid a logout/login cycle
   system.activationScripts.postUserActivation.text = ''
-    # Following line should allow us to avoid a logout/login cycle
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
 }
