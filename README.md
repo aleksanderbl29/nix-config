@@ -16,7 +16,7 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 nix-shell -p git
 ```
 
-Clone the repo
+Clone the repo.
 
 ```zsh
 mkdir ~/nix-config
@@ -24,12 +24,16 @@ cd ~/nix-config
 git clone https://github.com/aleksanderbl29/nix-config .
 ```
 
+Exit the nix-shell after cloning the repo.
+
 ### 3. Build the system for the first time
+
+You don't have to specify the hostname as long as the machine hostname is one of the outputs in `flake.nix`.
 
 MacOS
 
 ```zsh
-nix run nix-darwin -- switch --flake ~/nix-config/
+nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake ~/nix-config/
 ```
 
 NixOS
@@ -38,7 +42,7 @@ NixOS
 sudo nixos-rebuild switch --flake ~/nix-config#
 ```
 
-All subsequent rebuilds can be done with the same command on all systems
+All subsequent rebuilds can be done with the same command on all systems.
 
 ```zsh
 nixswitch
