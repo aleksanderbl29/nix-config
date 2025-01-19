@@ -26,6 +26,8 @@
     LANG = "da_DK.UTF-8";
   };
 
+  services.tailscale.enable = true;
+
   users.users.aleksander.home = "/Users/aleksander";
 
   programs.zsh.enable = true;

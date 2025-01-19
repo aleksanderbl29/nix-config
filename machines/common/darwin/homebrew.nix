@@ -54,6 +54,7 @@
       # "spotify"
       # "spotify-notify"
       "stats"
+      "synology-drive"
       # "telegram"
       # "transmission"
       "unnaturalscrollwheels"

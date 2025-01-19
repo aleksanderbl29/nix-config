@@ -14,6 +14,10 @@ in
     ./zsh.nix
   ];
 
+  programs.direnv = {
+    enable = true;
+  };
+
   home.stateVersion = "22.11";
   home.packages = with pkgs; [
     curl
