@@ -10,7 +10,7 @@
       # "/Applications/Arc.app"
       "/Applications/Zen Browser.app"
       "/Applications/Fantastical.app"
-      "/Applications/Spotify.app"
+      "${pkgs.spotify}/Applications/Spotify.app"
       "/System/Applications/Messages.app"
       "/Applications/Messenger.app"
       "/Applications/Microsoft Outlook.app"

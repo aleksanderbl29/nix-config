@@ -57,6 +57,7 @@
       git
       vim
       ncdu
+      spotify
     ];
   };
 

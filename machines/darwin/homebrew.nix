@@ -17,6 +17,7 @@
       "Bitwarden" = 1352778147;
       "Disk Speed Test" = 425264550;
       "Flightly" = 1358823008;
+      # "Notify for Spotify" = 1517312650;
       "Numbers" = 409203825;
       "Speedtest" = 1153157709;
       # "Trello" = 1278508951;
@@ -50,7 +51,8 @@
       "rstudio"
       "slack"
       "sonos"
-      "spotify"
+      # "spotify"
+      # "spotify-notify"
       "stats"
       # "telegram"
       # "transmission"
