@@ -10,7 +10,7 @@
     persistent-apps =
     [
       # "/Applications/Arc.app"
-      "/Users/aleksander/Applications/Zen Browser.app"
+      "/Applications/Zen Browser.app"
       "/Applications/Fantastical.app"
       "/Applications/Spotify.app"
       "/System/Applications/Messages.app"
