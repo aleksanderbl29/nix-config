@@ -3,5 +3,5 @@
 - Turn off animations
 - Enable three-finger swipe down (app-expose)
 - Reduce motions
-    - System settings -> Accessibility -> Display -> Reduce motion
+  - System settings -> Accessibility -> Display -> Reduce motion
 - Enable keyboard shortcut for space 1-5
