@@ -1,5 +1,7 @@
 # nix-config
 
+[![Nix Config Validation](https://github.com/aleksanderbl29/nix-config/actions/workflows/ci.yml/badge.svg)](https://github.com/aleksanderbl29/nix-config/actions/workflows/ci.yml)
+
 ## Installation Steps
 
 ### 1. Install Nix using Determinate Systems installer
