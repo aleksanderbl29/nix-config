@@ -15,7 +15,7 @@
       "/Applications/Messenger.app"
       "/Applications/Microsoft Outlook.app"
       "/System/Applications/Preview.app"
-      "${pkgs.vscode}/Applications/Visual Studio Code.app"
+      "/Applications/Visual Studio Code.app"
       "/Applications/RStudio.app"
       "/Applications/Obsidian.app"
       "/Applications/Iterm.app"

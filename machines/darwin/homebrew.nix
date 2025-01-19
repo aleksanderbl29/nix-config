@@ -56,6 +56,7 @@
       # "transmission"
       "unnaturalscrollwheels"
       "vanilla"
+      "visual-studio-code"
       # "warp"
       # "whatsapp"
       "zotero"
