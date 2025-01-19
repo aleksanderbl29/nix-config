@@ -58,7 +58,7 @@
     ];
   };
 
-  # system.defaults.WindowManager.EnableStandardClickToShowDesktop = false;
+  system.defaults.WindowManager.EnableStandardClickToShowDesktop = false;
   fonts.packages = with pkgs; [
     nerd-fonts.meslo-lg
     lmodern
