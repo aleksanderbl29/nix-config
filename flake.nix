@@ -41,15 +41,21 @@
       flake = false;
     };
 
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
   };
 
-  outputs = inputs@{ self, nixpkgs, darwin, home-manager, nix-homebrew, homebrew-cask, homebrew-core, homebrew-bundle, ... }:
+  outputs = inputs@{ self, nixpkgs, darwin, home-manager, nix-homebrew, homebrew-cask, homebrew-core, homebrew-bundle, nix-vscode-extensions, ... }:
   let
     m1 = "aarch64-darwin";
     rpi = "aarch64-linux";
     n100 = "x86_64-linux";
     mac_user = "aleksander";
     user = "aleksander";
+
+    myOverlays = [
+      inputs.nix-vscode-extensions.overlays.default
+    ];
 
     # Configure nix-darwin machines
     mkDarwinConfig = { system, hostname }: darwin.lib.darwinSystem {
@@ -58,6 +64,7 @@
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
+        overlays = myOverlays;
       };
       modules = [
         ./machines/darwin              # shared darwin config
@@ -88,6 +95,12 @@
     # Configure nixos machines
     mkNixosConfig = { system, hostname }: nixpkgs.lib.nixosSystem {
       inherit system;
+      specialArgs = { inherit inputs; };
+      pkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+        overlays = myOverlays;
+      };
       modules = [
         ./machines/nixos              # shared nixos config
         ./machines/nixos/${hostname}.nix  # machine-specific config
