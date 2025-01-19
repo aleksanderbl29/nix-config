@@ -14,6 +14,7 @@
     global.brewfile = true;
     masApps = {
       "AdGuard for Safari" = 1440147259;
+      "Bitwarden" = 1352778147;
       "Disk Speed Test" = 425264550;
       "Flightly" = 1358823008;
       "Numbers" = 409203825;
@@ -25,13 +26,12 @@
     casks = [
       "microsoft-office"
       # "arc"
-      # "fantastical"
-      # "messenger"
+      "fantastical"
+      "messenger"
       "aldente"
       "alt-tab"
       # "balenaetcher"
       "bentobox"
-      "bitwarden"
       # "cursor"
       "dropbox"
       "element"
