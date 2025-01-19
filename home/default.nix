@@ -18,8 +18,8 @@ in
   home.packages = with pkgs; [
     curl
     htop
-    oh-my-posh
-    oh-my-zsh
+    # oh-my-posh
+    # oh-my-zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
     pyenv
@@ -28,7 +28,7 @@ in
     azure-cli
     devenv
     bruno
-    # positron-bin
+    positron-bin
     # alacritty
     # tex # This is defined above
     nodejs_20
