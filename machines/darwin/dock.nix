@@ -1,6 +1,4 @@
-{
-  ...
-}: {
+{ pkgs, ... }: {
   system.defaults.dock = {
     autohide = false;
     expose-group-apps = true;
@@ -17,7 +15,7 @@
       "/Applications/Messenger.app"
       "/Applications/Microsoft Outlook.app"
       "/System/Applications/Preview.app"
-      "/Applications/Visual Studio Code.app"
+      "${pkgs.vscode}/Applications/Visual Studio Code.app"
       "/Applications/RStudio.app"
       "/Applications/Obsidian.app"
       "/Applications/Iterm.app"
