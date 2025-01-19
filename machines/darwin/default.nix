@@ -5,10 +5,7 @@
   ...
 }: {
   imports = [
-    ./homebrew.nix
-    ./system.nix
-    ./dock.nix
-    ./plist.nix
+    ../darwin-common.nix
   ];
 
   _module.args.username = "aleksander";  # or make it configurable
