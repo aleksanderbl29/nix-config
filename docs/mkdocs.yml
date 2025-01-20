@@ -14,7 +14,6 @@ plugins:
   - search
   - git-revision-date-localized
   - git-authors
-  - git-committers
 
 
 # Point to a subdirectory for source files
