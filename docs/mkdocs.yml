@@ -1,0 +1,21 @@
+site_name: Aleksander's Nix Config
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+
+# Point to repository root as docs source
+docs_dir: ..
+# Output built site to docs/site
+site_dir: site
+
+nav:
+  - Home: README.md
+  - Documentation:
+    - docs/content/
