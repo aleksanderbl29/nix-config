@@ -10,12 +10,11 @@ theme:
     - search.highlight
     - content.code.copy
 
-# Point to repository root as docs source
-docs_dir: ..
-# Output built site to docs/site
-site_dir: ../site
+# Keep everything within docs directory
+docs_dir: docs
+site_dir: site
 
 nav:
-  - Home: README.md
+  - Home: index.md
   - Documentation:
-    - docs/content/
+    - content/

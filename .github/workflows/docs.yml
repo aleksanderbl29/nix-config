@@ -4,8 +4,8 @@ on:
     branches:
       - main
     paths:
-      - "docs/**"
-      - "README.md"
+      - 'docs/**'
+      - 'README.md'
 
 jobs:
   deploy:
@@ -22,6 +22,11 @@ jobs:
       - name: Install dependencies
         run: |
           pip install mkdocs-material
+
+      - name: Setup docs
+        run: |
+          mkdir -p docs/docs
+          cp README.md docs/docs/index.md
 
       - name: Build and Deploy
         run: |
