@@ -35,6 +35,7 @@
       # "cursor"
       "dropbox"
       "element"
+      "google-chrome"
       "iterm2"
       # "latest"
       # "lm-studio"
