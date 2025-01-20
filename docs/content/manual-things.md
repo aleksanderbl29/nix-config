@@ -1,4 +1,6 @@
-# This is a list of the macOS settings that needs to be set manually
+# Manual settings
+
+This is a list of the macOS settings that needs to be set manually
 
 - Turn off animations
 - Enable three-finger swipe down (app-expose)

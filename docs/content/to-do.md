@@ -15,3 +15,5 @@ This to do list is for my personal mac machine. A more elaborate to do list syst
     - Dropbox
 6. Import settings (plist) into stats.
 7. Sign in to outlook app
+
+Also do take a look at the other pages on the left hand side.
