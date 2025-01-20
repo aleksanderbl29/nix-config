@@ -10,11 +10,14 @@ theme:
     - search.highlight
     - content.code.copy
 
-# Point directly to docs directory
-docs_dir: .
-site_dir: _site
+# Point to a subdirectory for source files
+docs_dir: content
+# Put site output outside the docs dir
+site_dir: ../site
 
 nav:
   - Home: ../README.md
   - Documentation:
-    - content/
+    - browser-signings.md
+    - manual-things.md
+    - to-do.md
