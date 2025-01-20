@@ -30,7 +30,7 @@ jobs:
 
       - name: Move readme to docs
         run: |
-          cp README.md docs/index.md
+          cp README.md docs/content/index.md
 
       - name: Build and Deploy
         run: |
