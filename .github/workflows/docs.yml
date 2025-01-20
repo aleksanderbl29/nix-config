@@ -28,17 +28,15 @@ jobs:
         run: |
           pip install mkdocs-material
 
+      # - name: Create .nojekyll in gh-pages
+      #   run: |
+      #     git checkout gh-pages
+      #     touch .nojekyll
+      #     git add .nojekyll
+      #     git commit -m "Add .nojekyll file"
+      #     git push origin gh-pages
+
       - name: Build and Deploy
         run: |
           cd docs
-          # Create .nojekyll file to prevent GitHub Pages from trying to run Jekyll
-          touch .nojekyll
-          mkdocs gh-deploy --force
-
-      - name: Create .nojekyll in gh-pages
-        run: |
-          git checkout gh-pages
-          touch .nojekyll
-          git add .nojekyll
-          git commit -m "Add .nojekyll file"
-          git push origin gh-pages
+          mkdocs gh-deploy --force --no-jekyll
