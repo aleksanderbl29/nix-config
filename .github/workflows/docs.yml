@@ -6,7 +6,7 @@ on:
     paths:
       - 'docs/**'
       - 'README.md'
-      - '.github/workflows/docs.yml'  # Added this line
+      - '.github/workflows/docs.yml'
 
 permissions:
   contents: write
@@ -31,4 +31,14 @@ jobs:
       - name: Build and Deploy
         run: |
           cd docs
+          # Create .nojekyll file to prevent GitHub Pages from trying to run Jekyll
+          touch .nojekyll
           mkdocs gh-deploy --force
+
+      - name: Create .nojekyll in gh-pages
+        run: |
+          git checkout gh-pages
+          touch .nojekyll
+          git add .nojekyll
+          git commit -m "Add .nojekyll file"
+          git push origin gh-pages
