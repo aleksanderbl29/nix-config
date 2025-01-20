@@ -6,7 +6,7 @@ on:
     paths:
       - 'docs/**'
       - 'README.md'
-      - '.github/workflows/docs.yml'
+      - '.github/workflows/docs.yml'  # Added this line
 
 permissions:
   contents: write
@@ -27,10 +27,6 @@ jobs:
       - name: Install dependencies
         run: |
           pip install mkdocs-material
-
-      - name: Setup docs
-        run: |
-          cp README.md docs/docs/index.md
 
       - name: Build and Deploy
         run: |

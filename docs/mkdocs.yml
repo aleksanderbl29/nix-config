@@ -10,11 +10,11 @@ theme:
     - search.highlight
     - content.code.copy
 
-# Keep everything within docs directory
-docs_dir: docs
-site_dir: site
+# Point directly to docs directory
+docs_dir: .
+site_dir: _site
 
 nav:
-  - Home: index.md
+  - Home: ../README.md
   - Documentation:
     - content/
