@@ -10,6 +10,13 @@ theme:
     - search.highlight
     - content.code.copy
 
+plugins:
+  - search
+  - git-revision-date-localized
+  - git-authors
+  - git-committers
+
+
 # Point to a subdirectory for source files
 docs_dir: content
 # Put site output outside the docs dir
