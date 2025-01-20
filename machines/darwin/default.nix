@@ -57,6 +57,7 @@
       vim
       ncdu
       spotify
+      net-news-wire
     ];
   };
 
