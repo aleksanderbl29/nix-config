@@ -7,6 +7,10 @@ on:
       - 'docs/**'
       - 'README.md'
 
+permissions:
+  contents: write
+  pages: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -25,7 +29,6 @@ jobs:
 
       - name: Setup docs
         run: |
-          mkdir -p docs/docs
           cp README.md docs/docs/index.md
 
       - name: Build and Deploy
