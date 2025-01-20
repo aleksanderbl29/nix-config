@@ -1,6 +1,6 @@
 site_name: Aleksander's Nix Config
 theme:
-  name: material
+  name: mkdocs
   features:
     - navigation.instant
     - navigation.tracking
@@ -16,7 +16,7 @@ docs_dir: content
 site_dir: ../site
 
 nav:
-  - Home: ../README.md
+  - Home: index.md
   - Documentation:
     - browser-signings.md
     - manual-things.md
