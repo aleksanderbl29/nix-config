@@ -36,6 +36,7 @@ in
     # alacritty
     # tex # This is defined above
     nodejs_20
+    figurine
   ];
 
   programs = {

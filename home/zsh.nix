@@ -17,6 +17,19 @@
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
+
+      # loginExtra = ''
+      #   if [[ -o interactive ]]; then
+      #     ${pkgs.figurine}/bin/figurine -f "Small Keyboard.flf" "''${HOST%%.local}"
+      #   fi
+      # '';
+
+      loginExtra = ''
+        if [[ -o interactive ]]; then
+          ${pkgs.figurine}/bin/figurine -f "smslant.flf" "''${HOST%%.local}"
+        fi
+      '';
+
       shellAliases = {
         # Basic
         ls = "ls --color=auto -F";
