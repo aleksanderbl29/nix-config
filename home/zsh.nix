@@ -39,6 +39,7 @@
           then "darwin-rebuild switch --flake ~/nix-config/"
           else "sudo nixos-rebuild switch --flake ~/nix-config/";
         nix-cd = "cd ~/nix-config/";
+        nix-gc = "nix-collect-garbage -d";
         fu-commit = "nix flake update && git add flake.lock && git commit -m 'Update flake.lock'";
         open-nix = "nix-cd && code .";
 
