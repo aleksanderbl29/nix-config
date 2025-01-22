@@ -39,6 +39,7 @@
       "iterm2"
       # "latest"
       # "lm-studio"
+      "microsoft-teams"
       "obsidian"
       "orbstack"
       "pgadmin4"
