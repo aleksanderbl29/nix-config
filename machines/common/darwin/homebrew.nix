@@ -32,7 +32,7 @@
       "alt-tab"
       # "balenaetcher"
       "bentobox"
-      # "cursor"
+      "cursor"
       "dropbox"
       "element"
       # "google-chrome"
