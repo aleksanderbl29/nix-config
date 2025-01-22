@@ -40,6 +40,7 @@
           else "sudo nixos-rebuild switch --flake ~/nix-config/";
         nix-cd = "cd ~/nix-config/";
         nix-gc = "nix-collect-garbage -d";
+        nxp = "nix-shell -p";
         fu-commit = "nix flake update && git add flake.lock && git commit -m 'Update flake.lock'";
         open-nix = "nix-cd && code .";
 
