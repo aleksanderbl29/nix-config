@@ -14,10 +14,6 @@ in
     ./zsh.nix
   ];
 
-  programs.direnv = {
-    enable = true;
-  };
-
   home.stateVersion = "22.11";
   home.packages = with pkgs; [
     curl
@@ -42,6 +38,8 @@ in
   programs = {
     home-manager.enable = true;
 
+    bat.enable = true;
+    direnv.enable = true;
     htop.enable = true;
   };
 
