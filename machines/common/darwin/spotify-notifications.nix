@@ -2,11 +2,11 @@
 let
   spotify-notifications = pkgs.stdenv.mkDerivation {
     name = "spotify-notifications";
-    version = "0.6.0";  # Update this to match your release version
+    version = "0.6.0";
 
     src = pkgs.fetchzip {
       url = "https://github.com/aleksanderbl29/Spotify-Notifications/releases/download/release-2/Spotify-Notifications.zip";
-      sha256 = "sha256-GQh4ZHFrB3flj85ElEGysN4EzWf45f1hdFcohO+D9FA=";  # You'll get this hash after the first attempt
+      sha256 = "sha256-GQh4ZHFrB3flj85ElEGysN4EzWf45f1hdFcohO+D9FA=";
       stripRoot = false;
     };
 
