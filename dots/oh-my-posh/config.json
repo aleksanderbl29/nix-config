@@ -17,6 +17,7 @@
     },
     {
       "alignment": "left",
+      "newline": true,
       "segments": [
         {
           "foreground": "#77E4F7",
@@ -30,24 +31,49 @@
         {
           "foreground": "#FFE700",
           "style": "plain",
-          "template": "{{ .HEAD }} ",
-          "type": "git"
+          "template": "{{ .HEAD }}{{ if .Working.Modified }} 󰏫{{ end }}{{ if .Working.Deleted }} 󰆴{{ end }}{{ if .Working.Untracked }} 󰛑{{ end }}{{ if gt .Behind 0 }} 󰁅{{ end }}{{ if gt .Ahead 0 }} 󰁝{{ end }} ",
+          "type": "git",
+          "properties": {
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "fetch_stash_count": true,
+            "fetch_upstream": true
+          }
         },
         {
-          "foreground": "#43D426",
+          "foreground": "#FFE700",
           "style": "plain",
-          "template": "\u276f ",
+          "template": "{{ if .Env.DIRENV_DIR }}📍{{ end }} ",
           "type": "text"
         }
       ],
       "type": "prompt"
     },
     {
-      "transient_promt": {
-        "background": "transparent",
-        "foreground": "#ffffff"
-      }
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "style": "plain",
+          "foreground_templates": [
+            "{{ if gt .Code 0}}red{{end}}",
+            "{{if eq .Code 0}}#43D426{{end}}"
+          ],
+          "template": "\u276f ",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
     }
   ],
-  "version": 3
+  "transient_prompt": {
+    "background": "transparent",
+    "foreground_templates": [
+      "{{ if gt .Code 0}}red{{end}}",
+      "{{if eq .Code 0}}#43D426{{end}}"
+    ],
+    "template": "\u276f "
+  },
+  "version": 3,
+  "console_title_template": "{{ .Shell }} in {{ .Folder }}"
 }
