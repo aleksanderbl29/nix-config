@@ -43,7 +43,7 @@
       "obsidian"
       "orbstack"
       "pgadmin4"
-			# "positron"
+      # "positron"
       # "postman"
       "quarto"
       "r"
