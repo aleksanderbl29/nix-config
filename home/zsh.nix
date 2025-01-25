@@ -8,8 +8,9 @@
     oh-my-posh = {
       enable = true;
       enableZshIntegration = true;
-      useTheme = "powerlevel10k_lean";
+      # useTheme = "powerlevel10k_lean";
       # useTheme = "robbyrussell";
+      settings = builtins.fromJSON (builtins.readFile ../dots/oh-my-posh/config.json);
     };
 
     zsh = {
@@ -17,12 +18,6 @@
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
-
-      # loginExtra = ''
-      #   if [[ -o interactive ]]; then
-      #     ${pkgs.figurine}/bin/figurine -f "Small Keyboard.flf" "''${HOST%%.local}"
-      #   fi
-      # '';
 
       loginExtra = ''
         if [[ -o interactive ]]; then
