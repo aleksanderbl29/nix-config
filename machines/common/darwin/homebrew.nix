@@ -39,6 +39,7 @@
       "iterm2"
       # "latest"
       # "lm-studio"
+      "meetingbar"
       "microsoft-teams"
       "obsidian"
       "orbstack"
