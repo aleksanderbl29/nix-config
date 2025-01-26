@@ -1,4 +1,8 @@
 { pkgs, ... }: {
+
+  # Remove login message from shell
+  home.file.".hushlogin".text = "";
+
   programs = {
     fzf = {
       enable = true;
@@ -12,6 +16,7 @@
       # useTheme = "robbyrussell";
       settings = builtins.fromJSON (builtins.readFile ../dots/oh-my-posh/config.json);
     };
+
 
     zsh = {
       enable = true;
