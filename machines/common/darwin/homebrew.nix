@@ -21,7 +21,6 @@
       "Speedtest" = 1153157709;
       # "Trello" = 1278508951;
       # "Unsplash Wallpapers" = 1284863847;
-      "WireGuard" = 1451685025;
     };
     casks = [
       "microsoft-office"
@@ -36,6 +35,7 @@
       "dropbox"
       "element"
       # "google-chrome"
+      "home-assistant"
       "iterm2"
       # "latest"
       # "lm-studio"
@@ -75,7 +75,6 @@
       "cmatrix"
       "cowsay"
       "cryptography"
-      "docker"
       "gdal"
       "gh"
       "git"
