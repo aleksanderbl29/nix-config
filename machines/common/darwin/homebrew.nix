@@ -62,7 +62,7 @@
       "unnaturalscrollwheels"
       "vanilla"
       "visual-studio-code"
-      # "warp"
+      "warp"
       # "whatsapp"
       "zotero"
       "zen-browser"
