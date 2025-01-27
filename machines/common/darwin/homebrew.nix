@@ -41,6 +41,7 @@
       # "lm-studio"
       "meetingbar"
       "microsoft-teams"
+      "MonitorControl"
       "obsidian"
       "orbstack"
       "pgadmin4"
