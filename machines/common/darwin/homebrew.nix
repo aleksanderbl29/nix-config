@@ -57,6 +57,7 @@
       # "spotify"
       # "spotify-notify"
       "stats"
+      "super-productivity"
       "synology-drive"
       # "telegram"
       # "transmission"
