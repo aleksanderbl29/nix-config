@@ -45,7 +45,7 @@
 
   };
 
-  outputs = inputs@{ self, nixpkgs, darwin, home-manager, nix-homebrew, homebrew-cask, homebrew-core, homebrew-bundle, nix-vscode-extensions, ... }:
+  outputs = inputs@{ self, nixpkgs, stable, darwin, home-manager, nix-homebrew, homebrew-cask, homebrew-core, homebrew-bundle, nix-vscode-extensions, ... }:
   let
     m1 = "aarch64-darwin";
     rpi = "aarch64-linux";
