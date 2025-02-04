@@ -37,6 +37,7 @@ in
 
   programs = {
     home-manager.enable = true;
+    lazygit.enable = true;
 
     bat.enable = true;
     direnv.enable = true;
