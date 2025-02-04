@@ -40,8 +40,12 @@ in
     lazygit.enable = true;
 
     bat.enable = true;
-    direnv.enable = true;
     htop.enable = true;
+
+    direnv = {
+      enable = true;
+      silent = true;
+    };
   };
 
   home.file = {
