@@ -1,0 +1,23 @@
+# Theming
+macos-titlebar-style = tabs
+# Lad theme følge macos system theme
+# theme = light:rose-pine-dawn,dark:rose-pine
+# adjust-cursor-thickness = 2
+background-blur-radius = 20
+background-opacity = 0.9
+
+# MacOS Style keybinds
+# Cmd+backspace delete entire line
+# keybind = cmd+backspace=esc:w
+
+# Fonts
+font-size = 18
+font-thicken = true
+
+# Working directory
+working-directory = "/Users/aleksander/Developer"
+
+# MacOS Icon
+macos-icon = custom-style
+macos-icon-ghost-color = white
+macos-icon-screen-color = green

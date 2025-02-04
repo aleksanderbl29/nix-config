@@ -18,7 +18,8 @@
       "/Applications/Visual Studio Code.app"
       "/Applications/RStudio.app"
       "/Applications/Obsidian.app"
-      "/Applications/Iterm.app"
+      # "/Applications/Iterm.app"
+      "/Applications/Ghostty.app"
       "/Applications/Zotero.app"
       "/System/Applications/System Settings.app"
     ];

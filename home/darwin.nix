@@ -5,6 +5,9 @@ let
   cloud_stor = "/Users/${ user }/Library/CloudStorage";
 in
 {
+  # Ghostty configuration
+  # home.file.".config/ghostty/config".source = ../dots/ghostty;
+
   programs = {
     zsh = {
       enable = true;

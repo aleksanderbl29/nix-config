@@ -35,6 +35,7 @@
       "dropbox"
       "element"
       # "google-chrome"
+      "ghostty"
       "home-assistant"
       "iterm2"
       # "latest"
