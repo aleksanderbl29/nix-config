@@ -68,6 +68,7 @@
       "warp"
       # "whatsapp"
       "zotero"
+      "zoom"
       "zen-browser"
       # "utm"
     ];
