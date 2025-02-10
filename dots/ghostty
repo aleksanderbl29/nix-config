@@ -16,6 +16,7 @@ font-thicken = true
 
 # Working directory
 working-directory = "/Users/aleksander/Developer"
+window-inherit-working-directory = false
 
 # MacOS Icon
 macos-icon = custom-style
