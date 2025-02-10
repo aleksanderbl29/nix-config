@@ -43,9 +43,13 @@
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
+    my-nvf.url = "github:aleksanderbl29/nvf";
+
   };
 
-  outputs = inputs@{ self, nixpkgs, stable, darwin, home-manager, nix-homebrew, homebrew-cask, homebrew-core, homebrew-bundle, nix-vscode-extensions, ... }:
+  outputs = inputs@{ self, nixpkgs, stable,
+    darwin, home-manager, nix-homebrew, homebrew-cask, homebrew-core, homebrew-bundle,
+    nix-vscode-extensions, nixos-hardware, my-nvf, ... }:
   let
     m1 = "aarch64-darwin";
     rpi = "aarch64-linux";
@@ -71,6 +75,9 @@
         ./machines/darwin/${hostname}.nix  # machine-specific config
 
         inputs.nix-homebrew.darwinModules.nix-homebrew
+
+        # Custom nvim config from nvf
+        {environment.systemPackages = [ my-nvf.packages.${m1}.default ];}
 
         home-manager.darwinModules.home-manager {
           home-manager = {
@@ -134,7 +141,6 @@
       };
     };
 
-    # nixosConfigurations = {
     #   # n100 = mkNixosConfig {
     #   #   system = n100;
     #   #   hostname = "n100";
