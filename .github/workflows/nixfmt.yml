@@ -1,0 +1,39 @@
+name: Format with nixfmt
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the main branch
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v1
+
+      - name: Run nixfmt
+        run: |
+          nix run nixpkgs#nixfmt -- ./**/*.nix
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --exit-code || git commit -m "Apply nixfmt formatting"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: format/nixfmt-changes
+          title: "Apply nixfmt formatting"
+          body: |
+            This PR applies formatting changes using `nixfmt`.
+
