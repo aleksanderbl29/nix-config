@@ -1,5 +1,1 @@
-{ ... }: {
-  imports = [
-    ./vscode.nix
-  ];
-}
+{ ... }: { imports = [ ./vscode.nix ]; }

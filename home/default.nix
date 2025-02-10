@@ -1,18 +1,14 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 let
   tex = (pkgs.texlive.combine {
-    inherit (pkgs.texlive) scheme-medium
-      dvisvgm dvipng wrapfig amsmath ulem hyperref capt-of
-      titling framed inconsolata collection-fontsrecommended;
-      #(setq org-latex-compiler "lualatex")
-      #(setq org-preview-latex-default-process 'dvisvgm)
+    inherit (pkgs.texlive)
+      scheme-medium dvisvgm dvipng wrapfig amsmath ulem hyperref capt-of titling
+      framed inconsolata collection-fontsrecommended;
+    #(setq org-latex-compiler "lualatex")
+    #(setq org-preview-latex-default-process 'dvisvgm)
   });
-in
-{
-  imports = [
-    ./git.nix
-    ./zsh.nix
-  ];
+in {
+  imports = [ ./git.nix ./zsh.nix ];
 
   home.stateVersion = "22.11";
   home.packages = with pkgs; [
@@ -48,8 +44,6 @@ in
     };
   };
 
-  home.file = {
-    ".Rprofile".source = ../dots/.Rprofile;
-  };
+  home.file = { ".Rprofile".source = ../dots/.Rprofile; };
 
 }
