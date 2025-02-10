@@ -43,7 +43,7 @@
         nxp = "nix-shell -p";
         fu-commit = "nix flake update && git add flake.lock && git commit -m 'Update flake.lock'";
         open-nix = "nix-cd && code .";
-	nix-nvim = "nix-cd && nvim .";
+        nix-nvim = "nix-cd && nvim .";
 
         # R specific
         renv-commit = "git add renv.lock && git commit -m 'Update renv snapshot'";
