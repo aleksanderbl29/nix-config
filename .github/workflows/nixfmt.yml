@@ -5,6 +5,12 @@ on:
     branches:
       - main  # Trigger on pushes to the main branch
   workflow_dispatch:  # Allow manual triggering
+  schedule:
+    - cron: '50 8 * * 3' # runs every Wednesday at 08:50
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   format:
