@@ -9,6 +9,8 @@ in
 
   modules.docker.enable = true;
 
+  ids.gids.nixbld = 350;
+
   nix = {
     settings = {
       trusted-users = [ user ];
