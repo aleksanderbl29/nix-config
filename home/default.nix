@@ -22,16 +22,15 @@ in
     # oh-my-zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
-    pyenv
+    # pyenv
     pre-commit
     uv
-    azure-cli
+    # azure-cli
     devenv
     bruno
     positron-bin
     # alacritty
     # tex # This is defined above
-    nodejs_20
     figurine
   ];
 

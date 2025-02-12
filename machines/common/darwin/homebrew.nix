@@ -78,7 +78,7 @@
       "cmatrix"
       "cowsay"
       "cryptography"
-      "gdal"
+      # "gdal"
       "gh"
       "git"
       "graphviz"
