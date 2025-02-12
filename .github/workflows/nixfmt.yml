@@ -23,9 +23,10 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v1
 
-      - name: Run nixfmt
+            #  nix run nixpkgs#nixfmt -- ./**/*.nix
+      - name: Run alejandra #nixfmt
         run: |
-          nix run nixpkgs#nixfmt -- ./**/*.nix
+          nix run nixpkgs#alejandra .
 
       - name: Commit changes
         run: |
