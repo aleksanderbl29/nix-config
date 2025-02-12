@@ -68,7 +68,7 @@
     lmmath
   ];
 
-  services.nix-daemon.enable = true;
+  # services.nix-daemon.enable = true;
 
   # Following line should allow us to avoid a logout/login cycle
   system.activationScripts.postUserActivation.text = ''
