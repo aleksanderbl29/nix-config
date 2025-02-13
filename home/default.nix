@@ -12,6 +12,7 @@ in
   imports = [
     ./git.nix
     ./zsh.nix
+    ./tmux.nix
   ];
 
   home.stateVersion = "22.11";

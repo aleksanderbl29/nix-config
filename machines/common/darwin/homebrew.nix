@@ -99,7 +99,7 @@
       "starship"
       "tailscale"
       "tere"
-      "tmux"
+      #"tmux"
       "tree"
       # "vim"
       "wimlib"
