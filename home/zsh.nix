@@ -33,6 +33,8 @@
       shellAliases = {
         # Basic
         ls = "ls --color=auto -F";
+        # Git
+        lzg = "lazygit";
 
         # Nix specifics
         nixswitch = if pkgs.stdenv.isDarwin
