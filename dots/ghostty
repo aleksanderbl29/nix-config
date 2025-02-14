@@ -6,10 +6,6 @@ macos-titlebar-style = tabs
 background-blur-radius = 20
 background-opacity = 0.9
 
-# MacOS Style keybinds
-# Cmd+backspace delete entire line
-# keybind = cmd+backspace=esc:w
-
 # Fonts
 font-size = 18
 font-thicken = true
