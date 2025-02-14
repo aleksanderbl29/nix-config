@@ -8,7 +8,7 @@
     ../darwin-common.nix
   ];
 
-  _module.args.username = "aleksander";  # or make it configurable
+  _module.args.username = "aleksander"; # or make it configurable
 
   system.stateVersion = 4;
   nix = {
@@ -17,7 +17,7 @@
       extra-platforms = x86_64-darwin aarch64-darwin
     '';
     settings = {
-      trusted-users = [ "aleksander" ];
+      trusted-users = ["aleksander"];
     };
   };
 
@@ -50,7 +50,7 @@
   };
 
   environment = {
-    pathsToLink = [ "/Applications" ];
+    pathsToLink = ["/Applications"];
     systemPackages = with pkgs; [
       coreutils
       git

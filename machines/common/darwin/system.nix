@@ -1,6 +1,4 @@
-{
-  ...
-}: {
+{...}: {
   system.keyboard = {
     enableKeyMapping = true;
     remapCapsLockToControl = true;
@@ -14,7 +12,7 @@
 
   system.defaults = {
     loginwindow.LoginwindowText = ''
-    Velkommen til Aleksanders Mac
+      Velkommen til Aleksanders Mac
 
 
     '';
@@ -24,7 +22,6 @@
     };
     trackpad.Clicking = true;
   };
-
 
   system.defaults.NSGlobalDomain = {
     AppleShowAllExtensions = true;
@@ -43,7 +40,7 @@
       ShowMountedServersOnDesktop = true;
       ShowRemovableMediaOnDesktop = true;
       _FXSortFoldersFirst = true;
-      FXDefaultSearchScope = "SCcf";      # When performing a search, search the current folder by default
+      FXDefaultSearchScope = "SCcf"; # When performing a search, search the current folder by default
     };
 
     "com.apple.desktopservices" = {
@@ -62,8 +59,7 @@
       CriticalUpdateInstall = 1;
     };
 
-    "com.apple.commerce".AutoUpdate = true;          # Turn on app auto-update
-    "com.apple.diskmanagement".DiskEject = false;    # Turn off disk eject warning
-
+    "com.apple.commerce".AutoUpdate = true; # Turn on app auto-update
+    "com.apple.diskmanagement".DiskEject = false; # Turn off disk eject warning
   };
 }

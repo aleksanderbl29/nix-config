@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.vscode = {
     enable = true;
 
@@ -43,16 +43,18 @@
     };
 
     # Extension authors and names must be all lower-case.
-    extensions = with pkgs.vscode-extensions; [
-      github.copilot
-      github.github-vscode-theme
-      # bbenoist.nix
-      jnoortheen.nix-ide
-      ms-azuretools.vscode-docker
-      mechatroner.rainbow-csv
-    ] ++ (with pkgs.vscode-marketplace; [
-      pkief.material-icon-theme
-      oderwat.indent-rainbow
-    ]);
+    extensions = with pkgs.vscode-extensions;
+      [
+        github.copilot
+        github.github-vscode-theme
+        # bbenoist.nix
+        jnoortheen.nix-ide
+        ms-azuretools.vscode-docker
+        mechatroner.rainbow-csv
+      ]
+      ++ (with pkgs.vscode-marketplace; [
+        pkief.material-icon-theme
+        oderwat.indent-rainbow
+      ]);
   };
 }

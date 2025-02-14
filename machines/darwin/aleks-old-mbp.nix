@@ -1,10 +1,8 @@
-{ ... }:
-let
+{...}: let
   user = "aleksander";
-in
-{
+in {
   environment = {
-    systemPath = [ "/opt/homebrew/bin" ];
+    systemPath = ["/opt/homebrew/bin"];
   };
 
   homebrew = {
@@ -15,8 +13,8 @@ in
     casks = [
       "visual-studio-code"
     ];
-  #   brews = [
-  #     "gcc"
-  #   ];
+    #   brews = [
+    #     "gcc"
+    #   ];
   };
 }

@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   # Remove login message from shell
   home.file.".hushlogin".text = "";
 
@@ -16,7 +15,6 @@
       # useTheme = "robbyrussell";
       settings = builtins.fromJSON (builtins.readFile ../dots/oh-my-posh/config.json);
     };
-
 
     zsh = {
       enable = true;
@@ -37,7 +35,8 @@
         lzg = "lazygit";
 
         # Nix specifics
-        nixswitch = if pkgs.stdenv.isDarwin
+        nixswitch =
+          if pkgs.stdenv.isDarwin
           then "darwin-rebuild switch --flake ~/nix-config/"
           else "sudo nixos-rebuild switch --flake ~/nix-config/";
         nix-cd = "cd ~/nix-config/";

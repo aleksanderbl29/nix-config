@@ -1,12 +1,11 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   system.defaults.dock = {
     autohide = false;
     expose-group-apps = true;
     magnification = true;
     mru-spaces = false;
     orientation = "bottom";
-    persistent-apps =
-    [
+    persistent-apps = [
       # "/Applications/Arc.app"
       "/Applications/Zen Browser.app"
       "/Applications/Fantastical.app"
@@ -23,8 +22,7 @@
       "/Applications/Zotero.app"
       "/System/Applications/System Settings.app"
     ];
-    persistent-others =
-    [
+    persistent-others = [
       "/Users/aleksander/Downloads"
     ];
     show-recents = false;

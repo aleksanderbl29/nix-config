@@ -25,7 +25,7 @@ jobs:
 
       - name: Run nixfmt
         run: |
-          nix run nixpkgs#nixfmt -- ./**/*.nix
+          nix run nixpkgs#alejandra .
 
       - name: Commit changes
         run: |
