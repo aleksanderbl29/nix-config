@@ -1,8 +1,20 @@
 { config, pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix = {
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
+      auto-optimise-store = true;
+    };
+  };
+
+  # Basic system-wide settings that should apply to all NixOS machines
+  time.timeZone = "Europe/Copenhagen";
+
+  # Default locale settings
+  i18n.defaultLocale = "en_DK.UTF-8";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -10,12 +22,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Copenhagen";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_DK.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "da_DK.UTF-8";
@@ -32,9 +38,6 @@
   # Configure console keymap
   console.keyMap = "dk-latin1";
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -48,6 +51,5 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
 
 }
