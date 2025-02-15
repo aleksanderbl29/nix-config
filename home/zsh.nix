@@ -38,7 +38,7 @@
         nixswitch =
           if pkgs.stdenv.isDarwin
           then "darwin-rebuild switch --flake ~/nix-config/"
-          else "sudo nixos-rebuild switch --flake ~/nix-config/";
+          else "sudo nixos-rebuild switch --flake /etc/nixos/";
         nix-cd = "cd ~/nix-config/";
         nix-gc = "nix-collect-garbage -d";
         nxp = "nix-shell -p";
