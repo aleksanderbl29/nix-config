@@ -18,8 +18,6 @@
   networking.hostName = "nixos-1"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
   programs.nix-ld.enable = true;
 
   # Configure network proxy if necessary
@@ -90,6 +88,7 @@
     isNormalUser = true;
     description = "aleksander";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
         neovim
     #  thunderbird
