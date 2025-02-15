@@ -89,7 +89,7 @@
           inputs.nix-homebrew.darwinModules.nix-homebrew
 
           # Custom nvim config from nvf
-          {environment.systemPackages = [my-nvf.packages.${m1}.default];}
+          {environment.systemPackages = [my-nvf.packages.${system}.default];}
 
           home-manager.darwinModules.home-manager
           {
@@ -126,6 +126,9 @@
         modules = [
           ./machines/nixos # shared nixos config
           ./machines/nixos/${hostname} # machine-specific config
+
+          # Custom nvim config from nvf
+          {environment.systemPackages = [my-nvf.packages.${system}.default];}
 
           home-manager.nixosModules.home-manager
           {
