@@ -120,6 +120,7 @@
         specialArgs = {inherit inputs;};
         pkgs = import nixpkgs {
           inherit system;
+          config = {allowUnfree = true;};
           overlays = myOverlays;
         };
         modules = [
