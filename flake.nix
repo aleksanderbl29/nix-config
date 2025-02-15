@@ -157,6 +157,11 @@
       };
     };
 
+    nixos-1 = mkNixosConfig {
+      system = "x86_64-linux";
+      hostname = "nixos-1";
+    };
+
     #   # n100 = mkNixosConfig {
     #   #   system = n100;
     #   #   hostname = "n100";
