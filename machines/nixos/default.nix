@@ -1,13 +1,15 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # nixpkgs.config.allowUnfree = true;
 
   nix = {
     settings = {
       experimental-features = ["nix-command" "flakes"];
       auto-optimise-store = true;
-      trusted-users = [ "root" "aleksander" ];
+      trusted-users = ["root" "aleksander"];
     };
   };
 
@@ -42,15 +44,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-        git
-        wget
-        neovim
-        htop
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    git
+    wget
+    neovim
+    htop
   ];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
 }

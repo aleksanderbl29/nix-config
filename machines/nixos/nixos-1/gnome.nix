@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # minimized for clarity.
   # Some of these might not be needed. After some trial and error
   # I got this working with these configs.
@@ -23,7 +22,7 @@
   # Open ports in the firewall.
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 3389 ];
-    allowedUDPPorts = [ 3389 ];
+    allowedTCPPorts = [3389];
+    allowedUDPPorts = [3389];
   };
 }
