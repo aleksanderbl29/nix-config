@@ -105,7 +105,6 @@
                 users.${mac_user} =
                   { pkgs, ... }:
                   {
-                    nixpkgs.config.allowUnfree = true;
                     imports = [
                       ./home # shared home-manager config for all machines
                       ./home/darwin.nix # shared home-manager config for all darwin machines
