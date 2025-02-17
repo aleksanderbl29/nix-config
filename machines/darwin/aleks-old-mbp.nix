@@ -1,8 +1,10 @@
-{...}: let
+{ ... }:
+let
   user = "aleksander";
-in {
+in
+{
   environment = {
-    systemPath = ["/opt/homebrew/bin"];
+    systemPath = [ "/opt/homebrew/bin" ];
   };
 
   homebrew = {

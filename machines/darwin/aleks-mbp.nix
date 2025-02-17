@@ -1,6 +1,8 @@
-{...}: let
+{ ... }:
+let
   user = "aleksander";
-in {
+in
+{
   imports = [
     ../common/shared/docker.nix
   ];
@@ -11,11 +13,11 @@ in {
 
   nix = {
     settings = {
-      trusted-users = [user];
+      trusted-users = [ user ];
     };
   };
 
   environment = {
-    systemPath = ["/opt/homebrew/bin"];
+    systemPath = [ "/opt/homebrew/bin" ];
   };
 }

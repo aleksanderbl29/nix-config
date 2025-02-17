@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.vscode = {
     enable = true;
 
@@ -43,7 +44,8 @@
     };
 
     # Extension authors and names must be all lower-case.
-    extensions = with pkgs.vscode-extensions;
+    extensions =
+      with pkgs.vscode-extensions;
       [
         github.copilot
         github.github-vscode-theme

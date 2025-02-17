@@ -3,7 +3,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     ../darwin-common.nix
   ];
@@ -17,7 +18,7 @@
       extra-platforms = x86_64-darwin aarch64-darwin
     '';
     settings = {
-      trusted-users = ["aleksander"];
+      trusted-users = [ "aleksander" ];
     };
   };
 
@@ -50,7 +51,7 @@
   };
 
   environment = {
-    pathsToLink = ["/Applications"];
+    pathsToLink = [ "/Applications" ];
     systemPackages = with pkgs; [
       coreutils
       git

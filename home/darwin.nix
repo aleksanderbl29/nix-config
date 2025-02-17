@@ -1,8 +1,10 @@
-{...}: let
+{ ... }:
+let
   user = "aleksander";
   od_loc = "/Users/${user}/Library/CloudStorage/OneDrive-AarhusUniversitet";
   cloud_stor = "/Users/${user}/Library/CloudStorage";
-in {
+in
+{
   # Ghostty configuration
   # home.file.".config/ghostty/config".source = ../dots/ghostty;
 

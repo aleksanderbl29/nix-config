@@ -2,10 +2,10 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   tex = pkgs.texlive.combine {
-    inherit
-      (pkgs.texlive)
+    inherit (pkgs.texlive)
       scheme-medium
       dvisvgm
       dvipng
@@ -22,7 +22,8 @@
     #(setq org-latex-compiler "lualatex")
     #(setq org-preview-latex-default-process 'dvisvgm)
   };
-in {
+in
+{
   imports = [
     ./git.nix
     ./zsh.nix

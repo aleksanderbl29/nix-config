@@ -46,135 +46,148 @@
     my-nvf.url = "github:aleksanderbl29/nvf";
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    stable,
-    darwin,
-    home-manager,
-    nix-homebrew,
-    homebrew-cask,
-    homebrew-core,
-    homebrew-bundle,
-    nix-vscode-extensions,
-    nixos-hardware,
-    my-nvf,
-    ...
-  }: let
-    m1 = "aarch64-darwin";
-    rpi = "aarch64-linux";
-    n100 = "x86_64-linux";
-    mac_user = "aleksander";
-    user = "aleksander";
-
-    myOverlays = [inputs.nix-vscode-extensions.overlays.default];
-
-    # Configure nix-darwin machines
-    mkDarwinConfig = {
-      system,
-      hostname,
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      stable,
+      darwin,
+      home-manager,
+      nix-homebrew,
+      homebrew-cask,
+      homebrew-core,
+      homebrew-bundle,
+      nix-vscode-extensions,
+      nixos-hardware,
+      my-nvf,
+      ...
     }:
-      darwin.lib.darwinSystem {
-        inherit system;
-        specialArgs = {inherit inputs;};
-        pkgs = import nixpkgs {
+    let
+      m1 = "aarch64-darwin";
+      rpi = "aarch64-linux";
+      n100 = "x86_64-linux";
+      mac_user = "aleksander";
+      user = "aleksander";
+
+      myOverlays = [ inputs.nix-vscode-extensions.overlays.default ];
+
+      # Configure nix-darwin machines
+      mkDarwinConfig =
+        {
+          system,
+          hostname,
+        }:
+        darwin.lib.darwinSystem {
           inherit system;
-          config = {allowUnfree = true;};
-          overlays = myOverlays;
-        };
-        modules = [
-          ./machines/darwin # shared darwin config
-          ./machines/darwin/${hostname}.nix # machine-specific config
-
-          inputs.nix-homebrew.darwinModules.nix-homebrew
-
-          # Custom nvim config from nvf
-          {environment.systemPackages = [my-nvf.packages.${system}.default];}
-
-          home-manager.darwinModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {inherit (nixpkgs.config) allowUnfree;};
-              users.${mac_user} = {pkgs, ...}: {
-                nixpkgs.config.allowUnfree = true;
-                imports = [
-                  ./home # shared home-manager config for all machines
-                  ./home/darwin.nix # shared home-manager config for all darwin machines
-                  ./home/${hostname}.nix # machine-specific home-manager config
-                ];
-              };
+          specialArgs = { inherit inputs; };
+          pkgs = import nixpkgs {
+            inherit system;
+            config = {
+              allowUnfree = true;
             };
-          }
-        ];
-      };
+            overlays = myOverlays;
+          };
+          modules = [
+            ./machines/darwin # shared darwin config
+            ./machines/darwin/${hostname}.nix # machine-specific config
 
-    # Configure nixos machines
-    mkNixosConfig = {
-      system,
-      hostname,
-    }:
-      nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs;};
-        pkgs = import nixpkgs {
+            inputs.nix-homebrew.darwinModules.nix-homebrew
+
+            # Custom nvim config from nvf
+            { environment.systemPackages = [ my-nvf.packages.${system}.default ]; }
+
+            home-manager.darwinModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit (nixpkgs.config) allowUnfree; };
+                users.${mac_user} =
+                  { pkgs, ... }:
+                  {
+                    nixpkgs.config.allowUnfree = true;
+                    imports = [
+                      ./home # shared home-manager config for all machines
+                      ./home/darwin.nix # shared home-manager config for all darwin machines
+                      ./home/${hostname}.nix # machine-specific home-manager config
+                    ];
+                  };
+              };
+            }
+          ];
+        };
+
+      # Configure nixos machines
+      mkNixosConfig =
+        {
+          system,
+          hostname,
+        }:
+        nixpkgs.lib.nixosSystem {
           inherit system;
-          config = {allowUnfree = true;};
-          overlays = myOverlays;
-        };
-        modules = [
-          ./machines/nixos # shared nixos config
-          ./machines/nixos/${hostname} # machine-specific config
-
-          # Custom nvim config from nvf
-          {environment.systemPackages = [my-nvf.packages.${system}.default];}
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.${user} = {pkgs, ...}: {
-                imports = [
-                  ./home # same shared home-manager config
-                ];
-              };
+          specialArgs = { inherit inputs; };
+          pkgs = import nixpkgs {
+            inherit system;
+            config = {
+              allowUnfree = true;
             };
-          }
-        ];
-      };
-  in {
-    darwinConfigurations = {
-      aleks-old-mbp = mkDarwinConfig {
-        system = m1;
-        hostname = "aleks-old-mbp";
-      };
-      aleks-mbp = mkDarwinConfig {
-        system = m1;
-        hostname = "aleks-mbp";
-      };
-      aleks-air = mkDarwinConfig {
-        system = "x86_64-darwin";
-        hostname = "aleks-air";
-      };
-    };
+            overlays = myOverlays;
+          };
+          modules = [
+            ./machines/nixos # shared nixos config
+            ./machines/nixos/${hostname} # machine-specific config
 
-    nixosConfigurations = {
-      nixos-1 = mkNixosConfig {
-        system = "x86_64-linux";
-        hostname = "nixos-1";
-      };
-    };
+            # Custom nvim config from nvf
+            { environment.systemPackages = [ my-nvf.packages.${system}.default ]; }
 
-    # Commented out configurations
-    #   # n100 = mkNixosConfig {
-    #   #   system = n100;
-    #   #   hostname = "n100";
-    #   # };
-    #   hyperhdr = mkNixosConfig {
-    #     system = rpi;
-    #     hostname = "hyperhdr";
-    #   };
-  };
+            home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${user} =
+                  { pkgs, ... }:
+                  {
+                    imports = [
+                      ./home # same shared home-manager config
+                    ];
+                  };
+              };
+            }
+          ];
+        };
+    in
+    {
+      darwinConfigurations = {
+        aleks-old-mbp = mkDarwinConfig {
+          system = m1;
+          hostname = "aleks-old-mbp";
+        };
+        aleks-mbp = mkDarwinConfig {
+          system = m1;
+          hostname = "aleks-mbp";
+        };
+        aleks-air = mkDarwinConfig {
+          system = "x86_64-darwin";
+          hostname = "aleks-air";
+        };
+      };
+
+      nixosConfigurations = {
+        nixos-1 = mkNixosConfig {
+          system = "x86_64-linux";
+          hostname = "nixos-1";
+        };
+      };
+
+      # Commented out configurations
+      #   # n100 = mkNixosConfig {
+      #   #   system = n100;
+      #   #   hostname = "n100";
+      #   # };
+      #   hyperhdr = mkNixosConfig {
+      #     system = rpi;
+      #     hostname = "hyperhdr";
+      #   };
+    };
 }

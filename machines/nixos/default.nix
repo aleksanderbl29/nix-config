@@ -2,14 +2,21 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   # nixpkgs.config.allowUnfree = true;
 
   nix = {
     settings = {
-      experimental-features = ["nix-command" "flakes"];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       auto-optimise-store = true;
-      trusted-users = ["root" "aleksander"];
+      trusted-users = [
+        "root"
+        "aleksander"
+      ];
     };
   };
 

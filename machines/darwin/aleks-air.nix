@@ -1,9 +1,11 @@
-{lib, ...}: let
+{ lib, ... }:
+let
   user = "aleksander";
-in {
+in
+{
   nix = {
     settings = {
-      trusted-users = [user];
+      trusted-users = [ user ];
     };
   };
 
@@ -20,7 +22,7 @@ in {
   };
 
   environment = {
-    systemPath = ["/opt/homebrew/bin"];
+    systemPath = [ "/opt/homebrew/bin" ];
   };
 
   nix-homebrew = {

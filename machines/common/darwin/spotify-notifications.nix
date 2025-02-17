@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   spotify-notifications = pkgs.stdenv.mkDerivation {
     name = "spotify-notifications";
     version = "0.6.0";
@@ -16,10 +17,11 @@
 
     meta = {
       description = "Spotify track change notifications for macOS";
-      platforms = [pkgs.stdenv.hostPlatform.system];
+      platforms = [ pkgs.stdenv.hostPlatform.system ];
     };
   };
-in {
+in
+{
   environment.systemPackages = [
     spotify-notifications
   ];
