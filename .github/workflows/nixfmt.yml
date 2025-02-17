@@ -1,4 +1,4 @@
-name: Format with nixfmt
+name: Format with nixfmt-rfc-style
 
 on:
   push:
@@ -23,23 +23,23 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v1
 
-      - name: Run nixfmt # nix run nixpkgs#alejandra .
+      - name: Run nixfmt
         run: |
-          nix run nixpkgs#nixfmt-rfc-style .
+          find . -name "*.nix" -exec nix run nixpkgs#nixfmt-rfc-style {} \;
 
       - name: Commit changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git diff --cached --exit-code || git commit -m "Apply nixfmt formatting"
+          git diff --cached --exit-code || git commit -m "Apply formatting"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: format/nixfmt-changes
-          title: "Apply nixfmt formatting"
+          title: "Apply formatting"
           body: |
-            This PR applies formatting changes using `nixfmt`.
+            This PR applies formatting changes using `nixfmt-rfc-styles`.
 
