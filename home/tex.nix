@@ -3,7 +3,8 @@
   lib,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.tex;
   tex = pkgs.texlive.combine {
     inherit (pkgs.texlive)
@@ -18,11 +19,13 @@ with lib; let
       titling
       framed
       inconsolata
-      collection-fontsrecommended;
+      collection-fontsrecommended
+      ;
   };
-  #(setq org-latex-compiler "lualatex")
-  #(setq org-preview-latex-default-process 'dvisvgm')
-in {
+in
+#(setq org-latex-compiler "lualatex")
+#(setq org-preview-latex-default-process 'dvisvgm')
+{
   options.tex.enable = mkEnableOption "texlive installation";
 
   config = mkIf cfg.enable {
