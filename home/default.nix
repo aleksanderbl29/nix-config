@@ -3,26 +3,6 @@
   pkgs,
   ...
 }:
-let
-  tex = pkgs.texlive.combine {
-    inherit (pkgs.texlive)
-      scheme-medium
-      dvisvgm
-      dvipng
-      wrapfig
-      amsmath
-      ulem
-      hyperref
-      capt-of
-      titling
-      framed
-      inconsolata
-      collection-fontsrecommended
-      ;
-    #(setq org-latex-compiler "lualatex")
-    #(setq org-preview-latex-default-process 'dvisvgm)
-  };
-in
 {
   imports = [
     ./git.nix

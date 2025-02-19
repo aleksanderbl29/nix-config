@@ -1,8 +1,10 @@
 { ... }:
 {
-  # imports = [
-  #   # ./vscode.nix
-  # ];
+  imports = [
+    ./tex.nix
+  ];
+
+  tex.enable = false;
 
   home.file.".Renviron" = {
     text = ''
