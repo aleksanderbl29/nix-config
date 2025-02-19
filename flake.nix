@@ -171,6 +171,12 @@
           system = "x86_64-linux";
           hostname = "nixos-1";
         };
+
+        # Oracle Cloud
+        oci-nix-1 = mkNixosConfig {
+          system = "x86_64-linux";
+          hostname = "oci-nix-1";
+        };
       };
 
       # Commented out configurations
