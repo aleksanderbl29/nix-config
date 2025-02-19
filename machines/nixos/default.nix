@@ -41,6 +41,7 @@
     ];
     shell = pkgs.zsh;
     packages = with pkgs; [
+      zsh
       # neovim
       #  thunderbird
     ];
