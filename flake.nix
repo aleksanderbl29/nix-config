@@ -43,30 +43,24 @@
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
-    my-nvf.url = "github:aleksanderbl29/nvf";
+    my-nvf = {
+      url = "github:aleksanderbl29/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     inputs@{
-      self,
       nixpkgs,
-      stable,
       darwin,
       home-manager,
       nix-homebrew,
-      homebrew-cask,
-      homebrew-core,
-      homebrew-bundle,
       nix-vscode-extensions,
-      nixos-hardware,
       my-nvf,
       ...
     }:
     let
       m1 = "aarch64-darwin";
-      rpi = "aarch64-linux";
-      n100 = "x86_64-linux";
-      mac_user = "aleksander";
       user = "aleksander";
 
       myOverlays = [ inputs.nix-vscode-extensions.overlays.default ];
@@ -102,8 +96,8 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 extraSpecialArgs = { inherit (nixpkgs.config) allowUnfree; };
-                users.${mac_user} =
-                  { pkgs, ... }:
+                users.${user} =
+                  { ... }:
                   {
                     imports = [
                       ./home # shared home-manager config for all machines
@@ -145,7 +139,7 @@
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.${user} =
-                  { pkgs, ... }:
+                  { ... }:
                   {
                     imports = [
                       ./home # same shared home-manager config
