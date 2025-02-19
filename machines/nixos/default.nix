@@ -32,6 +32,8 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  programs.zsh.enable = true;
+
   users.users.aleksander = {
     isNormalUser = true;
     description = "aleksander";
