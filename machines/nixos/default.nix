@@ -32,6 +32,20 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  users.users.aleksander = {
+    isNormalUser = true;
+    description = "aleksander";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    shell = pkgs.zsh;
+    packages = with pkgs; [
+      # neovim
+      #  thunderbird
+    ];
+  };
+
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "da_DK.UTF-8";
     LC_IDENTIFICATION = "da_DK.UTF-8";
@@ -54,7 +68,7 @@
     #  wget
     git
     wget
-    neovim
+    # neovim
     htop
   ];
 
