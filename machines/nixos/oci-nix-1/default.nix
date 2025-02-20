@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   imports = [
     ./hardware-configuration.nix
   ];
@@ -8,6 +9,8 @@
   networking.hostName = "oci-nix-1";
   networking.domain = "";
   services.openssh.enable = true;
-  users.users.root.openssh.authorizedKeys.keys = [''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIK9tIBN3zPPeUkBbXuXqx/618JPndC9OVr6nvKyqYaA aleksander@aleks-mbp.local'' ];
+  users.users.root.openssh.authorizedKeys.keys = [
+    ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIK9tIBN3zPPeUkBbXuXqx/618JPndC9OVr6nvKyqYaA aleksander@aleks-mbp.local''
+  ];
   system.stateVersion = "23.11";
 }
