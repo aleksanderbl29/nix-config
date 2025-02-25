@@ -1,7 +1,12 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./tex.nix
+  ];
+
+  home.packages = with pkgs; [
+    # minikube
+    # kubectl
   ];
 
   tex.enable = false;
