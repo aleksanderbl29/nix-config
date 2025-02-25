@@ -3,9 +3,23 @@
   # Remove login message from shell
   home.file.".hushlogin".text = "";
 
+  home.packages = with pkgs; [
+    zsh
+    fzf
+    zoxide
+  ];
+
   programs = {
     fzf = {
       enable = true;
+      enableZshIntegration = true;
+    };
+
+    zoxide = {
+      enable = true;
+      options = [
+        "--cmd cd"
+      ];
       enableZshIntegration = true;
     };
 
