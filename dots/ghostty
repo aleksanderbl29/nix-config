@@ -10,6 +10,9 @@ background-opacity = 0.9
 font-size = 18
 font-thicken = true
 
+# Shell
+shell-integration = zsh
+
 # Working directory
 working-directory = "/Users/aleksander/Developer"
 window-inherit-working-directory = false
