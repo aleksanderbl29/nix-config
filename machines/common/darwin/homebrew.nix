@@ -32,7 +32,7 @@
       "bentobox"
       "dropbox"
       "element"
-      # "google-chrome"
+      "google-chrome"
       "ghostty"
       "home-assistant"
       "iterm2"
