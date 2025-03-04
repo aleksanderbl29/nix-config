@@ -9,6 +9,8 @@ in
 
   modules.docker.enable = true;
 
+  homebrew.casks = [ "private-internet-access" ];
+
   ids.gids.nixbld = 350;
 
   nix = {
