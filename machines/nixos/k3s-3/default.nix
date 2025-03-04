@@ -11,7 +11,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    (modulesPath + "/profiles/qemu-guest.nix")
+    ../../common/shared/tailscale.nix
   ];
 
   services.qemuGuest.enable = true;
@@ -70,9 +70,6 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
-  # Tailscale
-  services.tailscale.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
