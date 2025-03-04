@@ -188,6 +188,11 @@
           hostname = "k3s-2";
         };
 
+        k3s-3 = mkNixosConfig {
+          system = "x86_64-linux";
+          hostname = "k3s-3";
+        };
+
         # Commented out configurations
         #   # n100 = mkNixosConfig {
         #   #   system = n100;
