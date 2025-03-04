@@ -5,7 +5,7 @@
 }:
 {
   imports = [
-    ../darwin-common.nix
+    ../common/darwin-common.nix
   ];
 
   _module.args.username = "aleksander"; # or make it configurable
