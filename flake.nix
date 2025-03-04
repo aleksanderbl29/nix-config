@@ -177,6 +177,10 @@
           system = "x86_64-linux";
           hostname = "oci-nix-1";
         };
+
+        k3s-1 = mkNixosConfig {
+          system = "x86_64-linux";
+          hostname = "k3s-1";
       };
 
       # Commented out configurations
