@@ -181,16 +181,17 @@
         k3s-1 = mkNixosConfig {
           system = "x86_64-linux";
           hostname = "k3s-1";
-      };
+        };
 
-      # Commented out configurations
-      #   # n100 = mkNixosConfig {
-      #   #   system = n100;
-      #   #   hostname = "n100";
-      #   # };
-      #   hyperhdr = mkNixosConfig {
-      #     system = rpi;
-      #     hostname = "hyperhdr";
-      #   };
+        # Commented out configurations
+        #   # n100 = mkNixosConfig {
+        #   #   system = n100;
+        #   #   hostname = "n100";
+        #   # };
+        #   hyperhdr = mkNixosConfig {
+        #     system = rpi;
+        #     hostname = "hyperhdr";
+        #   };
+      };
     };
 }
