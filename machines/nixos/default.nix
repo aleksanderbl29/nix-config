@@ -19,12 +19,6 @@
     };
   };
 
-  # Basic system-wide settings that should apply to all NixOS machines
-  time.timeZone = "Europe/Copenhagen";
-
-  # Default locale settings
-  i18n.defaultLocale = "en_DK.UTF-8";
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -49,6 +43,12 @@
       #  thunderbird
     ];
   };
+
+  # Basic system-wide settings that should apply to all NixOS machines
+  time.timeZone = "Europe/Copenhagen";
+
+  # Default locale settings
+  i18n.defaultLocale = "en_DK.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "da_DK.UTF-8";
