@@ -6,7 +6,8 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -46,7 +47,7 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
   };
 
   # List packages installed in system profile. To search, run:
