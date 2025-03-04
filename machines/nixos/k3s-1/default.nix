@@ -4,14 +4,16 @@
 {
   config,
   pkgs,
+  modulesPath,
   ...
 }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
-  virtualisation.qemu.guestAgent.enable = true;
+  services.qemuGuest.enable = true;
 
   # Bootloader.
   boot.loader.grub.enable = true;
