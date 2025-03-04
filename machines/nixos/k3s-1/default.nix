@@ -10,7 +10,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
   services.qemuGuest.enable = true;
