@@ -5,12 +5,13 @@
   config,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
+
+  virtualisation.qemu.guestAgent.enable = true;
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -44,7 +45,7 @@
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [ ];
+    packages = with pkgs; [];
   };
 
   # List packages installed in system profile. To search, run:
