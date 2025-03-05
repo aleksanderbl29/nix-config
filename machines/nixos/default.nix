@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 {
   nix = {
     settings = {
@@ -77,6 +74,7 @@
     wget
     # neovim
     htop
+    ghostty
   ];
 
   # Enable the OpenSSH daemon.
