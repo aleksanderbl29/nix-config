@@ -1,9 +1,9 @@
 { ... }:
 {
   imports = [
-    ./common/darwin/homebrew.nix
-    ./common/darwin/system.nix
-    ./common/darwin/dock.nix
-    ./common/darwin/spotify-notifications.nix
+    ./darwin/homebrew.nix
+    ./darwin/system.nix
+    ./darwin/dock.nix
+    ./darwin/spotify-notifications.nix
   ];
 }
