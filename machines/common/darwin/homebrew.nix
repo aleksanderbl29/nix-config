@@ -41,6 +41,7 @@
       "meetingbar"
       "microsoft-teams"
       "MonitorControl"
+      "obs"
       "obsidian"
       "orbstack"
       "pgadmin4"
