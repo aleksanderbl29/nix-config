@@ -52,7 +52,7 @@
   outputs =
     inputs@{
       nixpkgs,
-      nix-vscode-extensions,
+      # nix-vscode-extensions,
       ...
     }:
     with inputs;
@@ -70,12 +70,7 @@
     in
     {
       darwinConfigurations = {
-        aleks-old-mbp = libs.mkDarwinConfig {
-          hostname = "aleks-old-mbp";
-        };
-        aleks-mbp = libs.mkDarwinConfig {
-          hostname = "aleks-mbp";
-        };
+        aleks-mbp = libs.mkDarwinConfig { hostname = "aleks-mbp"; };
         aleks-air = libs.mkDarwinConfig {
           hostname = "aleks-air";
           system = "x86_64-darwin";
@@ -84,31 +79,21 @@
 
       nixosConfigurations = {
         # Oracle Cloud
-        oci-nix-1 = libs.mkNixosConfig {
-          hostname = "oci-nix-1";
+        oci-nix-1 = libs.mkNixosConfig { hostname = "oci-nix-1"; };
+
+        k3s-1 = libs.mkNixosConfig { hostname = "k3s-1"; };
+        k3s-2 = libs.mkNixosConfig { hostname = "k3s-2"; };
+        k3s-3 = libs.mkNixosConfig { hostname = "k3s-3"; };
+
+      };
+
+      colmena = {
+        meta = {
+          nixpkgs = import nixpkgs { system = "x86_64-linux"; };
+          specialArgs = { inherit inputs; };
         };
 
-        k3s-1 = libs.mkNixosConfig {
-          hostname = "k3s-1";
-        };
-
-        k3s-2 = libs.mkNixosConfig {
-          hostname = "k3s-2";
-        };
-
-        k3s-3 = libs.mkNixosConfig {
-          hostname = "k3s-3";
-        };
-
-        # Commented out configurations
-        #   # n100 = libs.mkNixosConfig {
-        #   #   system = n100;
-        #   #   hostname = "n100";
-        #   # };
-        #   hyperhdr = libs.mkNixosConfig {
-        #     system = rpi;
-        #     hostname = "hyperhdr";
-        #   };
+        k3s-1 = import ./machines/nixos/k3s-1;
       };
     };
 }

@@ -19,11 +19,6 @@
     };
   };
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
   networking.networkmanager.enable = true;
 
   programs.zsh.enable = true;
@@ -79,4 +74,9 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCpoAMN4OFauCaNhOID7WbTLlo5F72qcKONB8y8T3IQrXxynwafZmXWdAsyw3TFci6P0WYyEQQQoSnWo7NaUxdSPz0GHa1RHzgfhq00N+xCgMIBIRe3WFK2nnlf5GA3QZ0Pq6EaLjTj36XoGCVPBA+HHn8xqmnIbq/yb1neLrNT0dtsR7DDxchFr574g7SyEMnpNmLJBrK6Uw4iFLKkpFYuAs0i/cWU6DhjRJh4dxkHhYXylvMAcdmEl8rSbPBad9hWUtvhrNjVxu8KLIzcvr8FVbocx2C/8wnZUOEqCWQYK+IYckq+Yi60a72wCFd852QLCC45yLKZ/fNf0HsuWl66zd/we90afqACISZ1cckTyxAq+QU3wah6ypBvpae9SfVnxRC3cpB6tXX+2vkrAMIUA4CWqBtGS96bFc21GLT5wbh/RdZBaiqzP1scIIgf09TFgO/qBlZUZrdkwqK1nKLydUWXpg+jBVdgS5ehITbIDJKWilQmXITQ3O+HFmWckm8= aleksander@aleks-mbp.local
+"
+  ];
 }
