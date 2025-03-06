@@ -52,11 +52,7 @@
   outputs =
     inputs@{
       nixpkgs,
-      darwin,
-      home-manager,
-      nix-homebrew,
       nix-vscode-extensions,
-      my-nvf,
       ...
     }:
     with inputs;
