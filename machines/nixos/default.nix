@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 {
   nix = {
     settings = {
@@ -23,7 +27,6 @@
 
   programs.zsh.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.aleksander = {
     isNormalUser = true;
     description = "aleksander";
@@ -70,6 +73,7 @@
     # neovim
     htop
     ghostty
+    inputs.my-nvf.packages.${system}.default
   ];
 
   # Enable the OpenSSH daemon.

@@ -52,7 +52,6 @@
   outputs =
     inputs@{
       nixpkgs,
-      # nix-vscode-extensions,
       ...
     }:
     with inputs;
@@ -89,9 +88,26 @@
 
       colmena = {
         meta = {
-          nixpkgs = import nixpkgs { system = "x86_64-linux"; };
+          nixpkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          };
           specialArgs = { inherit inputs; };
         };
+
+        defaults =
+          {
+            lib,
+            config,
+            name,
+            ...
+          }:
+          {
+            imports = [
+              inputs.home-manager.nixosModules.home-manager
+              ./machines/nixos
+            ];
+          };
 
         k3s-1 = import ./machines/nixos/k3s-1;
       };

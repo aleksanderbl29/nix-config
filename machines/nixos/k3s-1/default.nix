@@ -10,6 +10,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../common/shared/tailscale.nix
+    ../../common/shared/colmena.nix
   ];
 
   services.qemuGuest.enable = true;
