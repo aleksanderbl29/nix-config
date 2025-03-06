@@ -19,7 +19,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
 
       - name: Setup Nix Cache
-        uses: DeterminateSystems/magic-nix-cache-action@main
+        uses: DeterminateSystems/flakehub-cache-action@main
 
       - name: Check Flake Inputs
         run: nix flake check
@@ -33,7 +33,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
 
       - name: Setup Nix Cache
-        uses: DeterminateSystems/magic-nix-cache-action@main
+        uses: DeterminateSystems/flakehub-cache-action@main
 
       - name: Check Nix formatting
         run: |
@@ -48,7 +48,7 @@ jobs:
         uses: DeterminateSystems/nix-installer-action@main
 
       - name: Setup Nix Cache
-        uses: DeterminateSystems/magic-nix-cache-action@main
+        uses: DeterminateSystems/flakehub-cache-action@main
 
       - name: Check for dead links in Nix files
         run: |
