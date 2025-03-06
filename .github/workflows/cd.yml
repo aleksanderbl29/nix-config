@@ -22,10 +22,13 @@ jobs:
       - name: Check Flake Inputs
         run: nix flake check
 
-      - name: Tailscale
-        uses: tailscale/github-action@v3
+      - name: Setup Tailscale
+        uses: tailscale/github-action@v2
         with:
-          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
+            hostname: Github-actions
+            oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+            oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+            tags: tag:ci
 
       - name: Apply colmena config
         run: nix run nixpkgs#colmena apply --impure
