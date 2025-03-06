@@ -110,6 +110,8 @@
           };
 
         k3s-1 = import ./machines/nixos/k3s-1;
+        k3s-2 = import ./machines/nixos/k3s-2;
+        k3s-3 = import ./machines/nixos/k3s-3;
       };
     };
 }
