@@ -27,6 +27,8 @@
     # alacritty
     # tex # This is defined above
     figurine
+    colmena
+    deadnix
   ];
 
   programs = {
