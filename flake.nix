@@ -62,10 +62,14 @@
     with inputs;
     let
       inherit (self) outputs;
-
-      libs = import ./lib { inherit inputs outputs myOverlays nixpkgs; };
-      user = "aleksander";
-
+      libs = import ./lib {
+        inherit
+          inputs
+          outputs
+          myOverlays
+          nixpkgs
+          ;
+      };
       myOverlays = [ inputs.nix-vscode-extensions.overlays.default ];
     in
     {
