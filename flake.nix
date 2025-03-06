@@ -59,146 +59,53 @@
       my-nvf,
       ...
     }:
+    with inputs;
     let
-      m1 = "aarch64-darwin";
+      inherit (self) outputs;
+
+      libs = import ./lib { inherit inputs outputs myOverlays nixpkgs; };
       user = "aleksander";
 
       myOverlays = [ inputs.nix-vscode-extensions.overlays.default ];
-
-      # Configure nix-darwin machines
-      mkDarwinConfig =
-        {
-          system,
-          hostname,
-        }:
-        darwin.lib.darwinSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          pkgs = import nixpkgs {
-            inherit system;
-            config = {
-              allowUnfree = true;
-            };
-            overlays = myOverlays;
-          };
-          modules = [
-            ./machines/darwin # shared darwin config
-            ./machines/darwin/${hostname}.nix # machine-specific config
-
-            inputs.nix-homebrew.darwinModules.nix-homebrew
-
-            # Custom nvim config from nvf
-            { environment.systemPackages = [ my-nvf.packages.${system}.default ]; }
-
-            home-manager.darwinModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                extraSpecialArgs = { inherit (nixpkgs.config) allowUnfree; };
-                users.${user} =
-                  { ... }:
-                  {
-                    imports = [
-                      ./home # shared home-manager config for all machines
-                      ./home/darwin.nix # shared home-manager config for all darwin machines
-                      ./home/${hostname}.nix # machine-specific home-manager config
-                    ];
-                  };
-              };
-            }
-          ];
-        };
-
-      # Configure nixos machines
-      mkNixosConfig =
-        {
-          system,
-          hostname,
-        }:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs; };
-          pkgs = import nixpkgs {
-            inherit system;
-            config = {
-              allowUnfree = true;
-            };
-            overlays = myOverlays;
-          };
-          modules = [
-            ./machines/nixos # shared nixos config
-            ./machines/nixos/${hostname} # machine-specific config
-
-            # Custom nvim config from nvf
-            { environment.systemPackages = [ my-nvf.packages.${system}.default ]; }
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${user} =
-                  { ... }:
-                  {
-                    imports = [
-                      ./home # same shared home-manager config
-                    ];
-                  };
-              };
-            }
-          ];
-        };
     in
     {
       darwinConfigurations = {
-        aleks-old-mbp = mkDarwinConfig {
-          system = m1;
+        aleks-old-mbp = libs.mkDarwinConfig {
           hostname = "aleks-old-mbp";
         };
-        aleks-mbp = mkDarwinConfig {
-          system = m1;
+        aleks-mbp = libs.mkDarwinConfig {
           hostname = "aleks-mbp";
         };
-        aleks-air = mkDarwinConfig {
-          system = "x86_64-darwin";
+        aleks-air = libs.mkDarwinConfig {
           hostname = "aleks-air";
+          system = "x86_64-darwin";
         };
       };
 
       nixosConfigurations = {
-        nixos-1 = mkNixosConfig {
-          system = "x86_64-linux";
-          hostname = "nixos-1";
-        };
-
         # Oracle Cloud
-        oci-nix-1 = mkNixosConfig {
-          system = "x86_64-linux";
+        oci-nix-1 = libs.mkNixosConfig {
           hostname = "oci-nix-1";
         };
 
-        k3s-1 = mkNixosConfig {
-          system = "x86_64-linux";
+        k3s-1 = libs.mkNixosConfig {
           hostname = "k3s-1";
         };
 
-        k3s-2 = mkNixosConfig {
-          system = "x86_64-linux";
+        k3s-2 = libs.mkNixosConfig {
           hostname = "k3s-2";
         };
 
-        k3s-3 = mkNixosConfig {
-          system = "x86_64-linux";
+        k3s-3 = libs.mkNixosConfig {
           hostname = "k3s-3";
         };
 
         # Commented out configurations
-        #   # n100 = mkNixosConfig {
+        #   # n100 = libs.mkNixosConfig {
         #   #   system = n100;
         #   #   hostname = "n100";
         #   # };
-        #   hyperhdr = mkNixosConfig {
+        #   hyperhdr = libs.mkNixosConfig {
         #     system = rpi;
         #     hostname = "hyperhdr";
         #   };
