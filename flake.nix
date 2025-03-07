@@ -112,6 +112,6 @@
         k3s-2 = import ./machines/colmena/k3s-2;
         k3s-3 = import ./machines/colmena/k3s-3;
       };
-      colmenaHive = colmena.lib.makeHive self.outputs.colmena;
+      # colmenaHive = colmena.lib.makeHive self.outputs.colmena;
     };
 }

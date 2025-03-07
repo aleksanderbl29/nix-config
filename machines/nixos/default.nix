@@ -43,6 +43,11 @@
   time.timeZone = "Europe/Copenhagen";
   console.keyMap = "dk";
 
+  i18n = {
+    defaultLocale = "en_GB.UTF-8";
+    supportedLocales = [ "en_GB.UTF-8/UTF-8" ];
+  };
+
   environment.systemPackages = with pkgs; [
     git
     wget
