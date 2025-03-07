@@ -31,6 +31,8 @@
 
         # Custom nvim config from nvf
         { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
+        # Colmena dev version
+        { environment.systemPackages = [ inputs.colmena.packages.${system}.colmena ]; }
 
         inputs.home-manager.darwinModules.home-manager
         {

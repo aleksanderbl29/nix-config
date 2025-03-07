@@ -27,7 +27,7 @@
     # alacritty
     # tex # This is defined above
     figurine
-    colmena
+    # colmena
     deadnix
   ];
 

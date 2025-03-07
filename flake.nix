@@ -47,6 +47,12 @@
       url = "github:aleksanderbl29/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.stable.follows = "stable";
+    };
   };
 
   outputs =
@@ -94,7 +100,6 @@
           };
           specialArgs = { inherit inputs; };
         };
-
         defaults =
           { ... }:
           {
@@ -103,10 +108,10 @@
               ./machines/colmena
             ];
           };
-
         k3s-1 = import ./machines/colmena/k3s-1;
         k3s-2 = import ./machines/colmena/k3s-2;
         k3s-3 = import ./machines/colmena/k3s-3;
       };
+      colmenaHive = colmena.lib.makeHive self.outputs.colmena;
     };
 }
