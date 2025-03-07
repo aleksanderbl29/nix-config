@@ -1,4 +1,4 @@
-name: Nix Colmena Deployment
+name: Nix Deployment
 
 on:
   push:
@@ -31,10 +31,10 @@ jobs:
             tags: tag:nix-ci
 
       - name: Apply config to k3s-1
-        run: ssh root@k3s-1 'cd /etc/nixos && git pull && nixos-rebuild switch --flake .#k3s-1'
+        run: ssh root@k3s-1 -o StrictHostKeyChecking=no 'cd /etc/nixos && git pull && nixos-rebuild switch --flake .#k3s-1'
 
       - name: Apply config to k3s-2
-        run: ssh root@k3s-2 'cd /etc/nixos && git pull && nixos-rebuild switch --flake .#k3s-2'
+        run: ssh root@k3s-2 -o StrictHostKeyChecking=no 'cd /etc/nixos && git pull && nixos-rebuild switch --flake .#k3s-2'
 
       - name: Apply config to k3s-3
-        run: ssh root@k3s-3 'cd /etc/nixos && git pull && nixos-rebuild switch --flake .#k3s-3'
+        run: ssh root@k3s-3 -o StrictHostKeyChecking=no 'cd /etc/nixos && git pull && nixos-rebuild switch --flake .#k3s-3'
