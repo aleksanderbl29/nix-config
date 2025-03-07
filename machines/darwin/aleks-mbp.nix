@@ -5,6 +5,7 @@ in
 {
   imports = [
     ../common/shared/docker.nix
+    ../../modules/ollama.nix
   ];
 
   modules.docker.enable = true;
@@ -17,6 +18,11 @@ in
     settings = {
       trusted-users = [ user ];
     };
+  };
+
+  ollama = {
+    enable = true;
+    launchAgent = true;
   };
 
   environment = {

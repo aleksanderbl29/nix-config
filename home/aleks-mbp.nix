@@ -7,7 +7,6 @@
   home.packages = with pkgs; [
     # minikube
     # kubectl
-    ollama
   ];
 
   tex.enable = false;
