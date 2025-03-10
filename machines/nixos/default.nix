@@ -49,7 +49,6 @@
     # supportedLocales = [ "all" ];
   };
 
-
   environment.systemPackages = with pkgs; [
     git
     wget
