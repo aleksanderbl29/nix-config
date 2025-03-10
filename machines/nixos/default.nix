@@ -44,9 +44,11 @@
   console.keyMap = "dk";
 
   i18n = {
-    defaultLocale = "en_GB.UTF-8";
-    supportedLocales = [ "en_GB.UTF-8/UTF-8" ];
+    # consoleFont = "Lat2-Terminus16";
+    defaultLocale = "da_DK.utf-8";
+    # supportedLocales = [ "all" ];
   };
+
 
   environment.systemPackages = with pkgs; [
     git
