@@ -54,7 +54,6 @@
     systemPackages = with pkgs; [
       coreutils
       git
-      # vim
       ncdu
       spotify
       net-news-wire
