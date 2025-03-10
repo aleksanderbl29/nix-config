@@ -5,7 +5,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../common/shared/tailscale.nix
-    # ../../common/shared/colmena.nix
+    ../../common/shared/k3s.nix
   ];
 
   services.qemuGuest.enable = true;
