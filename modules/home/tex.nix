@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib;
@@ -23,8 +24,6 @@ let
       ;
   };
 in
-#(setq org-latex-compiler "lualatex")
-#(setq org-preview-latex-default-process 'dvisvgm')
 {
   options.tex.enable = mkEnableOption "texlive installation";
 

@@ -20,7 +20,6 @@ in
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       ollama
-      open-webui
     ];
 
     # this code is attributed to https://www.danielcorin.com/til/nix-darwin/launch-agents/
