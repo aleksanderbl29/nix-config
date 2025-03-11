@@ -21,8 +21,8 @@ in
   };
 
   ollama = {
-    enable = true;
-    launchAgent = true;
+    enable = false;
+    # launchAgent = true;
   };
 
   environment = {
