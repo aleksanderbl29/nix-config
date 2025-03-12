@@ -1,4 +1,7 @@
-{ ... }:
+{
+  pkgs,
+  ...
+}:
 let
   user = "aleksander";
 in
@@ -27,5 +30,6 @@ in
 
   environment = {
     systemPath = [ "/opt/homebrew/bin" ];
+    systemPackages = with pkgs; [ cachix ];
   };
 }
