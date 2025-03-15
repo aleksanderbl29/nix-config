@@ -6,7 +6,7 @@ let
 in
 {
   # Ghostty configuration
-  # home.file.".config/ghostty/config".source = ../dots/ghostty;
+  home.file.".config/ghostty/config".source = ../dots/ghostty;
 
   programs = {
     zsh = {
