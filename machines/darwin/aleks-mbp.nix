@@ -30,6 +30,9 @@ in
 
   environment = {
     systemPath = [ "/opt/homebrew/bin" ];
-    systemPackages = with pkgs; [ cachix ];
+    systemPackages = with pkgs; [
+      cachix
+      zed-editor
+    ];
   };
 }
