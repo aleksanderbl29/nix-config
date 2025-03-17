@@ -96,6 +96,7 @@ in
               {
                 imports = [
                   ../home # same shared home-manager config
+                  inputs.catppuccin.homeManagerModules.catppuccin
                 ];
                 catppuccin = catppuccinConfig;
               };
