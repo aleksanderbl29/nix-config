@@ -4,6 +4,12 @@
   nixpkgs,
   ...
 }:
+let
+  catppuccinConfig = {
+    enable = true;
+    flavor = "mocha";
+  };
+in
 {
 
   # Configure nix-darwin machines
@@ -47,7 +53,9 @@
                   ../home # shared home-manager config for all machines
                   ../home/darwin.nix # shared home-manager config for all darwin machines
                   ../home/${hostname}.nix # machine-specific home-manager config
+                  inputs.catppuccin.homeManagerModules.catppuccin
                 ];
+                catppuccin = catppuccinConfig;
               };
           };
         }
@@ -89,6 +97,7 @@
                 imports = [
                   ../home # same shared home-manager config
                 ];
+                catppuccin = catppuccinConfig;
               };
           };
         }
