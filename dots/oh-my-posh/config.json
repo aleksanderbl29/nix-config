@@ -43,7 +43,7 @@
         {
           "foreground": "#FFE700",
           "style": "plain",
-          "template": "{{ if .Env.DIRENV_DIR }}📍{{ end }} ",
+          "template": "{{ if and .Env.DIRENV_DIR .Env.VIRTUAL_ENV }}📍🐍 {{ else if .Env.DIRENV_DIR }}📍 {{ else if .Env.VIRTUAL_ENV }}🐍 {{ end }}",
           "type": "text"
         }
       ],
