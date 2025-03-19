@@ -13,7 +13,7 @@ in
 
   modules.docker.enable = true;
 
-  homebrew.casks = [ "private-internet-access" ];
+  homebrew.casks = [ "private-internet-access" "cursor" ];
 
   ids.gids.nixbld = 350;
 
@@ -32,7 +32,6 @@ in
     systemPath = [ "/opt/homebrew/bin" ];
     systemPackages = with pkgs; [
       cachix
-      zed-editor
     ];
   };
 }
