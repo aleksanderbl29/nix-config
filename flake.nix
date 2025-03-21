@@ -115,9 +115,11 @@
               ./machines/colmena
             ];
           };
-        k3s-1 = import ./machines/colmena/k3s-1;
-        k3s-2 = import ./machines/colmena/k3s-2;
-        k3s-3 = import ./machines/colmena/k3s-3;
+        # k3s-1 = import ./machines/colmena/k3s-1;
+        # k3s-2 = import ./machines/colmena/k3s-2;
+        # k3s-3 = import ./machines/colmena/k3s-3;
+
+        ironhide = import ./machines/colmena/ironhide;
       };
       # colmenaHive = colmena.lib.makeHive self.outputs.colmena;
     };
