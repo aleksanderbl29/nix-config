@@ -16,34 +16,26 @@ services:
     dns:
       - 127.0.0.1
     ports:
-      # - 443:443/tcp  ### Uncomment to use without proxy
-      - 53:53/tcp
-      - 53:53/udp
-      - 908:80/tcp  ## Uncomment to use without proxy   #Allows use of different port to access pihole web interface when other docker containers use port 80
-      - 5335:5335 # Uncomment to enable unbound access on local server
-      # - 22/tcp # Uncomment to enable SSH
+      - 192.168.20.199:53:53/tcp
+      - 192.168.20.199:53:53/udp
+      - 192.168.20.199:908:80/tcp
+      - 192.168.20.199:5335:5335
     environment:
-      - FTLCONF_LOCAL_IPV4=${FTLCONF_LOCAL_IPV4}
+      - FTLCONF_LOCAL_IPV4=192.168.20.199
       - TZ=Europe/Copenhagen
       - WEBPASSWORD=${WEBPASSWORD}
-      # - WEBTHEME=${WEBTHEME:-default-dark}
       - REV_SERVER=true
       - REV_SERVER_TARGET=${REV_SERVER_TARGET}
       - REV_SERVER_DOMAIN=${REV_SERVER_DOMAIN}
-      - REV_SERVER_CIDR=${REV_SERVER_CIDR}
+      - REV_SERVER_CIDR=192.168.20.0/24
       - PIHOLE_DNS_=127.0.0.1#5335
-      # - PIHOLE_DNS_=1.1.1.1
       - DNSSEC="true"
       - DNSMASQ_LISTENING=all
       - VIRTUAL_HOST=pi.hole
     volumes:
       - ./03-custom-vlan20.conf:/etc/dnsmasq.d/03-custom.conf
       - ./internal-vlan20.list:/etc/pihole/custom.list
-      # - etc_pihole-unbound:/etc/pihole:rw
-      # - etc_pihole_dnsmasq-unbound:/etc/dnsmasq.d:rw
     restart: unless-stopped
-    # security_opt:
-    #   - no-new-privileges:true
     networks:
       - proxy
     labels:
@@ -60,7 +52,6 @@ services:
       traefik.http.routers.pihole-vlan20-secure.rule: Host(`pihole-vlan20.local.aleksanderbl.dk`)
       traefik.http.routers.pihole-vlan20-secure.tls: true
       traefik.http.routers.pihole-vlan20-secure.middlewares: pihole-vlan20-admin
-      # traefik.http.routers.pihole-vlan20-secure.middlewares: pihole-vlan20-redirect
       traefik.http.routers.pihole-vlan20-secure.service: pihole-vlan20
       traefik.http.services.pihole-vlan20.loadbalancer.server.port: 80
       traefik.docker.network: proxy
@@ -73,18 +64,18 @@ services:
     dns:
       - 127.0.0.1
     ports:
-      - 53:53/tcp
-      - 53:53/udp
-      - 909:80/tcp
-      - 5336:5335
+      - 192.168.99.199:53:53/tcp
+      - 192.168.99.199:53:53/udp
+      - 192.168.99.199:909:80/tcp
+      - 192.168.99.199:5336:5335
     environment:
-      - FTLCONF_LOCAL_IPV4=${FTLCONF_LOCAL_IPV4}
+      - FTLCONF_LOCAL_IPV4=192.168.99.199
       - TZ=Europe/Copenhagen
       - WEBPASSWORD=${WEBPASSWORD}
       - REV_SERVER=true
       - REV_SERVER_TARGET=${REV_SERVER_TARGET}
       - REV_SERVER_DOMAIN=${REV_SERVER_DOMAIN}
-      - REV_SERVER_CIDR=${REV_SERVER_CIDR}
+      - REV_SERVER_CIDR=192.168.99.0/24
       - PIHOLE_DNS_=127.0.0.1#5335
       - DNSSEC="true"
       - DNSMASQ_LISTENING=all
@@ -121,18 +112,18 @@ services:
     dns:
       - 127.0.0.1
     ports:
-      - 53:53/tcp
-      - 53:53/udp
-      - 910:80/tcp
-      - 5337:5335
+      - 192.168.207.199:53:53/tcp
+      - 192.168.207.199:53:53/udp
+      - 192.168.207.199:910:80/tcp
+      - 192.168.207.199:5337:5335
     environment:
-      - FTLCONF_LOCAL_IPV4=${FTLCONF_LOCAL_IPV4}
+      - FTLCONF_LOCAL_IPV4=192.168.207.199
       - TZ=Europe/Copenhagen
       - WEBPASSWORD=${WEBPASSWORD}
       - REV_SERVER=true
       - REV_SERVER_TARGET=${REV_SERVER_TARGET}
       - REV_SERVER_DOMAIN=${REV_SERVER_DOMAIN}
-      - REV_SERVER_CIDR=${REV_SERVER_CIDR}
+      - REV_SERVER_CIDR=192.168.207.0/24
       - PIHOLE_DNS_=127.0.0.1#5335
       - DNSSEC="true"
       - DNSMASQ_LISTENING=all
