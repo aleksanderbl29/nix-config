@@ -45,7 +45,7 @@
 
   i18n = {
     # consoleFont = "Lat2-Terminus16";
-    defaultLocale = "da_DK.utf-8";
+    i18n.defaultLocale = "en_DK.UTF-8";
     # supportedLocales = [ "all" ];
   };
 
