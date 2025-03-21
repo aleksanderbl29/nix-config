@@ -11,10 +11,6 @@ services:
   pihole-vlan20:
     container_name: pihole-vlan20
     image: aleksanderbl/pihole-unbound:2024.07.0
-    hostname: ${HOSTNAME}
-    domainname: ${DOMAIN_NAME}
-    dns:
-      - 127.0.0.1
     ports:
       - 192.168.20.199:53:53/tcp
       - 192.168.20.199:53:53/udp
@@ -25,8 +21,6 @@ services:
       - TZ=Europe/Copenhagen
       - WEBPASSWORD=${WEBPASSWORD}
       - REV_SERVER=true
-      - REV_SERVER_TARGET=${REV_SERVER_TARGET}
-      - REV_SERVER_DOMAIN=${REV_SERVER_DOMAIN}
       - REV_SERVER_CIDR=192.168.20.0/24
       - PIHOLE_DNS_=127.0.0.1#5335
       - DNSSEC="true"
@@ -59,10 +53,6 @@ services:
   pihole-vlan99:
     container_name: pihole-vlan99
     image: aleksanderbl/pihole-unbound:2024.07.0
-    hostname: ${HOSTNAME}
-    domainname: ${DOMAIN_NAME}
-    dns:
-      - 127.0.0.1
     ports:
       - 192.168.99.199:53:53/tcp
       - 192.168.99.199:53:53/udp
@@ -73,8 +63,6 @@ services:
       - TZ=Europe/Copenhagen
       - WEBPASSWORD=${WEBPASSWORD}
       - REV_SERVER=true
-      - REV_SERVER_TARGET=${REV_SERVER_TARGET}
-      - REV_SERVER_DOMAIN=${REV_SERVER_DOMAIN}
       - REV_SERVER_CIDR=192.168.99.0/24
       - PIHOLE_DNS_=127.0.0.1#5335
       - DNSSEC="true"
@@ -107,10 +95,6 @@ services:
   pihole-vlan207:
     container_name: pihole-vlan207
     image: aleksanderbl/pihole-unbound:2024.07.0
-    hostname: ${HOSTNAME}
-    domainname: ${DOMAIN_NAME}
-    dns:
-      - 127.0.0.1
     ports:
       - 192.168.207.199:53:53/tcp
       - 192.168.207.199:53:53/udp
@@ -121,8 +105,6 @@ services:
       - TZ=Europe/Copenhagen
       - WEBPASSWORD=${WEBPASSWORD}
       - REV_SERVER=true
-      - REV_SERVER_TARGET=${REV_SERVER_TARGET}
-      - REV_SERVER_DOMAIN=${REV_SERVER_DOMAIN}
       - REV_SERVER_CIDR=192.168.207.0/24
       - PIHOLE_DNS_=127.0.0.1#5335
       - DNSSEC="true"
