@@ -2,7 +2,7 @@
 
 {
   # Create media user and group
-  users.groups.media = {};
+  users.groups.media = { };
   users.users.media = {
     isSystemUser = true;
     group = "media";
@@ -60,7 +60,7 @@
         "force group" = "users";
         # macOS specific share settings
         "fruit:time machine" = "yes";
-        "fruit:time machine max size" = "107374182400";  # 100GB in bytes
+        "fruit:time machine max size" = "107374182400"; # 100GB in bytes
         "vfs objects" = "catia fruit streams_xattr";
         "ea support" = "yes";
         "inherit owner" = "yes";
@@ -79,7 +79,7 @@
         "directory mask" = "0755";
         "force user" = "media";
         "force group" = "media";
-        "max depth" = "99";  # Limit directory depth to 10 levels
+        "max depth" = "99"; # Limit directory depth to 10 levels
         # macOS specific share settings
         # "fruit:time machine" = "yes";
         # "fruit:time machine max size" = "536870912000";  # 500GB in bytes

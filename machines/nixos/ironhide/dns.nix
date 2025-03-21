@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   # Define your network details
@@ -28,17 +33,27 @@ let
     jellyfin = {
       name = "jellyfin.local.aleksanderbl.dk";
       proxypass = "http://localhost:8096";
-      allowedNetworks = [ "vlan20" "vlan99" ]; # Only accessible from secure and management networks
+      allowedNetworks = [
+        "vlan20"
+        "vlan99"
+      ]; # Only accessible from secure and management networks
     };
     nextcloud = {
       name = "nextcloud.local.aleksanderbl.dk";
       proxypass = "http://localhost:8080";
-      allowedNetworks = [ "vlan20" "vlan99" ]; # Only accessible from secure and management networks
+      allowedNetworks = [
+        "vlan20"
+        "vlan99"
+      ]; # Only accessible from secure and management networks
     };
     homeassistant = {
       name = "ha.local.aleksanderbl.dk";
       proxypass = "http://localhost:8123";
-      allowedNetworks = [ "vlan20" "vlan99" "vlan207" ]; # Accessible from all networks
+      allowedNetworks = [
+        "vlan20"
+        "vlan99"
+        "vlan207"
+      ]; # Accessible from all networks
     };
   };
 
@@ -55,8 +70,8 @@ let
     config = {
       Cmd = [ "/init-unbound.sh" ];
       ExposedPorts = {
-        "53/udp" = {};
-        "53/tcp" = {};
+        "53/udp" = { };
+        "53/tcp" = { };
       };
       Env = [
         "TZ=Europe/Copenhagen"
@@ -91,7 +106,10 @@ in
     containers = {
       dns = {
         image = "local/dns:latest";
-        ports = [ "53:53/udp" "53:53/tcp" ];
+        ports = [
+          "53:53/udp"
+          "53:53/tcp"
+        ];
         environment = {
           TZ = "Europe/Copenhagen";
         };
