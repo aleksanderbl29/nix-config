@@ -5,7 +5,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./networking.nix
-      ./vm.nix
       ./samba.nix
       ./jellyfin.nix
     ];
