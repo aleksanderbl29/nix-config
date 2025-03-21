@@ -1,0 +1,24 @@
+# Internal DNS entries for VLAN 207 (IOT)
+# Format: IP_ADDRESS HOSTNAME.DOMAIN
+
+# Core Infrastructure
+192.168.207.199    ironhide.local.aleksanderbl.dk
+192.168.207.1      router.local.aleksanderbl.dk
+
+# Pi-hole DNS
+192.168.207.199    pihole-vlan207.local.aleksanderbl.dk
+
+# Home Automation
+192.168.207.199    ha.local.aleksanderbl.dk
+192.168.207.199    ha-test.local.aleksanderbl.dk
+
+# Media & Entertainment
+192.168.207.199    jellyfin.local.aleksanderbl.dk
+192.168.207.199    sonos-stream.local.aleksanderbl.dk
+192.168.207.199    hyperion.local.aleksanderbl.dk
+192.168.207.199    hyperhdr.local.aleksanderbl.dk
+192.168.207.199    homer.local.aleksanderbl.dk
+192.168.207.199    links.local.aleksanderbl.dk
+
+# IOT Management
+192.168.207.199    traefik-dashboard.local.aleksanderbl.dk

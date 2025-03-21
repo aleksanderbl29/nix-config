@@ -7,7 +7,22 @@
       ./networking.nix
       ./samba.nix
       ./jellyfin.nix
+      ./dns.nix
     ];
+
+  # Enable docker and OCI containers
+  virtualisation = {
+    docker = {
+      enable = true;
+      autoPrune = {
+        enable = true;
+        dates = "weekly";
+      };
+    };
+    oci-containers = {
+      backend = "docker";
+    };
+  };
 
   # Bootloader.
   boot.loader = {
@@ -45,7 +60,11 @@
   users.users.aleksander = {
     isNormalUser = true;
     description = "aleksander";
-    extraGroups = [ "networkmanager" "wheel" "libvirt" "kvm" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
   };
 
   # Enable the OpenSSH daemon.

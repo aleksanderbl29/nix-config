@@ -1,0 +1,57 @@
+---
+volumes:
+  etc_pihole-unbound:
+  etc_pihole_dnsmasq-unbound:
+
+services:
+  pihole:
+    container_name: pihole-vlan99
+    image: aleksanderbl/pihole-unbound:2024.07.0
+    hostname: ${HOSTNAME}
+    domainname: ${DOMAIN_NAME}
+    dns:
+      - 127.0.0.1
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 909:80/tcp
+      - 5336:5335
+    environment:
+      - FTLCONF_LOCAL_IPV4=${FTLCONF_LOCAL_IPV4}
+      - TZ=Europe/Copenhagen
+      - WEBPASSWORD=${WEBPASSWORD}
+      - REV_SERVER=true
+      - REV_SERVER_TARGET=${REV_SERVER_TARGET}
+      - REV_SERVER_DOMAIN=${REV_SERVER_DOMAIN}
+      - REV_SERVER_CIDR=${REV_SERVER_CIDR}
+      - PIHOLE_DNS_=127.0.0.1#5335
+      - DNSSEC="true"
+      - DNSMASQ_LISTENING=all
+      - VIRTUAL_HOST=pi.hole
+    volumes:
+      - ../03-custom.conf:/etc/dnsmasq.d/03-custom.conf
+      - ../adlists.list:/etc/pihole/adlists.list
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      com.centurylinklabs.watchtower.monitor-only: true
+
+      ## Traefik config ##
+      traefik.enable: true
+      traefik.http.routers.pihole-vlan99.entrypoints: http
+      traefik.http.routers.pihole-vlan99.rule: Host(`pihole-vlan99.local.aleksanderbl.dk`)
+      traefik.http.middlewares.pihole-vlan99-https-redirect.redirectscheme.scheme: https
+      traefik.http.middlewares.pihole-vlan99-admin.addprefix.prefix: /admin
+      traefik.http.routers.pihole-vlan99.middlewares: pihole-vlan99-https-redirect
+      traefik.http.routers.pihole-vlan99-secure.entrypoints: https
+      traefik.http.routers.pihole-vlan99-secure.rule: Host(`pihole-vlan99.local.aleksanderbl.dk`)
+      traefik.http.routers.pihole-vlan99-secure.tls: true
+      traefik.http.routers.pihole-vlan99-secure.middlewares: pihole-vlan99-admin
+      traefik.http.routers.pihole-vlan99-secure.service: pihole-vlan99
+      traefik.http.services.pihole-vlan99.loadbalancer.server.port: 80
+      traefik.docker.network: proxy
+
+networks:
+  proxy:
+    external: true

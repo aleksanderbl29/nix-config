@@ -1,0 +1,32 @@
+# Internal DNS entries for VLAN 20 (Secure)
+# Format: IP_ADDRESS HOSTNAME.DOMAIN
+
+# Core Infrastructure
+192.168.20.199    ironhide.local.aleksanderbl.dk
+192.168.20.1      router.local.aleksanderbl.dk
+
+# Pi-hole DNS
+192.168.20.199    pihole-vlan20.local.aleksanderbl.dk
+
+# Traefik Services
+192.168.20.199    traefik-dashboard.local.aleksanderbl.dk
+192.168.20.199    uptime.local.aleksanderbl.dk
+192.168.20.199    dash.local.aleksanderbl.dk
+192.168.20.199    gatus.local.aleksanderbl.dk
+
+# Home Services
+192.168.20.199    ha.local.aleksanderbl.dk
+192.168.20.199    ha-test.local.aleksanderbl.dk
+192.168.20.199    jellyfin.local.aleksanderbl.dk
+192.168.20.199    sonos-stream.local.aleksanderbl.dk
+
+# Development & Tools
+192.168.20.199    git.local.aleksanderbl.dk
+192.168.20.199    semaphore.local.aleksanderbl.dk
+192.168.20.199    cv.local.aleksanderbl.dk
+
+# Entertainment
+192.168.20.199    hyperion.local.aleksanderbl.dk
+192.168.20.199    hyperhdr.local.aleksanderbl.dk
+192.168.20.199    homer.local.aleksanderbl.dk
+192.168.20.199    links.local.aleksanderbl.dk
