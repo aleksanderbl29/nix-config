@@ -41,7 +41,7 @@
   };
 
   time.timeZone = "Europe/Copenhagen";
-  console.keyMap = "dk";
+  console.keyMap = "dk-latin1";
 
   i18n = {
     # consoleFont = "Lat2-Terminus16";
