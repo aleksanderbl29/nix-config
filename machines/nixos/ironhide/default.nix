@@ -4,17 +4,16 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./networking.nix
+      ./vm.nix
+      ./samba.nix
+      ./jellyfin.nix
     ];
 
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
-  };
-
-  networking = {
-    hostName = "ironhide";
-    networkmanager.enable = true;
   };
 
   # Set your time zone.
@@ -44,11 +43,10 @@
   # Configure console keymap
   console.keyMap = "dk-latin1";
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.aleksander = {
     isNormalUser = true;
     description = "aleksander";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirt" "kvm" ];
   };
 
   # Enable the OpenSSH daemon.
