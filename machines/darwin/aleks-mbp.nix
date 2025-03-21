@@ -13,7 +13,10 @@ in
 
   modules.docker.enable = true;
 
-  homebrew.casks = [ "private-internet-access" "cursor" ];
+  homebrew.casks = [
+    "private-internet-access"
+    "cursor"
+  ];
 
   ids.gids.nixbld = 350;
 

@@ -1,14 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./networking.nix
-      ./samba.nix
-      ./jellyfin.nix
-      ./dns.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./networking.nix
+    ./samba.nix
+    ./jellyfin.nix
+    ./dns.nix
+  ];
 
   # Enable docker and OCI containers
   virtualisation = {

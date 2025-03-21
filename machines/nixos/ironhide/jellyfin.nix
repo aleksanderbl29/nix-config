@@ -20,7 +20,7 @@
     };
   };
 
-  environment.systemPackages = with pkgs;[
+  environment.systemPackages = with pkgs; [
     jellyfin
     jellyfin-web
     jellyfin-ffmpeg
@@ -29,7 +29,7 @@
   # Enable Jellyfin media server
   services.jellyfin = {
     enable = true;
-    openFirewall = true;  # Automatically open the required ports in the firewall
+    openFirewall = true; # Automatically open the required ports in the firewall
     user = "media";
     group = "media";
   };

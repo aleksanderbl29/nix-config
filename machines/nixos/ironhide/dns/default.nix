@@ -1,4 +1,8 @@
-{ pkgs, networks, customDns }:
+{
+  pkgs,
+  networks,
+  customDns,
+}:
 
 let
   # Create unbound.conf from template
@@ -52,9 +56,11 @@ let
     server:
         # Local zone configuration
         local-zone: "local.aleksanderbl.dk" static
-        ${builtins.concatStringsSep "\n" (map (service:
-          ''local-data: "${service.name}. IN A ${networks.vlan20.ip}"''
-        ) (builtins.attrValues customDns))}
+        ${builtins.concatStringsSep "\n" (
+          map (service: ''local-data: "${service.name}. IN A ${networks.vlan20.ip}"'') (
+            builtins.attrValues customDns
+          )
+        )}
         local-data: "*.local.aleksanderbl.dk. IN A ${networks.vlan20.ip}"
   '';
 
@@ -88,10 +94,13 @@ let
       pkgs.bash
     ];
     config = {
-      Cmd = [ "/bin/sh" "${initScript}" ];
+      Cmd = [
+        "/bin/sh"
+        "${initScript}"
+      ];
       ExposedPorts = {
-        "53/udp" = {};
-        "53/tcp" = {};
+        "53/udp" = { };
+        "53/tcp" = { };
       };
       Env = [
         "TZ=Europe/Copenhagen"
