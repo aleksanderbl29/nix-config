@@ -95,6 +95,8 @@
         k3s-2 = libs.mkNixosConfig { hostname = "k3s-2"; };
         k3s-3 = libs.mkNixosConfig { hostname = "k3s-3"; };
 
+        ironhide = libs.mkNixosConfig { hostname = "ironhide"; };
+
       };
 
       colmena = {
