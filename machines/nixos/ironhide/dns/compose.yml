@@ -1,9 +1,15 @@
 ---
 volumes:
+  etc_pihole-vlan20:
+  etc_dnsmasq-vlan20:
   etc_pihole-unbound-vlan20:
   etc_pihole_dnsmasq-unbound-vlan20:
+  etc_pihole-vlan99:
+  etc_dnsmasq-vlan99:
   etc_pihole-unbound-vlan99:
   etc_pihole_dnsmasq-unbound-vlan99:
+  etc_pihole-vlan207:
+  etc_dnsmasq-vlan207:
   etc_pihole-unbound-vlan207:
   etc_pihole_dnsmasq-unbound-vlan207:
 
@@ -27,6 +33,8 @@ services:
       - DNSMASQ_LISTENING=all
       - VIRTUAL_HOST=pi.hole
     volumes:
+      - etc_pihole-vlan20:/etc/pihole
+      - etc_dnsmasq-vlan20:/etc/dnsmasq.d
       - ./03-custom-vlan20.conf:/etc/dnsmasq.d/03-custom.conf
       - ./internal-vlan20.list:/etc/pihole/custom.list
     restart: unless-stopped
@@ -69,6 +77,8 @@ services:
       - DNSMASQ_LISTENING=all
       - VIRTUAL_HOST=pi.hole
     volumes:
+      - etc_pihole-vlan99:/etc/pihole
+      - etc_dnsmasq-vlan99:/etc/dnsmasq.d
       - ./03-custom-vlan99.conf:/etc/dnsmasq.d/03-custom.conf
       - ./internal-vlan99.list:/etc/pihole/custom.list
     restart: unless-stopped
@@ -111,6 +121,8 @@ services:
       - DNSMASQ_LISTENING=all
       - VIRTUAL_HOST=pi.hole
     volumes:
+      - etc_pihole-vlan207:/etc/pihole
+      - etc_dnsmasq-vlan207:/etc/dnsmasq.d
       - ./03-custom-vlan207.conf:/etc/dnsmasq.d/03-custom.conf
       - ./internal-vlan207.list:/etc/pihole/custom.list
     restart: unless-stopped
