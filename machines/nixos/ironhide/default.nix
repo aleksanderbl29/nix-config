@@ -7,12 +7,12 @@
       ./networking.nix
       ./samba.nix
       ./jellyfin.nix
-      ../../../modules/docker
+      # ../../../modules/docker
     ];
 
-  modules.docker = {
-    enable = true;
-  };
+  # docker = {
+  #   enable = false;
+  # };
 
   # Bootloader.
   boot.loader = {

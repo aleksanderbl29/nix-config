@@ -7,9 +7,9 @@ with lib; let
   cfg = config.docker;
 in
 {
-  imports = [
-    ./traefik.nix
-  ];
+  # imports = [
+  #   ./traefik.nix
+  # ];
 
   options.docker = {
     enable = mkEnableOption "docker";
@@ -19,9 +19,9 @@ in
     virtualisation = {
       docker = {
         enable = true;
-      autoPrune = {
-        enable = true;
-        dates = "weekly";
+        autoPrune = {
+          enable = true;
+          dates = "weekly";
         };
       };
       oci-containers = {
