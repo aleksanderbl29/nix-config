@@ -36,6 +36,6 @@
       # IOT
       vlan207 = { id = 207; interface = "enp1s0"; };
     };
-    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    nameservers = [ "1.1.1.1" "9.9.9.9" ];
   };
 }
