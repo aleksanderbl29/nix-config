@@ -2,9 +2,6 @@
   pkgs,
   ...
 }:
-let
-  user = "aleksander";
-in
 {
   imports = [
     ../common/shared/docker.nix
@@ -19,7 +16,7 @@ in
 
   nix = {
     settings = {
-      trusted-users = [ user ];
+      trusted-users = [ "aleksander" ];
     };
   };
 
