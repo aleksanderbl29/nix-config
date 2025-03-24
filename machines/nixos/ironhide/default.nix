@@ -7,21 +7,11 @@
       ./networking.nix
       ./samba.nix
       ./jellyfin.nix
-      ./dns.nix
+      ../../../modules/docker
     ];
 
-  # Enable docker and OCI containers
-  virtualisation = {
-    docker = {
-      enable = true;
-      autoPrune = {
-        enable = true;
-        dates = "weekly";
-      };
-    };
-    oci-containers = {
-      backend = "docker";
-    };
+  modules.docker = {
+    enable = true;
   };
 
   # Bootloader.
@@ -66,6 +56,11 @@
       "docker"
     ];
   };
+
+  # networking.nameservers = [
+  #   "1.1.1.1"
+  #   "9.9.9.9"
+  # ];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
