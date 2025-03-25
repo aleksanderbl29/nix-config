@@ -7,6 +7,7 @@
     ./samba.nix
     ./jellyfin.nix
     ../../../modules/docker
+    ../../../modules/beszel-agent.nix
   ];
 
   docker = {
@@ -15,6 +16,13 @@
       enable = true;
       environmentFile = "/var/lib/traefik/.env";
     };
+    beszel-hub = {
+      enable = true;
+    };
+  };
+
+  services.beszel-agent = {
+    enable = true;
   };
 
   # Bootloader.

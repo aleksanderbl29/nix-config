@@ -10,6 +10,7 @@ in
 {
   imports = [
     ./traefik.nix
+    ./beszel.nix
   ];
 
   options.docker = {
