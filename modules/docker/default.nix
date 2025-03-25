@@ -3,13 +3,14 @@
   lib,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.docker;
 in
 {
-  # imports = [
-  #   ./traefik.nix
-  # ];
+  imports = [
+    ./traefik.nix
+  ];
 
   options.docker = {
     enable = mkEnableOption "docker";

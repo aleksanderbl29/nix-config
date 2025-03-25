@@ -1,11 +1,18 @@
-{config, lib, pkgs, ...}:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  cfg = config.services.traefik;
+  cfg = config.docker.traefik;
 in
 {
-  options.services.traefik = with lib; {
-    enable = mkEnableOption "Traefik reverse proxy";
+  options.docker.traefik = with lib; {
+    enable = mkEnableOption "Traefik reverse proxy" // {
+      default = false;
+    };
 
     environmentFile = mkOption {
       type = types.str;
@@ -32,10 +39,18 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # Create the proxy network
-    virtualisation.docker.networks = {
-      proxy = {
-        enable = true;
+    # Create the proxy network using a systemd service
+    systemd.services.docker-network-proxy = {
+      description = "Create Docker proxy network";
+      after = [ "docker.service" ];
+      requires = [ "docker.service" ];
+      before = [ "docker-traefik.service" ];
+      wantedBy = [ "docker-traefik.service" ];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecStart = "${pkgs.docker}/bin/docker network create proxy || true";
       };
     };
 
@@ -48,11 +63,12 @@ in
     virtualisation.oci-containers = {
       backend = "docker";
       containers.traefik = {
+        dependsOn = [ "proxy" ];
         image = "traefik:v3.3.4";
         autoStart = true;
         environmentFiles = [ cfg.environmentFile ];
         environment = {
-          "api.insecure" = "true";
+          API_INSECURE = "true";
         };
         extraOptions = [
           "--network=proxy"
@@ -70,21 +86,21 @@ in
           "${cfg.dataDir}/acme.json:/acme.json"
           "${cfg.dynamicConfigFile}:/config.yml:ro"
         ];
-        labels = [
-          "traefik.enable=true"
-          "traefik.http.routers.traefik.entrypoints=http"
-          "traefik.http.routers.traefik.rule=Host(`traefik-dashboard.local.aleksanderbl.dk`)"
-          "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
-          "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
-          "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
-          "traefik.http.routers.traefik-secure.entrypoints=https"
-          "traefik.http.routers.traefik-secure.rule=Host(`traefik-dashboard.local.aleksanderbl.dk`)"
-          "traefik.http.routers.traefik-secure.tls=true"
-          "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
-          "traefik.http.routers.traefik-secure.tls.domains[0].main=local.aleksanderbl.dk"
-          "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.local.aleksanderbl.dk"
-          "traefik.http.routers.traefik-secure.service=api@internal"
-        ];
+        labels = {
+          "traefik.enable" = "true";
+          "traefik.http.routers.traefik.entrypoints" = "http";
+          "traefik.http.routers.traefik.rule" = "Host(`traefik-dashboard.local.aleksanderbl.dk`)";
+          "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme" = "https";
+          "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto" = "https";
+          "traefik.http.routers.traefik.middlewares" = "traefik-https-redirect";
+          "traefik.http.routers.traefik-secure.entrypoints" = "https";
+          "traefik.http.routers.traefik-secure.rule" = "Host(`traefik-dashboard.local.aleksanderbl.dk`)";
+          "traefik.http.routers.traefik-secure.tls" = "true";
+          "traefik.http.routers.traefik-secure.tls.certresolver" = "cloudflare";
+          "traefik.http.routers.traefik-secure.tls.domains[0].main" = "local.aleksanderbl.dk";
+          "traefik.http.routers.traefik-secure.tls.domains[0].sans" = "*.local.aleksanderbl.dk";
+          "traefik.http.routers.traefik-secure.service" = "api@internal";
+        };
       };
     };
 

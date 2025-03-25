@@ -6,15 +6,17 @@
   imports = [
     ../nixos
   ];
-  deployment.targetHost = config.networking.hostName;
   deployment = {
+    targetHost = config.networking.hostName;
     targetUser = "root";
     buildOnTarget = true;
   };
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.users.aleksander = {
-    imports = [ ../../home ];
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.aleksander = {
+      imports = [ ../../home ];
+    };
   };
 }
