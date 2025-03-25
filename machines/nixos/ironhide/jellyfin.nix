@@ -1,9 +1,11 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
-  };
+  nixpkgs.overlays = [
+    (final: prev: {
+      vaapiIntel = prev.vaapiIntel.override { enableHybridCodec = true; };
+    })
+  ];
 
   # Hardware configuration for Intel N100
   hardware = {
@@ -20,7 +22,7 @@
     };
   };
 
-  environment.systemPackages = with pkgs;[
+  environment.systemPackages = with pkgs; [
     jellyfin
     jellyfin-web
     jellyfin-ffmpeg
@@ -29,7 +31,7 @@
   # Enable Jellyfin media server
   services.jellyfin = {
     enable = true;
-    openFirewall = true;  # Automatically open the required ports in the firewall
+    openFirewall = true; # Automatically open the required ports in the firewall
     user = "media";
     group = "media";
   };

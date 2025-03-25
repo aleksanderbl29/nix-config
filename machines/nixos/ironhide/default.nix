@@ -1,18 +1,21 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./networking.nix
-      ./samba.nix
-      ./jellyfin.nix
-      # ../../../modules/docker
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./networking.nix
+    ./samba.nix
+    ./jellyfin.nix
+    ../../../modules/docker
+  ];
 
-  # docker = {
-  #   enable = false;
-  # };
+  docker = {
+    enable = true;
+    traefik = {
+      enable = true;
+      environmentFile = "/var/lib/traefik/.env";
+    };
+  };
 
   # Bootloader.
   boot.loader = {
