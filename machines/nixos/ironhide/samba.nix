@@ -11,10 +11,10 @@
 
   services.samba = {
     enable = true;
-    securityType = "user";
     openFirewall = true;
     settings = {
       global = {
+        securityType = "user";
         workgroup = "WORKGROUP";
         "server string" = "ironhide";
         "netbios name" = "ironhide";
@@ -47,8 +47,8 @@
         "dfree:disk_free" = "yes";
         "dfree:disk_total" = "yes";
       };
-    };
-    shares = {
+    # };
+    # shares = {
       private = {
         path = "/mnt/private";
         browseable = "yes";
