@@ -68,11 +68,6 @@
     ];
   };
 
-  # networking.nameservers = [
-  #   "1.1.1.1"
-  #   "9.9.9.9"
-  # ];
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   system.stateVersion = "24.11"; # Did you read the comment?
