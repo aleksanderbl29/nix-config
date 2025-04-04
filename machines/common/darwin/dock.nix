@@ -16,6 +16,7 @@
       "/Applications/Microsoft Outlook.app"
       "/System/Applications/Preview.app"
       "/Applications/Visual Studio Code.app"
+      "/Applications/Cursor.app"
       "/Applications/RStudio.app"
       "/Applications/Obsidian.app"
       # "/Applications/Iterm.app"
