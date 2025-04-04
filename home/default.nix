@@ -27,6 +27,7 @@
     figurine
     # colmena
     deadnix
+    nixd
   ];
 
   programs = {
