@@ -1,6 +1,7 @@
 site_name: Aleksander's Nix Config
 theme:
-  name: material
+  # name: material
+  name: terminal
   features:
     - navigation.instant
     - navigation.tracking
