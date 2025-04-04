@@ -8,14 +8,15 @@
     ./jellyfin.nix
     ../../../modules/docker
     ../../../modules/beszel-agent.nix
+    # ../../../modules/traefik.nix
   ];
 
   docker = {
     enable = true;
-    traefik = {
-      enable = true;
-      environmentFile = "/var/lib/traefik/.env";
-    };
+    # traefik = {
+    #   enable = true;
+    #   environmentFile = "/var/lib/traefik/.env";
+    # };
     beszel-hub = {
       enable = true;
     };

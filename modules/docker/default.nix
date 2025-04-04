@@ -9,7 +9,7 @@ let
 in
 {
   imports = [
-    ./traefik.nix
+    # ./traefik.nix
     ./beszel.nix
   ];
 
