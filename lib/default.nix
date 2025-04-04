@@ -53,7 +53,7 @@ in
                   ../home # shared home-manager config for all machines
                   ../home/darwin.nix # shared home-manager config for all darwin machines
                   ../home/${hostname}.nix # machine-specific home-manager config
-                  inputs.catppuccin.homeManagerModules.catppuccin
+                  inputs.catppuccin.homeModules.catppuccin
                 ];
                 catppuccin = catppuccinConfig;
               };
@@ -96,7 +96,7 @@ in
               {
                 imports = [
                   ../home # same shared home-manager config
-                  inputs.catppuccin.homeManagerModules.catppuccin
+                  inputs.catppuccin.homeModules.catppuccin
                 ];
                 catppuccin = catppuccinConfig;
               };
