@@ -47,8 +47,6 @@
         "dfree:disk_free" = "yes";
         "dfree:disk_total" = "yes";
       };
-    # };
-    # shares = {
       private = {
         path = "/mnt/private";
         browseable = "yes";
