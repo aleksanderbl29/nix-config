@@ -20,9 +20,9 @@
     ];
     volumes = [
       "/etc/localtime:/etc/localtime:ro"
-      "/etc/nixos/modules/docker/compose/traefik/data/acme.json:/acme.json:rw"
-      "/etc/nixos/modules/docker/compose/traefik/data/config.yml:/config.yml:ro"
-      "/etc/nixos/modules/docker/compose/traefik/data/traefik.yml:/traefik.yml:ro"
+      "/etc/nixos/modules/docker/compose/traefik/acme.json:/acme.json:rw"
+      "/etc/nixos/modules/docker/compose/traefik/config.yml:/config.yml:ro"
+      "/etc/nixos/modules/docker/compose/traefik/traefik.yml:/traefik.yml:ro"
       "/var/run/docker.sock:/var/run/docker.sock:ro"
     ];
     ports = [
@@ -64,6 +64,8 @@
     wantedBy = [
       "docker-compose-traefik-root.target"
     ];
+    after = [ "docker-networks.service" ];
+    requires = [ "docker-networks.service" ];
   };
 
   # Root service
