@@ -37,6 +37,20 @@ in
           volumes = [
             "beszel_data:/beszel_data"
           ];
+          labels = {
+            "com.centurylinklabs.watchtower.monitor-only" = "false";
+            "traefik.docker.network" = "proxy";
+            "traefik.enable" = "true";
+            "traefik.http.middlewares.beszel-https-redirect.redirectscheme.scheme" = "https";
+            "traefik.http.routers.beszel-secure.entrypoints" = "https";
+            "traefik.http.routers.beszel-secure.rule" = "Host(`beszel.local.aleksanderbl.dk`)";
+            "traefik.http.routers.beszel-secure.service" = "beszel";
+            "traefik.http.routers.beszel-secure.tls" = "true";
+            "traefik.http.routers.beszel.entrypoints" = "http";
+            "traefik.http.routers.beszel.middlewares" = "beszel-https-redirect";
+            "traefik.http.routers.beszel.rule" = "Host(`beszel.local.aleksanderbl.dk`)";
+            "traefik.http.services.beszel.loadbalancer.server.port" = "8090";
+          };
         };
       };
     };
