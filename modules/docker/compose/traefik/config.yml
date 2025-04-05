@@ -9,7 +9,7 @@ http:
       middlewares:
         - default-headers
         - https-redirectscheme
-      tls: {}
+      # tls: {}
       service: actualbudget
     uptime:
       entryPoints:
@@ -18,7 +18,7 @@ http:
       middlewares:
         - default-headers
         - https-redirectscheme
-      tls: {}
+      # tls: {}
       service: uptime
     ha-test:
       entryPoints:
@@ -27,7 +27,7 @@ http:
       middlewares:
         - default-headers
         - https-redirectscheme
-      tls: {}
+      # tls: {}
       service: ha-test
     sonos-stream:
       entryPoints:
@@ -36,7 +36,7 @@ http:
       middlewares:
         - default-headers
         - https-redirectscheme
-      tls: {}
+      # tls: {}
       service: sonos-stream
     jellyfin:
       entryPoints:
@@ -45,7 +45,7 @@ http:
       middlewares:
         - default-headers
         - https-redirectscheme
-      tls: {}
+      # tls: {}
       service: jellyfin
     jellyfin-herning:
       entryPoints:
@@ -54,7 +54,7 @@ http:
       middlewares:
         - default-headers
         - https-redirectscheme
-      tls: {}
+      # tls: {}
       service: jellyfin-herning
     hyperion:
       entryPoints:
@@ -63,7 +63,7 @@ http:
       middlewares:
         - default-headers
         - https-redirectscheme
-      tls: {}
+      # tls: {}
       service: hyperion
     hyperhdr:
       entryPoints:
@@ -72,7 +72,7 @@ http:
       middlewares:
         - default-headers
         - https-redirectscheme
-      tls: {}
+      # tls: {}
       service: hyperhdr
     proxmox:
       entryPoints:
@@ -81,7 +81,7 @@ http:
       middlewares:
         - default-headers
         - https-redirectscheme
-      tls: {}
+      # tls: {}
       service: proxmox
     ha-uptime:
       entryPoints:
@@ -90,7 +90,7 @@ http:
       middlewares:
         - default-headers
         - https-redirectscheme
-      tls: {}
+      # tls: {}
       service: ha-uptime
     homeassistant:
       # For Homeassistant config, check: https://www.home-assistant.io/integrations/http/#reverse-proxies
@@ -101,7 +101,7 @@ http:
       middlewares:
         - default-headers
         - https-redirectscheme
-      tls: {}
+      # tls: {}
       service: homeassistant
     ha-observer:
       entryPoints:
@@ -110,7 +110,7 @@ http:
       middlewares:
         - default-headers
         - https-redirectscheme
-      tls: {}
+      # tls: {}
       service: ha-observer
     traefik:
       rule: "Host(`traefik-dashboard.local.aleksanderbl.dk`)"
