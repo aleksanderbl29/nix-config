@@ -7,6 +7,7 @@
   home.packages = with pkgs; [
     # minikube
     # kubectl
+    compose2nix
   ];
 
   tex.enable = false;
