@@ -74,15 +74,6 @@ http:
         - https-redirectscheme
       tls: {}
       service: hyperhdr
-    proxmox:
-      entryPoints:
-        - "https"
-      rule: "Host(`proxmox.local.aleksanderbl.dk`)"
-      middlewares:
-        - default-headers
-        - https-redirectscheme
-      tls: {}
-      service: proxmox
     ha-uptime:
       entryPoints:
         - "https"
