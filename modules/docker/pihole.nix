@@ -14,7 +14,7 @@
     image = "aleksanderbl/pihole-unbound:2025.04.0";
     environment = {
       "FTLCONF_dns_dnssec" = "true";
-      "FTLCONF_dns_listeningMode" = "single";
+      "FTLCONF_dns_listeningMode" = "all";
       "FTLCONF_dns_upstreams" = "127.0.0.1#5335";
       "FTLCONF_misc_etc_dnsmasq_d" = "true";
       "FTLCONF_webserver_api_password" = "password";
@@ -48,6 +48,7 @@
     };
     log-driver = "journald";
     extraOptions = [
+      "--dns=1.1.1.1"
       "--network-alias=pihole"
       "--network=proxy"
     ];
