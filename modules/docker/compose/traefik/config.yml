@@ -121,14 +121,21 @@ http:
           - main: "local.aleksanderbl.dk"
             sans:
               - "*.local.aleksanderbl.dk"
+    chat:
+      rule: "Host(`chat.local.aleksanderbl.dk`)"
+      entryPoints:
+        - "https"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
 
 # #endregion
 # #region services
   services:
-    actualbudget:
+    chat:
       loadBalancer:
         servers:
-          - url: "http://192.168.99.38:5006"
+          - url: "http://100.106.169.107:8080"
     uptime:
       loadBalancer:
         servers:
