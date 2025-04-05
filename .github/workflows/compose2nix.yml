@@ -1,0 +1,51 @@
+name: Create nix files from docker compose
+
+on:
+  push:
+    branches:
+      - main  # Trigger on pushes to the main branch
+  workflow_dispatch:  # Allow manual triggering
+  schedule:
+    - cron: '50 8 * * 3' # runs every Wednesday at 08:50
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v16
+
+      - name: Run compose2nix
+        run: |
+          cd modules/docker/compose
+          for dir in */; do
+            if [ -f "$dir/compose.yml" ]; then
+              service_name=$(basename "$dir")
+              nix run github:aksiksi/compose2nix -- -inputs "$dir/compose.yml" -output "../${service_name}.nix" -runtime=docker
+            fi
+          done
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git diff --cached --exit-code || git commit -m "Update Nix files from docker compose"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: format/nixfmt-changes
+          title: "Update Nix files from docker compose"
+          body: |
+            This PR updates Nix files generated from docker compose configurations.
+

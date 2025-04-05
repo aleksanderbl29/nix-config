@@ -1,0 +1,64 @@
+---
+name: "littlelink"
+services:
+  little-link:
+    image: ghcr.io/techno-tim/littlelink-server:latest
+    container_name: littlelink-server
+    hostname: littlelink-server
+    environment:
+      - META_TITLE=Aleksander's links
+      - META_DESCRIPTION=Aleksanders små links
+      - META_AUTHOR=Aleksander Bang-Larsen
+      - THEME=Dark
+      - FAVICON_URL=https://pbs.twimg.com/profile_images/1661137669156487168/VcAtkav1_400x400.jpg
+      - AVATAR_URL=https://pbs.twimg.com/profile_images/1661137669156487168/VcAtkav1_400x400.jpg
+      - AVATAR_2X_URL=https://pbs.twimg.com/profile_images/1661137669156487168/VcAtkav1_400x400.jpg
+      - AVATAR_ALT=Aleksander's profile pic
+      - NAME=Aleksander's links
+      - BIO=Hey! Find mig disse steder!
+      - GITHUB=https://github.com/aleksanderbl29
+      - TWITTER=https://twitter.com/bang_aleksander
+      - BLUESKY=https://bsky.app/profile/aleksanderbl.dk
+      - LINKED_IN=https://www.linkedin.com/in/aleksander-bang-larsen-405b03a4/
+      - EMAIL=kontakt@aleksanderbl.dk
+      - EMAIL_TEXT=Send mig en mail!
+      # use ENV variable names for order, listed buttons will be boosted to the top
+      - BUTTON_ORDER=TWITTER,BLUESKY,GITHUB,INSTAGRAM,LINKED_IN,CV,EMAIL
+      # you can render an unlimited amount of custom buttons by adding
+      # the CUSTOM_BUTTON_* variables and by using a comma as a separator.
+      - CUSTOM_BUTTON_TEXT=CV
+      - CUSTOM_BUTTON_URL=https://cv.aleksanderbl.dk,https://package.aleksanderbl.dk
+      - CUSTOM_BUTTON_COLOR=#000000,#2568BD
+      - CUSTOM_BUTTON_TEXT_COLOR=#ffffff,#ffffff
+      - CUSTOM_BUTTON_ALT_TEXT=My CV,Min R-pakke
+      - CUSTOM_BUTTON_NAME=CV,R-pakke
+      - CUSTOM_BUTTON_ICON=fas file-alt,fas box
+      - FOOTER=Aleksander Bang-Larsen © 2024
+      - SKIP_HEALTH_CHECK_LOGS=true
+    ports:
+      - 8089:3000
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - proxy
+      - external
+    labels:
+      traefik.enable: true
+      traefik.http.routers.littlelink.entrypoints: http
+      traefik.http.routers.littlelink.rule: Host(`links.local.aleksanderbl.dk`)
+      traefik.http.middlewares.littlelink-https-redirect.redirectscheme.scheme: https
+      traefik.http.routers.littlelink.middlewares: littlelink-https-redirect
+      traefik.http.routers.littlelink-secure.entrypoints: https
+      traefik.http.routers.littlelink-secure.rule: Host(`links.local.aleksanderbl.dk`)
+      traefik.http.routers.littlelink-secure.tls: true
+      traefik.http.routers.littlelink-secure.service: littlelink
+      traefik.http.services.littlelink.loadbalancer.server.port: 3000
+      traefik.docker.network: proxy
+      com.centurylinklabs.watchtower.monitor-only: false
+
+networks:
+  proxy:
+    external: true
+  external:
+    external: true
