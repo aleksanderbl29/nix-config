@@ -1,8 +1,8 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   nixpkgs.overlays = [
-    (final: prev: {
+    (prev: {
       vaapiIntel = prev.vaapiIntel.override { enableHybridCodec = true; };
     })
   ];
