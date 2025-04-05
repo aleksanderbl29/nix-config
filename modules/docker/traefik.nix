@@ -1,5 +1,5 @@
 # Auto-generated using compose2nix v0.3.2-pre.
-{ lib, ... }:
+{ pkgs, lib, ... }:
 
 {
   # Runtime
@@ -13,11 +13,10 @@
   virtualisation.oci-containers.containers."traefik" = {
     image = "traefik:v3.3.4";
     environment = {
+      "CF_API_EMAIL" = "";
+      "CF_API_KEY" = "";
       "api.insecure" = "true";
     };
-    environmentFiles = [
-      "/etc/nixos/modules/docker/compose/traefik/.env"
-    ];
     volumes = [
       "/etc/localtime:/etc/localtime:ro"
       "/etc/nixos/modules/docker/compose/traefik/acme.json:/acme.json:rw"
@@ -58,18 +57,12 @@
       RestartSec = lib.mkOverride 90 "100ms";
       RestartSteps = lib.mkOverride 90 9;
     };
-    preStart = ''
-      touch /etc/nixos/modules/docker/compose/traefik/acme.json
-      chmod 600 /etc/nixos/modules/docker/compose/traefik/acme.json
-    '';
     partOf = [
       "docker-compose-traefik-root.target"
     ];
     wantedBy = [
       "docker-compose-traefik-root.target"
     ];
-    after = [ "docker-networks.service" ];
-    requires = [ "docker-networks.service" ];
   };
 
   # Root service

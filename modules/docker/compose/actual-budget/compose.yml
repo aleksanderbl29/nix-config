@@ -1,0 +1,42 @@
+name: actual-budget
+services:
+  actual_server:
+    image: docker.io/actualbudget/actual-server:latest
+    ports:
+      # This line makes Actual available at port 5006 of the device you run the server on,
+      # i.e. http://localhost:5006. You can change the first number to change the port, if you want.
+      - '5006:5006'
+    labels:
+      traefik.enable: true
+      traefik.http.routers.actual-budget.entrypoints: http
+      traefik.http.routers.actual-budget.rule: Host(`actual.local.aleksanderbl.dk`)
+      traefik.http.middlewares.actual-budget-https-redirect.redirectscheme.scheme: https
+      traefik.http.routers.actual-budget.middlewares: actual-budget-https-redirect
+      traefik.http.routers.actual-budget-secure.entrypoints: https
+      traefik.http.routers.actual-budget-secure.rule: Host(`actual.local.aleksanderbl.dk`)
+      traefik.http.routers.actual-budget-secure.tls: true
+      traefik.http.routers.actual-budget-secure.service: actual-budget
+      traefik.http.services.actual-budget.loadbalancer.server.port: 5006
+      traefik.docker.network: proxy
+      com.centurylinklabs.watchtower.monitor-only: false
+    volumes:
+      # Change './actual-data' below to the path to the folder you want Actual to store its data in on your server.
+      # '/data' is the path Actual will look for its files in by default, so leave that as-is.
+      - actual-data:/data
+    networks:
+      - proxy
+    healthcheck:
+      # Enable health check for the instance
+      test: ['CMD-SHELL', 'node src/scripts/health-check.js']
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+
+volumes:
+  actual-data:
+
+networks:
+  proxy:
+    external: true

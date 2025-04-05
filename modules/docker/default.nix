@@ -13,6 +13,7 @@ in
     ./beszel.nix
     ./littlelink.nix
     ./pihole.nix
+    ./actual-budget.nix
   ];
 
   options.docker = {
