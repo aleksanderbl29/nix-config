@@ -12,7 +12,6 @@ in
     # ./traefik.nix
     ./beszel.nix
     ./littlelink.nix
-    ./pihole.nix
   ];
 
   options.docker = {
