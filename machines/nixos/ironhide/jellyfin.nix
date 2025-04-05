@@ -2,7 +2,7 @@
 
 {
   nixpkgs.overlays = [
-    (final: prev: {
+    (_: prev: {
       vaapiIntel = prev.vaapiIntel.override { enableHybridCodec = true; };
     })
   ];
