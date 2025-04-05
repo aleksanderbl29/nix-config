@@ -23,8 +23,8 @@ services:
       - FTLCONF_dns_dnssec=true
       - FTLCONF_dns_listeningMode=single
     volumes:
-      - ./03-custom.conf:/etc/dnsmasq.d/03-custom.conf
-      - ./adlists.list:/etc/pihole/adlists.list
+      - /etc/nixos/modules/docker/compose/pihole/03-custom.conf:/etc/dnsmasq.d/03-custom.conf
+      - /etc/nixos/modules/docker/compose/pihole/adlists.list:/etc/pihole/adlists.list
       # - etc_pihole-unbound:/etc/pihole:rw
       # - etc_pihole_dnsmasq-unbound:/etc/dnsmasq.d:rw
       # - ../internal.list:/etc/pihole/custom.list

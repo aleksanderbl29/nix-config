@@ -21,8 +21,8 @@
       "TZ" = "Europe/Copenhagen";
     };
     volumes = [
-      "/Users/aleksander/nix-config/modules/docker/compose/03-custom.conf:/etc/dnsmasq.d/03-custom.conf:rw"
-      "/Users/aleksander/nix-config/modules/docker/compose/adlists.list:/etc/pihole/adlists.list:rw"
+      "/etc/nixos/modules/docker/compose/pihole/03-custom.conf:/etc/dnsmasq.d/03-custom.conf:rw"
+      "/etc/nixos/modules/docker/compose/pihole/adlists.list:/etc/pihole/adlists.list:rw"
     ];
     ports = [
       "53:53/tcp"
