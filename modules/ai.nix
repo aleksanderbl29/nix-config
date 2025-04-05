@@ -73,7 +73,15 @@ in
           "--network=host"
         ];
         healthcheck = {
-          command = [ "CMD" "curl" "-f" "http://localhost:4000/health/liveliness" "||" "exit" "1" ];
+          command = [
+            "CMD"
+            "curl"
+            "-f"
+            "http://localhost:4000/health/liveliness"
+            "||"
+            "exit"
+            "1"
+          ];
           interval = "30s";
           timeout = "10s";
           retries = 3;
@@ -93,7 +101,10 @@ in
           "postgres_data:/var/lib/postgresql/data"
         ];
         healthcheck = {
-          command = [ "CMD-SHELL" "pg_isready -d litellm -U llmproxy" ];
+          command = [
+            "CMD-SHELL"
+            "pg_isready -d litellm -U llmproxy"
+          ];
           interval = "1s";
           timeout = "5s";
           retries = 10;
