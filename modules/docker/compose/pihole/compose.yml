@@ -22,6 +22,7 @@ services:
       - FTLCONF_dns_upstreams=127.0.0.1#5335
       - FTLCONF_dns_dnssec=true
       - FTLCONF_dns_listeningMode=single
+      - FTLCONF_misc_etc_dnsmasq_d=true
     volumes:
       - /etc/nixos/modules/docker/compose/pihole/03-custom.conf:/etc/dnsmasq.d/03-custom.conf
       - /etc/nixos/modules/docker/compose/pihole/adlists.list:/etc/pihole/adlists.list
