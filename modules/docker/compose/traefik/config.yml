@@ -1,0 +1,222 @@
+---
+http:
+  # region routers
+  routers:
+    actualbudget:
+      entryPoints:
+        - "https"
+      rule: "Host(`actualbudget.local.aleksanderbl.dk`)"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: actualbudget
+    uptime:
+      entryPoints:
+        - "https"
+      rule: "Host(`uptime.local.aleksanderbl.dk`)"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: uptime
+    ha-test:
+      entryPoints:
+        - "https"
+      rule: "Host(`ha-test.local.aleksanderbl.dk`)"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: ha-test
+    sonos-stream:
+      entryPoints:
+        - "https"
+      rule: "Host(`sonos-stream.local.aleksanderbl.dk`)"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: sonos-stream
+    jellyfin:
+      entryPoints:
+        - "https"
+      rule: "Host(`jellyfin.local.aleksanderbl.dk`)"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: jellyfin
+    jellyfin-herning:
+      entryPoints:
+        - "https"
+      rule: "Host(`jellyfin.herning.aleksanderbl.dk`)"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: jellyfin-herning
+    hyperion:
+      entryPoints:
+        - "https"
+      rule: "Host(`hyperion.local.aleksanderbl.dk`)"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: hyperion
+    hyperhdr:
+      entryPoints:
+        - "https"
+      rule: "Host(`hyperhdr.local.aleksanderbl.dk`)"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: hyperhdr
+    proxmox:
+      entryPoints:
+        - "https"
+      rule: "Host(`proxmox.local.aleksanderbl.dk`)"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: proxmox
+    ha-uptime:
+      entryPoints:
+        - "https"
+      rule: "Host(`ha-uptime.local.aleksanderbl.dk`)"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: ha-uptime
+    homeassistant:
+      # For Homeassistant config, check: https://www.home-assistant.io/integrations/http/#reverse-proxies
+      # This relies on Homeassistant using http. No certs are needed in the Homeassistant config.
+      entryPoints:
+        - "https"
+      rule: "Host(`ha.local.aleksanderbl.dk`)"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: homeassistant
+    ha-observer:
+      entryPoints:
+        - "https"
+      rule: "Host(`ha-observer.local.aleksanderbl.dk`)"
+      middlewares:
+        - default-headers
+        - https-redirectscheme
+      tls: {}
+      service: ha-observer
+
+# #endregion
+# #region services
+  services:
+    actualbudget:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.99.38:5006"
+    uptime:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.207.207:3001"
+    ha-test:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.207.207:8123"
+    sonos-stream:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.207.123:8000/rapi.mp3"
+    jellyfin:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.99.11:8096"
+    jellyfin-herning:
+      loadBalancer:
+        servers:
+          - url: "http://100.106.169.107:8096"
+    hyperion:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.207.123:8090"
+    hyperhdr:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.207.123:8090"
+    proxmox:
+      loadBalancer:
+        servers:
+          - url: "https://192.168.99.9:8006"
+        passHostHeader: true
+        tls:
+          insecureSkipVerify: true
+    ha-uptime:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.207.207:3001"
+    homeassistant:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.207.207:8123"
+        passHostHeader: true
+    ha-observer:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.207.207:4357"
+
+# #endregion
+  middlewares:
+    # addprefix-pihole:
+    #   addPrefix:
+    #     prefix: "/admin"
+    https-redirectscheme:
+      redirectScheme:
+        scheme: https
+        permanent: true
+
+    # pihole1-redirect:
+    #   redirectRegex:
+    #     regex: "^https?://pihole1.local.aleksanderbl.dk/$"
+    #     replacement: "https://pihole1.local.aleksanderbl.dk/admin/"
+
+    default-headers:
+      headers:
+        frameDeny: true
+        browserXssFilter: true
+        contentTypeNosniff: true
+        forceSTSHeader: true
+        stsIncludeSubdomains: true
+        stsPreload: true
+        stsSeconds: 15552000
+        customFrameOptionsValue: SAMEORIGIN
+        customRequestHeaders:
+          X-Forwarded-Proto: https
+
+    # idrac:
+    #   headers:
+    #     frameDeny: true
+    #     browserXssFilter: true
+    #     forceSTSHeader: true
+    #     stsIncludeSubdomains: true
+    #     stsSeconds: 15552000
+    #     customFrameOptionsValue: SAMEORIGIN
+    #     customRequestHeaders:
+    #       X-Forwarded-Proto: https
+
+    # default-whitelist:
+    #   ipWhiteList:
+    #     sourceRange:
+    #     - "10.0.0.0/8"
+    #     - "192.168.0.0/16"
+    #     - "172.16.0.0/12"
+
+    secured:
+      chain:
+        middlewares:
+          - default-whitelist
+          - default-headers
