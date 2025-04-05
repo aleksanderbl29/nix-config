@@ -44,7 +44,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          branch: format/nixfmt-changes
+          branch: compose2nix
           title: "Update Nix files from docker compose"
           body: |
             This PR updates Nix files generated from docker compose configurations.
