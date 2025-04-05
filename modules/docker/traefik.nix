@@ -58,6 +58,10 @@
       RestartSec = lib.mkOverride 90 "100ms";
       RestartSteps = lib.mkOverride 90 9;
     };
+    preStart = ''
+      touch /etc/nixos/modules/docker/compose/traefik/acme.json
+      chmod 600 /etc/nixos/modules/docker/compose/traefik/acme.json
+    '';
     partOf = [
       "docker-compose-traefik-root.target"
     ];

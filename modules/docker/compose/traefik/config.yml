@@ -112,6 +112,24 @@ http:
         - https-redirectscheme
       tls: {}
       service: ha-observer
+    traefik:
+      rule: "Host(`traefik-dashboard.local.aleksanderbl.dk`)"
+      entryPoints:
+        - "http"
+      middlewares:
+        - "traefik-https-redirect"
+      service: "api@internal"
+    traefik-secure:
+      rule: "Host(`traefik-dashboard.local.aleksanderbl.dk`)"
+      entryPoints:
+        - "https"
+      service: "api@internal"
+      tls:
+        certResolver: "cloudflare"
+        domains:
+          - main: "local.aleksanderbl.dk"
+            sans:
+              - "*.local.aleksanderbl.dk"
 
 # #endregion
 # #region services
@@ -220,3 +238,13 @@ http:
         middlewares:
           - default-whitelist
           - default-headers
+
+    traefik-https-redirect:
+      redirectScheme:
+        scheme: "https"
+        permanent: true
+
+    sslheader:
+      headers:
+        customRequestHeaders:
+          X-Forwarded-Proto: "https"
