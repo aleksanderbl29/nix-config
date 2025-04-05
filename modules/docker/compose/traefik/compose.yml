@@ -22,9 +22,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /etc/nixos/modules/docker/compose/traefik/data/traefik.yml:/traefik.yml:ro
-      - /etc/nixos/modules/docker/compose/traefik/data/acme.json:/acme.json
-      - /etc/nixos/modules/docker/compose/traefik/data/config.yml:/config.yml:ro
+      - /etc/nixos/modules/docker/compose/traefik/traefik.yml:/traefik.yml:ro
+      - /etc/nixos/modules/docker/compose/traefik/acme.json:/acme.json
+      - /etc/nixos/modules/docker/compose/traefik/config.yml:/config.yml:ro
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
