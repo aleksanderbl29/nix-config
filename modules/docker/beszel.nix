@@ -51,6 +51,9 @@ in
             "traefik.http.routers.beszel.rule" = "Host(`beszel.local.aleksanderbl.dk`)";
             "traefik.http.services.beszel.loadbalancer.server.port" = "8090";
           };
+          extraOptions = [
+            "--network=proxy"
+          ];
         };
       };
     };
