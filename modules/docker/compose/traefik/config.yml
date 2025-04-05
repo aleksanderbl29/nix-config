@@ -144,7 +144,7 @@ http:
     jellyfin:
       loadBalancer:
         servers:
-          - url: "http://192.168.99.11:8096"
+          - url: "http://100.108.66.110:8096"
     jellyfin-herning:
       loadBalancer:
         servers:
