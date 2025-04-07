@@ -8,6 +8,7 @@
     # minikube
     # kubectl
     compose2nix
+    supersonic
   ];
 
   tex.enable = false;
