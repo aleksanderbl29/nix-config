@@ -135,7 +135,7 @@ http:
     chat:
       loadBalancer:
         servers:
-          - url: "http://100.106.169.107:8080"
+          - url: "http://100.108.66.110:8080"
     uptime:
       loadBalancer:
         servers:
