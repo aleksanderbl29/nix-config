@@ -4,10 +4,12 @@
 }:
 {
   imports = [
-    ./git.nix
     ./zsh.nix
     ./tmux.nix
   ];
+
+  # Ghostty configuration
+  home.file.".config/ghostty/config".source = ../dots/ghostty;
 
   home.stateVersion = "22.11";
   home.packages = with pkgs; [
@@ -38,7 +40,18 @@
     };
   };
 
-  home.file = {
-    ".Rprofile".source = ../dots/.Rprofile;
+  programs.git = {
+    enable = true;
+    # userEmail = "github@aleksanderbl.dk";
+    # userName = "aleksanderbl29";
+    ignores = [ ".DS_Store" ];
+    lfs.enable = true;
+    diff-so-fancy.enable = true;
+    extraConfig = {
+      push.autoSetupRemote = true;
+      init.defaultBranch = "main";
+      pull.rebase = true;
+      safe.directory = "/etc/nixos";
+    };
   };
 }

@@ -90,6 +90,7 @@
           hostname = "aleks-air";
           system = "x86_64-darwin";
         };
+        aleks-dig-in = libs.mkWorkconfig { hostname = "aleks-dig-in"; };
       };
 
       nixosConfigurations = {
