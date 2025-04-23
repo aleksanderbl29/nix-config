@@ -28,3 +28,7 @@ nav:
     - browser-signings.md
     - manual-things.md
     - to-do.md
+  - Machines:
+    - machines/mac.md
+    - machines/nixos.md
+    - machines/wsl.md
