@@ -125,7 +125,7 @@ in
       };
       modules = [
         ../machines/wsl # shared nixos config
-        ../machines/wsl/${hostname} # machine-specific config
+        # ../machines/wsl/${hostname} # machine-specific config
 
         # Custom nvim config from nvf
         { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
