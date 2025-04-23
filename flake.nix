@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -89,6 +94,7 @@
 
       nixosConfigurations = {
         ironhide = libs.mkNixosConfig { hostname = "ironhide"; };
+        wsl = libs.mkWSLConfig { hostname = "wsl"; };
       };
 
       colmena = {
