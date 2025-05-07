@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
-  system.defaults.dock = {
+  system.defaults.dock = lib.mkForce {
     autohide = false;
     expose-group-apps = true;
     magnification = true;

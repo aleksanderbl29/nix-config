@@ -4,6 +4,7 @@
 }:
 {
   imports = [
+    ./work/default.nix
   ];
 
   nix = {
@@ -16,5 +17,18 @@
     systemPath = [ "/opt/homebrew/bin" ];
     systemPackages = with pkgs; [
     ];
+  };
+
+  system.keyboard = {
+    enableKeyMapping = true;
+    remapCapsLockToControl = true;
+  };
+
+  system.defaults = {
+    loginwindow.LoginwindowText = ''
+      Her kan stå noget tekst
+
+
+    '';
   };
 }

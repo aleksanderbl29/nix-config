@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   inputs,
   ...
 }:
@@ -7,7 +8,6 @@
   imports = [
     ./homebrew.nix
     ./dock.nix
-    ./base.nix
   ];
 
   _module.args.username = "aleksander"; # or make it configurable
@@ -28,7 +28,7 @@
     LANG = "da_DK.UTF-8";
   };
 
-  services.tailscale.enable = true;
+  services.tailscale.enable = lib.mkForce false;
 
   users.users.aleksander.home = "/Users/aleksander";
 
@@ -46,8 +46,6 @@
       "homebrew/homebrew-cask" = inputs.homebrew-cask;
       "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
       "homebrew/homebrew-services" = inputs.homebrew-services;
-      "hudochenkov/homebrew-sshpass" = inputs.homebrew-sshpass;
-      "teamookla/homebrew-speedtest" = inputs.homebrew-speedtest;
     };
   };
 
