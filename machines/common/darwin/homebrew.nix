@@ -68,7 +68,7 @@
       # "whatsapp"
       "zotero"
       "zoom"
-      "zen-browser"
+      "zen"
       # "utm"
     ];
     brews = [
