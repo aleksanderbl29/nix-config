@@ -27,14 +27,14 @@
       # "lm-studio"
       "meetingbar"
       # "MonitorControl"
-      # "obsidian"
+      "obsidian"
       # "orbstack"
       "raycast"
       "stats"
       "unnaturalscrollwheels"
       "vanilla"
       "visual-studio-code"
-      "zen-browser"
+      "zen"
     ];
     brews = [
       "gcc"

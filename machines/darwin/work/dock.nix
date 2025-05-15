@@ -7,14 +7,14 @@
     mru-spaces = false;
     orientation = "bottom";
     persistent-apps = [
-      "/Applications/Zen Browser.app"
+      "/Applications/Zen.app"
       "/Applications/Fantastical.app"
       "${pkgs.spotify}/Applications/Spotify.app"
       "/System/Applications/Messages.app"
       "/System/Applications/Mail.app"
       "/System/Applications/Preview.app"
       "/Applications/Visual Studio Code.app"
-      # "/Applications/Obsidian.app"
+      "/Applications/Obsidian.app"
       "/Applications/Ghostty.app"
       "/System/Applications/System Settings.app"
     ];

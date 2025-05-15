@@ -26,7 +26,7 @@
 
   system.defaults = {
     loginwindow.LoginwindowText = ''
-      Her kan stå noget tekst
+      Tilhører Tænketanken for Digital Infrastruktur
 
 
     '';
