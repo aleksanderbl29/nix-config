@@ -22,7 +22,7 @@
     uv
     # azure-cli
     devenv
-    bruno
+    # bruno
     # positron-bin
     figurine
     # colmena
