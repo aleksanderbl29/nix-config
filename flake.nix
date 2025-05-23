@@ -52,12 +52,6 @@
       url = "github:aleksanderbl29/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    colmena = {
-      url = "github:zhaofengli/colmena";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.stable.follows = "stable";
-    };
   };
 
   outputs =
