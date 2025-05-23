@@ -23,7 +23,7 @@
     # azure-cli
     devenv
     bruno
-    positron-bin
+    # positron-bin
     figurine
     # colmena
     deadnix
