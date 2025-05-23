@@ -52,7 +52,7 @@
         # Nix specifics
         nixswitch =
           if pkgs.stdenv.isDarwin then
-            "darwin-rebuild switch --flake ~/nix-config/"
+            "sudo darwin-rebuild switch --flake ~/nix-config/"
           else
             "sudo nixos-rebuild switch --flake /etc/nixos/";
         nix-cd = if pkgs.stdenv.isDarwin then "cd ~/nix-config/" else "cd /etc/nixos/";
