@@ -70,7 +70,7 @@
   # services.nix-daemon.enable = true;
 
   # Following line should allow us to avoid a logout/login cycle
-  system.activationScripts.postUserActivation.text = ''
+  system.activationScripts.postActivation.text = ''
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-  '';
+  # '';
 }
