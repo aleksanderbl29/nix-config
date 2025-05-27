@@ -9,7 +9,10 @@
   ];
 
   # Ghostty configuration
-  home.file.".config/ghostty/config".source = ../dots/ghostty;
+  home.file = {
+    ".Rprofile".source = ../dots/.Rprofile;
+    ".config/ghostty/config".source = ../dots/ghostty;
+  };
 
   home.stateVersion = "22.11";
   home.packages = with pkgs; [
@@ -42,8 +45,8 @@
 
   programs.git = {
     enable = true;
-    # userEmail = "github@aleksanderbl.dk";
-    # userName = "aleksanderbl29";
+    userEmail = "aleksander@dig-in.dk";
+    userName = "aleksander-digin";
     ignores = [ ".DS_Store" ];
     lfs.enable = true;
     diff-so-fancy.enable = true;

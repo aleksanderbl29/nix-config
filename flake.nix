@@ -42,6 +42,10 @@
       url = "github:Homebrew/homebrew-services";
       flake = false;
     };
+    personal-homebrew = {
+      url = "github:aleksanderbl29/homebrew-cask";
+      flake = false;
+    };
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 

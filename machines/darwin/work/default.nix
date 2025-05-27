@@ -8,9 +8,10 @@
   imports = [
     ./homebrew.nix
     ./dock.nix
+    ../../common/darwin/spotify-notifications.nix
   ];
 
-  _module.args.username = "aleksander"; # or make it configurable
+  _module.args.username = "aleksander";
 
   system.stateVersion = 4;
   nix = {

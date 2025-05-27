@@ -14,6 +14,7 @@
     masApps = {
       # "AdGuard for Safari" = 1440147259;
       # "Bitwarden" = 1352778147;
+      "Magnet" = 441258766;
     };
     casks = [
       # "microsoft-office"
@@ -35,6 +36,7 @@
       "vanilla"
       "visual-studio-code"
       "zen"
+      "zoho-mail"
     ];
     brews = [
       "gcc"
@@ -46,7 +48,6 @@
       "mas"
       "neofetch"
       "nmap"
-      #"tmux"
       "tree"
     ];
   };
