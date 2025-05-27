@@ -106,58 +106,6 @@ in
       ];
     };
 
-  # Configure wsl
-  mkWSLConfig =
-    {
-      hostname,
-      user ? "aleksander",
-      system ? "x86_64-linux",
-    }:
-    nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = { inherit inputs; };
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
-        overlays = myOverlays;
-      };
-      modules = [
-        ../machines/wsl # shared nixos config
-        # ../machines/wsl/${hostname} # machine-specific config
-
-        # Custom nvim config from nvf
-        { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
-
-        inputs.nixos-wsl.nixosModules.default
-
-        {
-          wsl = {
-            enable = true;
-            defaultUser = user;
-          };
-        }
-
-        inputs.home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.${user} =
-              { ... }:
-              {
-                imports = [
-                  ../home # same shared home-manager config
-                  inputs.catppuccin.homeModules.catppuccin
-                ];
-                catppuccin = catppuccinConfig;
-              };
-          };
-        }
-      ];
-    };
-
   mkWorkconfig =
     {
       hostname,

@@ -95,7 +95,6 @@
 
       nixosConfigurations = {
         ironhide = libs.mkNixosConfig { hostname = "ironhide"; };
-        wsl = libs.mkWSLConfig { hostname = "wsl"; };
       };
 
       colmena = {
