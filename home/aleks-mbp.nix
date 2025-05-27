@@ -9,6 +9,8 @@
     # kubectl
     compose2nix
     supersonic
+    bruno
+    positron-bin
   ];
 
   tex.enable = false;

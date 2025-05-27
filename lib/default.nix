@@ -37,6 +37,7 @@ in
 
         # Custom nvim config from nvf
         { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
+
         # Colmena dev version
         # { environment.systemPackages = [ inputs.colmena.packages.${system}.colmena ]; }
 
@@ -96,6 +97,51 @@ in
               {
                 imports = [
                   ../home # same shared home-manager config
+                  inputs.catppuccin.homeModules.catppuccin
+                ];
+                catppuccin = catppuccinConfig;
+              };
+          };
+        }
+      ];
+    };
+
+  mkWorkconfig =
+    {
+      hostname,
+      user ? "aleksander",
+      system ? "aarch64-darwin",
+    }:
+    inputs.darwin.lib.darwinSystem {
+      inherit system;
+      specialArgs = { inherit inputs; };
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+        overlays = myOverlays;
+      };
+      modules = [
+        ../machines/darwin/work # shared darwin config for work
+        # ../machines/darwin/work/${hostname}.nix # machine-specific config
+
+        inputs.nix-homebrew.darwinModules.nix-homebrew
+
+        # Custom nvim config from nvf
+        { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
+
+        inputs.home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            extraSpecialArgs = { inherit (nixpkgs.config) allowUnfree; };
+            users.${user} =
+              { ... }:
+              {
+                imports = [
+                  ../home/work.nix # shared home-manager config for all darwin machines
                   inputs.catppuccin.homeModules.catppuccin
                 ];
                 catppuccin = catppuccinConfig;

@@ -1,14 +1,17 @@
 {
   pkgs,
+  lib,
   inputs,
   ...
 }:
 {
   imports = [
-    ../common/darwin-common.nix
+    ./homebrew.nix
+    ./dock.nix
+    ../../common/darwin/spotify-notifications.nix
   ];
 
-  _module.args.username = "aleksander"; # or make it configurable
+  _module.args.username = "aleksander";
 
   system.stateVersion = 4;
   nix = {
@@ -26,7 +29,7 @@
     LANG = "da_DK.UTF-8";
   };
 
-  services.tailscale.enable = true;
+  services.tailscale.enable = lib.mkForce false;
 
   users.users.aleksander.home = "/Users/aleksander";
 
@@ -44,7 +47,6 @@
       "homebrew/homebrew-cask" = inputs.homebrew-cask;
       "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
       "homebrew/homebrew-services" = inputs.homebrew-services;
-      "aleksanderbl29/homebrew-cask" = inputs.personal-homebrew;
     };
   };
 
@@ -55,7 +57,6 @@
       git
       ncdu
       spotify
-      net-news-wire
     ];
   };
 
@@ -69,7 +70,7 @@
   # services.nix-daemon.enable = true;
 
   # Following line should allow us to avoid a logout/login cycle
-  system.activationScripts.postActivation.text = ''
-      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    # '';
+  system.activationScripts.postUserActivation.text = ''
+    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+  '';
 }

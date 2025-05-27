@@ -4,10 +4,15 @@
 }:
 {
   imports = [
-    ./git.nix
     ./zsh.nix
     ./tmux.nix
   ];
+
+  # Ghostty configuration
+  home.file = {
+    ".Rprofile".source = ../dots/.Rprofile;
+    ".config/ghostty/config".source = ../dots/ghostty;
+  };
 
   home.stateVersion = "22.11";
   home.packages = with pkgs; [
@@ -19,8 +24,6 @@
     pre-commit
     uv
     devenv
-    # bruno
-    # positron-bin
     figurine
     deadnix
     nixd
@@ -40,7 +43,18 @@
     };
   };
 
-  home.file = {
-    ".Rprofile".source = ../dots/.Rprofile;
+  programs.git = {
+    enable = true;
+    userEmail = "aleksander@dig-in.dk";
+    userName = "aleksander-digin";
+    ignores = [ ".DS_Store" ];
+    lfs.enable = true;
+    diff-so-fancy.enable = true;
+    extraConfig = {
+      push.autoSetupRemote = true;
+      init.defaultBranch = "main";
+      pull.rebase = true;
+      safe.directory = "/etc/nixos";
+    };
   };
 }

@@ -15,6 +15,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,12 +42,8 @@
       url = "github:Homebrew/homebrew-services";
       flake = false;
     };
-    homebrew-sshpass = {
-      url = "github:hudochenkov/homebrew-sshpass";
-      flake = false;
-    };
-    homebrew-speedtest = {
-      url = "github:teamookla/homebrew-speedtest";
+    personal-homebrew = {
+      url = "github:aleksanderbl29/homebrew-cask";
       flake = false;
     };
 
@@ -79,6 +80,7 @@
           hostname = "aleks-air";
           system = "x86_64-darwin";
         };
+        aleks-dig-in = libs.mkWorkconfig { hostname = "aleks-dig-in"; };
       };
 
       nixosConfigurations = {
