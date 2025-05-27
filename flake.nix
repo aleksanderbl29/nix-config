@@ -42,14 +42,6 @@
       url = "github:Homebrew/homebrew-services";
       flake = false;
     };
-    homebrew-sshpass = {
-      url = "github:hudochenkov/homebrew-sshpass";
-      flake = false;
-    };
-    homebrew-speedtest = {
-      url = "github:teamookla/homebrew-speedtest";
-      flake = false;
-    };
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 

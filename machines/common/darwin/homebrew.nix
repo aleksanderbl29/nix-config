@@ -95,10 +95,6 @@
       "starship"
       "tailscale"
       "tree"
-      "wimlib"
-      "wireguard-tools"
-      "hudochenkov/sshpass/sshpass"
-      "teamookla/speedtest/speedtest"
     ];
   };
 }
