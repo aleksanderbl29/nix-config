@@ -1,5 +1,8 @@
 { ... }:
 {
+
+  system.primaryUser = "aleksander";
+
   system.keyboard = {
     enableKeyMapping = true;
     remapCapsLockToControl = true;

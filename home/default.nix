@@ -19,6 +19,8 @@
     pre-commit
     uv
     devenv
+    # bruno
+    # positron-bin
     figurine
     deadnix
     nixd

@@ -17,7 +17,7 @@ in
       shellAliases = {
         # R on mac specific
         ropen = "open *.Rproj";
-        posit = "open -a 'Positron' .";
+        # posit = "open -a 'Positron' .";
 
         # Folder navigation
         onedrive = "cd ${od_loc}";
