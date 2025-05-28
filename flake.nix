@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     stable.url = "github:nixos/nixpkgs/nixos-24.11";
+    # stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
     darwin = {
       url = "github:lnl7/nix-darwin";
@@ -42,10 +43,10 @@
       url = "github:Homebrew/homebrew-services";
       flake = false;
     };
-    personal-homebrew = {
-      url = "github:aleksanderbl29/homebrew-cask";
-      flake = false;
-    };
+    # personal-homebrew = {
+    #   url = "github:aleksanderbl29/homebrew-cask/add-zoho-cliq";
+    #   flake = false;
+    # };
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 

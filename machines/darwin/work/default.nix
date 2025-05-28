@@ -47,6 +47,7 @@
       "homebrew/homebrew-cask" = inputs.homebrew-cask;
       "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
       "homebrew/homebrew-services" = inputs.homebrew-services;
+      # "aleksanderbl29/homebrew-cask" = inputs.personal-homebrew;
     };
   };
 

@@ -36,6 +36,7 @@
       "vanilla"
       "visual-studio-code"
       "zen"
+      "zoho-cliq"
       "zoho-mail"
     ];
     brews = [

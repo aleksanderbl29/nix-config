@@ -124,7 +124,7 @@ in
       };
       modules = [
         ../machines/darwin/work # shared darwin config for work
-        # ../machines/darwin/work/${hostname}.nix # machine-specific config
+        ../machines/darwin/${hostname}.nix # machine-specific config
 
         inputs.nix-homebrew.darwinModules.nix-homebrew
 
