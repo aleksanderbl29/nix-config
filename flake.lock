@@ -424,22 +424,6 @@
         "type": "github"
       }
     },
-    "personal-homebrew": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1748364450,
-        "narHash": "sha256-h7PfD7jODBuygIAdlxb4im85Y61PxhqTE8geE1Z3tRI=",
-        "owner": "aleksanderbl29",
-        "repo": "homebrew-cask",
-        "rev": "ba0d94def29f8393e3fd24e306b17094437b9994",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aleksanderbl29",
-        "repo": "homebrew-cask",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
@@ -454,7 +438,6 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-wsl": "nixos-wsl",
         "nixpkgs": "nixpkgs_2",
-        "personal-homebrew": "personal-homebrew",
         "stable": "stable"
       }
     },
