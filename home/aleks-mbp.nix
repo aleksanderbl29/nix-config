@@ -13,7 +13,7 @@
     positron-bin
   ];
 
-  tex.enable = false;
+  tex.enable = true;
 
   home.file.".Renviron" = {
     text = ''
