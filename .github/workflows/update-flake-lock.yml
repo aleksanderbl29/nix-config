@@ -8,7 +8,7 @@ on:
       - "flake.lock"
   workflow_dispatch: # allows manual triggering
   schedule:
-    - cron: '50 8 1-7 * 3' # runs on the first Wednesday of every month at 08:50
+    - cron: '50 8 1 * *' # runs on the first day of every month at 08:50
 
 permissions:
   contents: write
