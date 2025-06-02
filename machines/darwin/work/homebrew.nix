@@ -31,6 +31,7 @@
       "obsidian"
       # "orbstack"
       "raycast"
+      "signal"
       "stats"
       "unnaturalscrollwheels"
       "vanilla"

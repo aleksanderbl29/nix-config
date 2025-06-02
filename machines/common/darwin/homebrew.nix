@@ -53,6 +53,7 @@
       # "raspberry-pi-imager"
       "raycast"
       "rstudio"
+      "signal"
       "slack"
       "sonos"
       # "spotify"
