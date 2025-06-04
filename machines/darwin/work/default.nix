@@ -11,19 +11,13 @@
     ../../common/darwin/spotify-notifications.nix
   ];
 
+  nix.enable = false;
+
   _module.args.username = "aleksander";
 
-  system.stateVersion = 4;
-  nix = {
-    extraOptions = ''
-      experimental-features = nix-command flakes
-      extra-platforms = x86_64-darwin aarch64-darwin
-    '';
-    settings = {
-      trusted-users = [ "aleksander" ];
-    };
-  };
+  system.primaryUser = "aleksander";
 
+  system.stateVersion = 4;
   environment.variables = {
     LC_ALL = "da_DK.UTF-8";
     LANG = "da_DK.UTF-8";
@@ -34,8 +28,6 @@
   users.users.aleksander.home = "/Users/aleksander";
 
   programs.zsh.enable = true;
-
-  nix.gc.automatic = true;
 
   nix-homebrew = {
     enable = true;
@@ -71,7 +63,7 @@
   # services.nix-daemon.enable = true;
 
   # Following line should allow us to avoid a logout/login cycle
-  system.activationScripts.postUserActivation.text = ''
+  system.activationScripts.postActivation.text = ''
     /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
   '';
 }

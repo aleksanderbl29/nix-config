@@ -4,14 +4,8 @@
 }:
 {
   imports = [
-    ./work/default.nix
+    # ./work/default.nix
   ];
-
-  nix = {
-    settings = {
-      trusted-users = [ "aleksander" ];
-    };
-  };
 
   environment = {
     systemPath = [ "/opt/homebrew/bin" ];
