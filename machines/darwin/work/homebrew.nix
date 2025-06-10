@@ -40,6 +40,7 @@
       "zen"
       "zoho-cliq"
       "zoho-mail"
+      # "zoho-workdrive"
     ];
     brews = [
       "gcc"
