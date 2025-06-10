@@ -1,10 +1,12 @@
 {
   pkgs,
+  lib,
   ...
 }:
 {
   imports = [
     # ./work/default.nix
+    ../common/darwin/system.nix
   ];
 
   environment = {
@@ -13,15 +15,15 @@
     ];
   };
 
-  system.keyboard = {
+  system.keyboard = lib.mkForce {
     enableKeyMapping = true;
     remapCapsLockToControl = true;
   };
 
-  system.defaults = {
+  system.defaults = lib.mkForce {
     loginwindow.LoginwindowText = ''
-      Tilhører Tænketanken for Digital Infrastruktur
-
+      Tilhører 
+      Tænketanken for Digital Infrastruktur
 
     '';
   };
