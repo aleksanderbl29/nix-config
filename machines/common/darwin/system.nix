@@ -35,6 +35,7 @@
     KeyRepeat = 1;
     NSNavPanelExpandedStateForSaveMode = true;
     ApplePressAndHoldEnabled = false;
+    "com.apple.mouse.tapBehavior" = 1;
   };
 
   system.defaults.CustomUserPreferences = {
