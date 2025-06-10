@@ -23,6 +23,7 @@
       # "aldente"
       "alt-tab"
       # "bentobox"
+      "displaylink"
       "google-chrome"
       "ghostty"
       # "lm-studio"
