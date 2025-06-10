@@ -27,4 +27,9 @@
 
     '';
   };
+
+  networking = {
+    computerName = "aleks-dig-in";
+    hostName = "aleks-dig-in";
+  };
 }
