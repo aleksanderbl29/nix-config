@@ -11,6 +11,7 @@
       "/Applications/Fantastical.app"
       "${pkgs.spotify}/Applications/Spotify.app"
       "/System/Applications/Messages.app"
+      "/Applications/Cliq.app"
       "/Applications/Zoho Mail - Desktop.app"
       "/System/Applications/Preview.app"
       "/Applications/Visual Studio Code.app"
