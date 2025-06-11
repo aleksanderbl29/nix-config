@@ -36,10 +36,14 @@
     group = "media";
   };
 
-  # Create Jellyfin user with proper group access
-  # users.users.jellyfin = {
-  #   isSystemUser = true;
-  #   group = "jellyfin";
-  #   extraGroups = [ "media" "users" ];
-  # };
+  services.pinchflat = {
+    enable = true;
+    openFirewall = true;
+    # secretsFile = ""
+    selfhosted = true;
+    mediaDir = "/mnt/media/pinchflat";
+    user = "media";
+    group = "media";
+  };
+
 }
