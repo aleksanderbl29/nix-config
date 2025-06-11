@@ -12,6 +12,7 @@
   environment = {
     systemPath = [ "/opt/homebrew/bin" ];
     systemPackages = with pkgs; [
+      bruno
     ];
   };
 
