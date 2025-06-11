@@ -8,7 +8,8 @@
     orientation = "bottom";
     persistent-apps = [
       "/Applications/Zen.app"
-      "/Applications/Fantastical.app"
+      # "/Applications/Fantastical.app"
+      "/System/Applications/Calendar.app"
       "${pkgs.spotify}/Applications/Spotify.app"
       "/Applications/Cliq.app"
       "/Applications/Zoho Mail - Desktop.app"
