@@ -1,10 +1,30 @@
 { pkgs, ... }:
 
 {
-  nixpkgs.overlays = [
-    (_: prev: {
-      vaapiIntel = prev.vaapiIntel.override { enableHybridCodec = true; };
-    })
+  nixpkgs.overlays = with pkgs; [
+    (
+      final: prev: {
+        vaapiIntel = prev.vaapiIntel.override { enableHybridCodec = true; };
+      }
+    )
+    (
+      final: prev:
+        {
+          jellyfin-web = prev.jellyfin-web.overrideAttrs (finalAttrs: previousAttrs: {
+            installPhase = ''
+              runHook preInstall
+
+              # this is the important line
+              sed -i "s#</head>#<script src=\"configurationpage?name=skip-intro-button.js\"></script></head>#" dist/index.html
+
+              mkdir -p $out/share
+              cp -a dist $out/share/jellyfin-web
+
+              runHook postInstall
+            '';
+          });
+        }
+    )
   ];
 
   # Hardware configuration for Intel N100
@@ -36,14 +56,15 @@
     group = "media";
   };
 
-  services.pinchflat = {
-    enable = true;
-    openFirewall = true;
-    # secretsFile = ""
-    selfhosted = true;
-    mediaDir = "/mnt/media/pinchflat";
-    user = "media";
-    group = "media";
-  };
+  # Disable until https://github.com/NixOS/nixpkgs/commit/c2450f04fb1b35b31980f8d8c05f42b5b51e1fa2 is in unstable
+  # services.pinchflat = {
+  #   enable = true;
+  #   openFirewall = true;
+  #   # secretsFile = ""
+  #   selfhosted = true;
+  #   mediaDir = "/mnt/media/pinchflat";
+  #   user = "media";
+  #   group = "media";
+  # };
 
 }
