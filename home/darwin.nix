@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 let
   user = "aleksander";
   od_loc = "/Users/${user}/Library/CloudStorage/OneDrive-AarhusUniversitet";
@@ -29,10 +29,10 @@ in
       };
     };
   };
-  
+
   # Apply system settings
   home.activation = {
-    activateSettings = lib.hm.dag.entryAfter ["home-manager"] ''
+    activateSettings = lib.hm.dag.entryAfter [ "home-manager" ] ''
       /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     '';
   };
