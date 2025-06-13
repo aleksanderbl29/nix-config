@@ -8,7 +8,7 @@
     ./jellyfin.nix
     ../../../modules/docker
     ../../../modules/beszel-agent.nix
-    # ../../../modules/traefik.nix
+    ../../../homelab
   ];
 
   docker = {

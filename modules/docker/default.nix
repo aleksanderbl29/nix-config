@@ -9,7 +9,6 @@ let
 in
 {
   imports = [
-    ./traefik.nix
     ./beszel.nix
     ./littlelink.nix
     ./pihole.nix
