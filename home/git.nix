@@ -6,7 +6,10 @@
     userName = "aleksanderbl29";
     ignores = [ ".DS_Store" ];
     lfs.enable = true;
-    diff-so-fancy.enable = true;
+    difftastic = {
+      enable = true;
+      enableAsDifftool = true;
+    };
     extraConfig = {
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
