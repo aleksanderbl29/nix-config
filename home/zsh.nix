@@ -62,6 +62,11 @@
         open-nix = "nix-cd && code .";
         nix-nvim = "nix-cd && nvim .";
 
+        # cd shortcuts
+        .. = "cd ..";
+        ... = "cd ../..";
+        .... = "cd ../../..";
+
         # R specific
         renv-commit = "git add renv.lock && git commit -m 'Update renv snapshot'";
         test-snapshot-update = ''
