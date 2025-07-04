@@ -30,6 +30,7 @@
       "meetingbar"
       # "MonitorControl"
       "obsidian"
+      "onlyoffice"
       # "orbstack"
       "raycast"
       "signal"
