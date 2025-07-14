@@ -42,6 +42,10 @@
       silent = true;
       nix-direnv.enable = true;
     };
+
+    zsh.shellAliases = {
+      workdrive = "cd '/Users/aleksander/Library/CloudStorage/ZohoWorkDriveTrueSync-1'";
+    };
   };
 
   programs.git = {
