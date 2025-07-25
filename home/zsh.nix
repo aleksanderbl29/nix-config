@@ -23,6 +23,18 @@
       enableZshIntegration = true;
     };
 
+    eza = {
+      enable = true;
+      enableZshIntegration = true;
+      icons = "auto";
+      git = true;
+      extraOptions = [
+        "--group-directories-first"
+        "--header"
+        "--color=auto"
+      ];
+    };
+
     oh-my-posh = {
       enable = true;
       enableZshIntegration = true;
