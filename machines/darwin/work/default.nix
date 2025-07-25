@@ -50,6 +50,7 @@
       git
       ncdu
       spotify
+      parsedmarc
     ];
   };
 
