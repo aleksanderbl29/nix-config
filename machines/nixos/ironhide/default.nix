@@ -15,6 +15,8 @@
   homelab.services = {
     # beszel.enable = true;  # Disabled for now
     littlelink.enable = true;
+    immich.enable = true;
+    jellyfin.enable = true;
   };
 
   # Disabled for now - having configuration issues
