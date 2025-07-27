@@ -45,24 +45,27 @@ in
       default = "Media";
     };
   };
+
   config = lib.mkIf cfg.enable {
     systemd.tmpfiles.rules = [ "d ${cfg.mediaDir} 0775 immich ${homelab.group} - -" ];
+
     users.users.immich.extraGroups = [
       "video"
       "render"
     ];
+
     services.immich = {
       group = homelab.group;
       enable = true;
       port = 2283;
       mediaLocation = "${cfg.mediaDir}";
     };
+
     services.caddy.virtualHosts."${cfg.url}" = {
-      useACMEHost = homelab.baseDomain;
       extraConfig = ''
-        reverse_proxy http://${config.services.immich.host}:${toString config.services.immich.port}
+        tls /var/lib/acme/${homelab.baseDomain}/cert.pem /var/lib/acme/${homelab.baseDomain}/key.pem
+        reverse_proxy http://127.0.0.1:${toString config.services.immich.server.port}
       '';
     };
   };
-
 }

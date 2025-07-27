@@ -1,10 +1,13 @@
 { lib, config, ... }:
 let
   cfg = config.homelab;
+  # Check if any homelab service is enabled
+  hasEnabledServices = lib.any (service: service.enable) (lib.attrValues cfg.services);
 in
 {
   options.homelab = {
     enable = lib.mkEnableOption "The homelab services and configuration variables";
+
     user = lib.mkOption {
       default = "homelab";
       type = lib.types.str;
@@ -12,6 +15,7 @@ in
         User to run the homelab services as
       '';
     };
+
     group = lib.mkOption {
       default = "homelab";
       type = lib.types.str;
@@ -19,6 +23,7 @@ in
         Group to run the homelab services as
       '';
     };
+
     timeZone = lib.mkOption {
       default = "Europe/Copenhagen";
       type = lib.types.str;
@@ -26,27 +31,49 @@ in
         Time zone to be used for the homelab services
       '';
     };
+
     baseDomain = lib.mkOption {
-      default = "aleksanderbl.dk";
+      default = "local.aleksanderbl.dk";
       type = lib.types.str;
       description = ''
-        Base domain name to be used to access the homelab services via Caddy reverse proxy
+        Base domain name to be used to access the homelab services via Caddy reverse proxy.
+        Services will be available at <service>.<baseDomain>
       '';
     };
-    cloudflare.dnsCredentialsFile = lib.mkOption {
-      type = lib.types.path;
-    };
-    services = lib.mkOption {
-      type = lib.types.attrs;
+
+    mounts = lib.mkOption {
+      type = lib.types.submodule {
+        options = {
+          fast = lib.mkOption {
+            type = lib.types.path;
+            default = "/mnt/fast";
+            description = "Path to fast storage mount point (SSD/NVMe)";
+          };
+        };
+      };
       default = {};
-      description = "Homelab services configuration";
+      description = "Storage mount points for homelab services";
+    };
+
+    services = lib.mkOption {
+      type = lib.types.submoduleWith { modules = []; };
+      default = {};
+      description = ''
+        Homelab services configuration. Each service is automatically discovered
+        by the homepage dashboard when enabled.
+      '';
     };
   };
+
+  # Import homelab modules
   imports = [
-    ./caddy
-    ./services
+    ./caddy    # Reverse proxy and HTTPS termination
+    ./services # All homelab services
   ];
-  config = lib.mkIf cfg.enable {
+
+  # Configure basic homelab infrastructure when enabled
+  config = lib.mkIf (cfg.enable || hasEnabledServices) {
+    # Create homelab user and group
     users = {
       groups.${cfg.group} = {
         gid = 993;
@@ -57,5 +84,8 @@ in
         group = cfg.group;
       };
     };
+
+    # Set system timezone
+    time.timeZone = cfg.timeZone;
   };
 }

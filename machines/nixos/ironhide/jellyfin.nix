@@ -51,10 +51,13 @@
   # Enable Jellyfin media server
   services.jellyfin = {
     enable = true;
-    openFirewall = true; # Automatically open the required ports in the firewall
+    openFirewall = false; # Caddy handles external access via reverse proxy
     user = "media";
     group = "media";
   };
+
+  # Enable homelab Jellyfin service for Caddy integration
+  homelab.services.jellyfin.enable = true;
 
   # Disable until https://github.com/NixOS/nixpkgs/commit/c2450f04fb1b35b31980f8d8c05f42b5b51e1fa2 is in unstable
   # services.pinchflat = {
@@ -66,5 +69,4 @@
   #   user = "media";
   #   group = "media";
   # };
-
 }
