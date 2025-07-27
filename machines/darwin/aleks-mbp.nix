@@ -13,6 +13,7 @@
   homebrew.casks = [
     "private-internet-access"
     "cursor"
+    "makemkv"
   ];
 
   ids.gids.nixbld = 350;
