@@ -4,38 +4,25 @@
   imports = [
     ./hardware-configuration.nix
     ./networking.nix
-    ./samba.nix
+    ./homelab.nix
     ./jellyfin.nix
+    ./samba.nix
     ../../../modules/docker
     ../../../modules/beszel-agent.nix
-    # ../../../modules/traefik.nix
   ];
 
-  docker = {
-    enable = true;
-    # traefik = {
-    #   enable = true;
-    #   environmentFile = "/var/lib/traefik/.env";
-    # };
-    beszel-hub = {
-      enable = true;
-    };
+  # Enable homelab services
+  homelab.services = {
+    # beszel.enable = true;  # Disabled for now
+    littlelink.enable = true;
   };
 
-  services.litellm = {
-    enable = true;
-  };
-
-  services.open-webui = {
-    enable = true;
-    port = 8080;
-    host = "0.0.0.0";
-    openFirewall = true;
-  };
-
-  services.beszel-agent = {
-    enable = true;
-  };
+  # Disabled for now - having configuration issues
+  # services.beszel-agent = {
+  #   enable = true;
+  #   port = 45876;
+  #   key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA8DxcwL0d1IFe5ILwczYXLM4YF6xLGxJBL8lTR6MUGf";
+  # };
 
   # Bootloader.
   boot.loader = {

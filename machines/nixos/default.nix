@@ -4,6 +4,10 @@
   ...
 }:
 {
+  imports = [
+    ../../homelab
+  ];
+
   nix = {
     settings = {
       experimental-features = [
@@ -56,6 +60,7 @@
     btop
     ghostty
     inputs.my-nvf.packages.${system}.default
+    systemctl-tui
   ];
 
   services.tailscale.enable = true;
