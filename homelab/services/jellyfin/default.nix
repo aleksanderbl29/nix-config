@@ -43,7 +43,7 @@ in
     # Caddy virtual host configuration for Jellyfin
     services.caddy.virtualHosts."${cfg.url}" = {
       extraConfig = ''
-        tls /var/lib/acme/${homelab.baseDomain}/cert.pem /var/lib/acme/${homelab.baseDomain}/key.pem
+        tls ${homelab.tls.certFile} ${homelab.tls.keyFile}
         reverse_proxy http://127.0.0.1:${toString cfg.port} {
           header_up X-Forwarded-Proto {scheme}
           header_up X-Forwarded-Host {host}

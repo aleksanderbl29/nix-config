@@ -63,8 +63,8 @@ in
 
     services.caddy.virtualHosts."${cfg.url}" = {
       extraConfig = ''
-        tls /var/lib/acme/${homelab.baseDomain}/cert.pem /var/lib/acme/${homelab.baseDomain}/key.pem
-        reverse_proxy http://127.0.0.1:${toString config.services.immich.server.port}
+        tls ${homelab.tls.certFile} ${homelab.tls.keyFile}
+        reverse_proxy http://127.0.0.1:${toString config.services.immich.port}
       '';
     };
   };

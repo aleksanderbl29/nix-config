@@ -68,6 +68,7 @@ in
     # Caddy virtual host configuration
     services.caddy.virtualHosts."${cfg.url}" = {
       extraConfig = ''
+        tls ${homelab.tls.certFile} ${homelab.tls.keyFile}
         reverse_proxy http://127.0.0.1:${toString cfg.port}
       '';
     };

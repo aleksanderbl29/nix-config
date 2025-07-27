@@ -24,6 +24,9 @@ in
 
     # Enable systemd-resolved for better DNS handling
     services.resolved.enable = true;
+
+    # logrotate
+    services.logrotate.enable = true;
   };
 
   # Import all service modules

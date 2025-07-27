@@ -8,8 +8,11 @@ let
   hasEnabledServices = lib.any (service: service.enable) (lib.attrValues cfg.services);
 in
 {
-    config = lib.mkIf (cfg.enable || hasEnabledServices) {
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+  config = lib.mkIf (cfg.enable || hasEnabledServices) {
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
 
     # ACME configuration for DNS challenge
     security.acme = {
@@ -19,7 +22,10 @@ in
       certs."${cfg.baseDomain}" = {
         group = "caddy";
         domain = cfg.baseDomain;
-        extraDomainNames = [ "*.${cfg.baseDomain}" "aleksanderbl.dk" ];
+        extraDomainNames = [
+          "*.${cfg.baseDomain}"
+          "aleksanderbl.dk"
+        ];
         dnsProvider = "cloudflare";
         dnsResolver = "1.1.1.1:53";
         dnsPropagationCheck = true;
@@ -43,8 +49,8 @@ in
         {
           "aleksanderbl.dk" = {
             extraConfig = ''
-              tls /var/lib/acme/${cfg.baseDomain}/cert.pem /var/lib/acme/${cfg.baseDomain}/key.pem
-              redir https://dashboard.${cfg.baseDomain} permanent
+              tls ${cfg.tls.certFile} ${cfg.tls.keyFile}
+              redir https://${cfg.baseDomain} permanent
             '';
           };
         }

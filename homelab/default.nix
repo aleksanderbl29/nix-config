@@ -41,6 +41,25 @@ in
       '';
     };
 
+    tls = lib.mkOption {
+      type = lib.types.submodule {
+        options = {
+          certFile = lib.mkOption {
+            type = lib.types.str;
+            default = "/var/lib/acme/${cfg.baseDomain}/cert.pem";
+            description = "Path to the TLS certificate file";
+          };
+          keyFile = lib.mkOption {
+            type = lib.types.str;
+            default = "/var/lib/acme/${cfg.baseDomain}/key.pem";
+            description = "Path to the TLS private key file";
+          };
+        };
+      };
+      default = { };
+      description = "TLS certificate configuration for homelab services";
+    };
+
     mounts = lib.mkOption {
       type = lib.types.submodule {
         options = {
@@ -51,13 +70,13 @@ in
           };
         };
       };
-      default = {};
+      default = { };
       description = "Storage mount points for homelab services";
     };
 
     services = lib.mkOption {
-      type = lib.types.submoduleWith { modules = []; };
-      default = {};
+      type = lib.types.submoduleWith { modules = [ ]; };
+      default = { };
       description = ''
         Homelab services configuration. Each service is automatically discovered
         by the homepage dashboard when enabled.
@@ -67,7 +86,7 @@ in
 
   # Import homelab modules
   imports = [
-    ./caddy    # Reverse proxy and HTTPS termination
+    ./caddy # Reverse proxy and HTTPS termination
     ./services # All homelab services
   ];
 
