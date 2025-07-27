@@ -10,7 +10,7 @@
     compose2nix
     supersonic
     bruno
-    positron-bin
+    # positron-bin
   ];
 
   tex.enable = false;
