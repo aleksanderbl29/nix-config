@@ -5,19 +5,12 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./homelab.nix
-    ./jellyfin.nix
     ./samba.nix
     ../../../modules/docker
     ../../../modules/beszel-agent.nix
   ];
 
-  # Enable homelab services
-  homelab.services = {
-    # beszel.enable = true;  # Disabled for now
-    littlelink.enable = true;
-    immich.enable = true;
-    jellyfin.enable = true;
-  };
+
 
   # Disabled for now - having configuration issues
   # services.beszel-agent = {

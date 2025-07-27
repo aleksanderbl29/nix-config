@@ -12,6 +12,11 @@ in
       homepage = {
         enable = true;
       };
+      jellyfin = {
+        enable = true;
+        hardwareAcceleration.intel = true;
+        enableSkipIntroButton = true;
+      };
     };
   };
 
