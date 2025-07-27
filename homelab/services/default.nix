@@ -33,7 +33,6 @@ in
   # - Automatic Caddy virtual host configuration
   imports = [
     ./homepage
-    ./karakeep
     ./immich
     ./jellyfin
     ./beszel

@@ -12,14 +12,6 @@ in
       homepage = {
         enable = true;
       };
-      karakeep = {
-        enable = true;
-      };
-      # Uncomment and configure as needed:
-      # immich = {
-      #   enable = true;
-      #   mediaDir = "/path/to/your/photos";
-      # };
     };
   };
 
