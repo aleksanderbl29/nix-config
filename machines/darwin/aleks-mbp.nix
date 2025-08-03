@@ -14,6 +14,7 @@
     "private-internet-access"
     "cursor"
     "makemkv"
+    "linear-linear"
   ];
 
   ids.gids.nixbld = 350;
