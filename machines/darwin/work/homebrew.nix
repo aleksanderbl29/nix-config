@@ -19,7 +19,6 @@
     casks = [
       # "microsoft-office"
       # "microsoft-teams"
-      "fantastical"
       # "aldente"
       "alt-tab"
       # "bentobox"
