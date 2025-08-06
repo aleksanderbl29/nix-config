@@ -61,6 +61,7 @@
     ghostty
     inputs.my-nvf.packages.${system}.default
     systemctl-tui
+    gh
   ];
 
   services.tailscale.enable = true;
