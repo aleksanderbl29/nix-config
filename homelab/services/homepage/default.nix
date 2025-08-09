@@ -137,15 +137,14 @@ in
             }) services;
         in
         # Create sections for each category that has services
-        (lib.forEach homepageCategories (
-          cat:
+        (lib.concatMap (cat:
           let
             categoryServices = homepageServices cat;
           in
-          lib.optionalAttrs (categoryServices != { }) {
+          lib.optional (categoryServices != { }) {
             "${cat}" = formatServices categoryServices;
           }
-        ))
+        ) homepageCategories)
         ++ [
           { Misc = cfg.misc; }
         ]
