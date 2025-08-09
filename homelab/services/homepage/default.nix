@@ -137,7 +137,8 @@ in
             }) services;
         in
         # Create sections for each category that has services
-        (lib.concatMap (cat:
+        (lib.concatMap (
+          cat:
           let
             categoryServices = homepageServices cat;
           in

@@ -10,8 +10,6 @@
     ../../../modules/beszel-agent.nix
   ];
 
-
-
   # Disabled for now - having configuration issues
   # services.beszel-agent = {
   #   enable = true;
