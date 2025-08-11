@@ -55,5 +55,19 @@
       "1.1.1.1"
       "9.9.9.9"
     ];
+
+    # Firewall configuration for cross-VLAN traffic
+    # firewall = {
+    #   enable = true;
+    #   allowPing = true;  # Allow ICMP ping from other subnets
+    #   interfaces = {
+    #     # Allow HTTP/HTTPS traffic on all VLAN interfaces
+    #     "vlan20".allowedTCPPorts = [ 80 443 ];
+    #     "vlan99".allowedTCPPorts = [ 80 443 ];
+    #     "vlan207".allowedTCPPorts = [ 80 443 ];
+    #     # Also allow on main interface
+    #     "enp1s0".allowedTCPPorts = [ 80 443 ];
+    #   };
+    # };
   };
 }
