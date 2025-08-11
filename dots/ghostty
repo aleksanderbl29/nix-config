@@ -23,3 +23,7 @@ window-inherit-working-directory = false
 macos-icon = custom-style
 macos-icon-ghost-color = white
 macos-icon-screen-color = green
+
+# Widnow height and width at startup
+window-height = 27
+window-width = 99
