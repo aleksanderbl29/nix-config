@@ -24,6 +24,7 @@
     figurine
     deadnix
     nixd
+    freetype
   ];
 
   programs = {

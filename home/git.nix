@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   programs.git = {
     enable = true;
@@ -17,4 +17,8 @@
       safe.directory = "/etc/nixos";
     };
   };
+
+  home.packages = with pkgs; [
+    libgit2
+  ];
 }

@@ -7,6 +7,7 @@ options(
     aleksanderbl29 = "https://aleksanderbl29.r-universe.dev",
     gadenbuie = 'https://gadenbuie.r-universe.dev'
   ),
+  renv.config.pak.enabled = TRUE, # Use pak for installing packages when using renv
   "Authors@R" = utils::person(
     "Aleksander", "Bang-Larsen",
     email = "contact@aleksanderbl.dk",
