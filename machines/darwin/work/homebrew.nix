@@ -22,6 +22,7 @@
       # "aldente"
       "alt-tab"
       # "bentobox"
+      "busycal"
       "displaylink"
       "google-chrome"
       "ghostty"

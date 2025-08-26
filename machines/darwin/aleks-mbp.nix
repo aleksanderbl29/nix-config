@@ -15,6 +15,7 @@
     "cursor"
     "makemkv"
     "linear-linear"
+    "busycal"
   ];
 
   ids.gids.nixbld = 350;
