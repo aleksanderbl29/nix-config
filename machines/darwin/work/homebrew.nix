@@ -23,6 +23,7 @@
       "alt-tab"
       # "bentobox"
       "busycal"
+      "cursor"
       "displaylink"
       "google-chrome"
       "ghostty"
