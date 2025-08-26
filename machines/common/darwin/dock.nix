@@ -9,7 +9,8 @@
     persistent-apps = [
       # "/Applications/Arc.app"
       "/Applications/Zen.app"
-      "/Applications/Fantastical.app"
+      # "/Applications/Fantastical.app"
+      "/Applications/BusyCal.app"
       "${pkgs.spotify}/Applications/Spotify.app"
       "/System/Applications/Messages.app"
       "/Applications/Messenger.app"

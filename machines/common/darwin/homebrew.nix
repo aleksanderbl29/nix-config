@@ -31,6 +31,7 @@
       "alt-tab"
       # "balenaetcher"
       "bentobox"
+      "busycal"
       "dropbox"
       "element"
       "google-chrome"
