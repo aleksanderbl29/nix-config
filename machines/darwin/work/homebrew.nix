@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   homebrew = {
     enable = true;
     onActivation = {
@@ -33,7 +34,6 @@
       "onlyoffice"
       # "orbstack"
       "raycast"
-      "sigmaos"
       "signal"
       "stats"
       "unnaturalscrollwheels"
