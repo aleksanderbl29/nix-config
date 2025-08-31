@@ -40,5 +40,6 @@ in
     ./jellyfin
     ./beszel
     ./littlelink
+    ./karakeep
   ];
 }
