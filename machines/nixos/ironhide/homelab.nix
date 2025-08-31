@@ -1,10 +1,6 @@
 {
-  config,
   ...
 }:
-let
-  hl = config.homelab;
-in
 {
   homelab = {
     enable = true;

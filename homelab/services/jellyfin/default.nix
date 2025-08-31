@@ -83,15 +83,15 @@ in
     nixpkgs.overlays =
       lib.optionals cfg.hardwareAcceleration.intel [
         # Enable Intel hybrid codec support for hardware acceleration
-        (final: prev: {
+        (_: prev: {
           vaapiIntel = prev.vaapiIntel.override { enableHybridCodec = true; };
         })
       ]
       ++ lib.optionals cfg.enableSkipIntroButton [
         # Add skip intro button to Jellyfin web interface
-        (final: prev: {
+        (_: prev: {
           jellyfin-web = prev.jellyfin-web.overrideAttrs (
-            finalAttrs: previousAttrs: {
+            _: _: {
               installPhase = ''
                 runHook preInstall
 

@@ -117,12 +117,12 @@ in
           ];
           hl = config.homelab.services;
           # Get all enabled homelab services that have homepage configuration
-          enabledHomelabServices = lib.filterAttrs (name: service: service.enable && (service ? homepage)) hl;
+          enabledHomelabServices = lib.filterAttrs (_: service: service.enable && (service ? homepage)) hl;
 
           # Group services by category
           homepageServices =
             category:
-            lib.filterAttrs (name: service: service.homepage.category == category) enabledHomelabServices;
+            lib.filterAttrs (_: service: service.homepage.category == category) enabledHomelabServices;
 
           # Convert services to homepage format
           formatServices =
