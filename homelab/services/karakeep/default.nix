@@ -41,6 +41,40 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # Configure the actual karakeep service
+    services.karakeep = {
+      enable = true;
+
+      # Enable Meilisearch for full text search
+      meilisearch.enable = true;
+
+      # Enable browser service for screenshots
+      browser.enable = true;
+      browser.port = 9222;
+
+      # Environment variables for configuration
+      extraEnvironment = {
+        # Basic configuration
+        NODE_ENV = "production";
+
+        # Database configuration (SQLite by default)
+        DATABASE_URL = "sqlite:///var/lib/karakeep/karakeep.db";
+
+        # Storage configuration (local filesystem)
+        STORAGE_BACKEND = "local";
+        STORAGE_LOCAL_PATH = "/var/lib/karakeep/storage";
+
+        # Security configuration
+        SESSION_SECRET = "change-me-in-production";
+
+        # Optional: Enable OAuth if configured
+        # OAUTH_PROVIDER = "google";
+        # OAUTH_CLIENT_ID = "";
+        # OAUTH_CLIENT_SECRET = "";
+        # OAUTH_REDIRECT_URI = "https://${cfg.url}/auth/callback";
+      };
+    };
+
     # Create necessary directories
     systemd.tmpfiles.rules = [
       "d /var/lib/karakeep 0750 karakeep karakeep - -"
@@ -49,5 +83,13 @@ in
 
     # Ensure karakeep user is in the homelab group for proper integration
     users.users.karakeep.extraGroups = [ homelab.group ];
+
+    # Configure Caddy reverse proxy using homelab TLS
+    services.caddy.virtualHosts."${cfg.url}" = {
+      extraConfig = ''
+        tls ${homelab.tls.certFile} ${homelab.tls.keyFile}
+        reverse_proxy http://127.0.0.1:${toString cfg.port}
+      '';
+    };
   };
 }
