@@ -52,6 +52,8 @@ in
       browser.enable = true;
       browser.port = 9222;
 
+      environmentFile = "/var/lib/karakeep/secrets.env";
+
       # Environment variables for configuration
       extraEnvironment = {
         # Basic configuration
@@ -79,6 +81,7 @@ in
     systemd.tmpfiles.rules = [
       "d /var/lib/karakeep 0750 karakeep karakeep - -"
       "d /var/lib/karakeep/storage 0750 karakeep karakeep - -"
+      "d /var/lib/karakeep/secrets 0750 karakeep karakeep - -"
     ];
 
     # Ensure karakeep user is in the homelab group for proper integration
