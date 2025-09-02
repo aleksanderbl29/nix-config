@@ -117,7 +117,7 @@ in
           ];
           hl = config.homelab.services;
           # Get all enabled homelab services that have homepage configuration
-          enabledHomelabServices = lib.filterAttrs (_: service: service.enable && (service ? homepage)) hl;
+          enabledHomelabServices = lib.filterAttrs (_: service: (builtins.isAttrs service) && (service.enable or false) && (service ? homepage)) hl;
 
           # Group services by category
           homepageServices =

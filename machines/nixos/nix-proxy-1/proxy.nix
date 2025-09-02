@@ -1,6 +1,10 @@
 { lib, config, pkgs, ... }:
 let
   cfg = config.homelab;
+  # Collect subdomains from homelab.publicExpose where value is true
+  exposedServices = lib.attrNames (lib.filterAttrs (_: v: v == true) cfg.publicExpose);
+  exposedMatcher = lib.concatStringsSep "|" (lib.map (s: "(" + s + ")") exposedServices);
+  hostPattern = if exposedMatcher == "" then "(^$)" else exposedMatcher;
 in
 {
   imports = [
@@ -9,19 +13,17 @@ in
   ];
 
   options.proxy = {
-    enable = lib.mkEnableOption "Enable wildcard reverse proxy from *.aleksanderbl.dk to *.${cfg.baseDomain}";
+    enable = lib.mkEnableOption "Enable wildcard reverse proxy from *.aleksanderbl.dk to selected *.${cfg.baseDomain} based on homelab.publicExpose flags";
   };
 
   config = lib.mkIf config.proxy.enable {
     networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-    # Ensure Caddy has access to certs and cloudflare token
     users.users.caddy.extraGroups = [ cfg.group ];
     systemd.tmpfiles.rules = [
       "d /var/lib/caddy 0750 caddy caddy"
     ];
 
-    # ACME for public domain using Cloudflare DNS
     security.acme = {
       acceptTerms = true;
       defaults.email = "aleksanderbl@live.dk";
@@ -47,14 +49,12 @@ in
         debug
       '';
 
-      # Caddy virtual hosts
       virtualHosts = {
-        # Wildcard listener for the public domain
         "*.aleksanderbl.dk" = {
           extraConfig = ''
             tls /var/lib/acme/aleksanderbl.dk/cert.pem /var/lib/acme/aleksanderbl.dk/key.pem
 
-            @sub header_regexp Host (.*)\.aleksanderbl\.dk
+            @sub header_regexp Host (^${hostPattern})\.aleksanderbl\.dk
             handle @sub {
               reverse_proxy {http.regexp.sub.1}.${cfg.baseDomain}:443 {
                 transport http {
@@ -63,10 +63,11 @@ in
                 header_up Host {http.regexp.sub.1}.${cfg.baseDomain}
               }
             }
+
+            respond 404
           '';
         };
 
-        # Also cover apex domain -> redirect to homelab base
         "aleksanderbl.dk" = {
           extraConfig = ''
             tls /var/lib/acme/aleksanderbl.dk/cert.pem /var/lib/acme/aleksanderbl.dk/key.pem
@@ -76,7 +77,6 @@ in
       };
     };
 
-    # Basic log file for troubleshooting
     services.journald.extraConfig = ''
       SystemMaxUse=200M
     '';
