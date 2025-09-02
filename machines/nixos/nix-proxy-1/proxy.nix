@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   cfg = config.homelab;
   # Collect subdomains from homelab.publicExpose where value is true
@@ -17,7 +22,10 @@ in
   };
 
   config = lib.mkIf config.proxy.enable {
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
 
     users.users.caddy.extraGroups = [ cfg.group ];
     systemd.tmpfiles.rules = [

@@ -5,7 +5,9 @@
 }:
 let
   cfg = config.homelab;
-  hasEnabledServices = lib.any (service: (builtins.isAttrs service) && (service.enable or false)) (lib.attrValues cfg.services);
+  hasEnabledServices = lib.any (service: (builtins.isAttrs service) && (service.enable or false)) (
+    lib.attrValues cfg.services
+  );
 in
 {
   config = lib.mkIf (cfg.enable || hasEnabledServices) {
