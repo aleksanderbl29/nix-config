@@ -62,6 +62,8 @@ in
         # Database configuration (SQLite by default)
         DATABASE_URL = "sqlite:///var/lib/karakeep/karakeep.db";
 
+        NEXTAUTH_URL = "https://bookmarks.aleksanderbl.dk";
+
         # Storage configuration (local filesystem)
         STORAGE_BACKEND = "local";
         STORAGE_LOCAL_PATH = "/var/lib/karakeep/storage";
