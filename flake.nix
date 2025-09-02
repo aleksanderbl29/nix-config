@@ -85,7 +85,7 @@
 
       nixosConfigurations = {
         ironhide = libs.mkNixosConfig { hostname = "ironhide"; };
-        nixos-proxy-1 = libs.mkNixosConfig { hostname = "nixos-proxy-1"; };
+        nix-proxy-1 = libs.mkNixosConfig { hostname = "nix-proxy-1"; };
       };
 
       colmena = {
@@ -106,7 +106,7 @@
           };
 
         ironhide = import ./machines/colmena/ironhide;
-        nixos-proxy-1 = import ./machines/colmena/nixos-proxy-1;
+        nix-proxy-1 = import ./machines/colmena/nix-proxy-1;
       };
     };
 }
