@@ -82,6 +82,16 @@ in
         by the homepage dashboard when enabled.
       '';
     };
+
+    publicExpose = lib.mkOption {
+      type = lib.types.attrsOf lib.types.bool;
+      default = { };
+      example = {
+        homepage = true;
+        jellyfin = false;
+      };
+      description = "Map of homelab service names to a boolean indicating if they should be exposed via the external proxy (*.aleksanderbl.dk).";
+    };
   };
 
   # Import homelab modules
