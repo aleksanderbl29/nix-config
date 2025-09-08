@@ -38,6 +38,8 @@ in
         # Custom nvim config from nvf
         { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
 
+        { environment.systemPackages = [ "nix-output-monitor" ]; }
+
         # Colmena dev version
         # { environment.systemPackages = [ inputs.colmena.packages.${system}.colmena ]; }
 
@@ -87,6 +89,8 @@ in
         # Custom nvim config from nvf
         { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
 
+        { environment.systemPackages = [ "nix-output-monitor"]; }
+
         inputs.home-manager.nixosModules.home-manager
         {
           home-manager = {
@@ -130,6 +134,8 @@ in
 
         # Custom nvim config from nvf
         { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
+
+        { environment.systemPackages = [ "nix-output-monitor"]; }
 
         inputs.home-manager.darwinModules.home-manager
         {
