@@ -10,6 +10,9 @@ let
   );
 in
 {
+  imports = [
+    ./external-proxies.nix
+  ];
   config = lib.mkIf (cfg.enable || hasEnabledServices) {
     networking.firewall.allowedTCPPorts = [
       80
