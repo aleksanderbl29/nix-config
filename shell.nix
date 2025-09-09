@@ -7,7 +7,6 @@ pkgs.mkShell {
     colmena
     sops
     age
-    nix-output-monitor
   ];
 
   shellHook = ''
