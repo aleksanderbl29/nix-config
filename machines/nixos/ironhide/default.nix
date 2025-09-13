@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -59,6 +59,10 @@
       "docker"
     ];
   };
+
+  environment.systemPackages = with inputs.nix-ai-tools.packages.${pkgs.system}; [
+    cursor-agent
+  ];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
