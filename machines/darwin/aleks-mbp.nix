@@ -15,6 +15,7 @@
     "cursor"
     "makemkv"
     "linear-linear"
+    "google-cloud-sdk"
   ];
 
   ids.gids.nixbld = 350;
