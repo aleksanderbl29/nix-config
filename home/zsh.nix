@@ -68,7 +68,12 @@
           else
             "sudo nixos-rebuild switch --flake /etc/nixos/";
         nix-cd = if pkgs.stdenv.isDarwin then "cd ~/nix-config/" else "cd /etc/nixos/";
-        nix-gc = "nix-collect-garbage -d";
+        nix-gc = ''
+          sudo nix-env -p /nix/var/nix/profiles/system --list-generations
+          sudo nix-env -p /nix/var/nix/profiles/system --delete-generations old
+          sudo nix-collect-garbage -d
+          nix-collect-garbage -d
+        '';
         nxp = "nix-shell -p";
         fu-commit = "nix flake update && git add flake.lock && git commit -m 'Update flake.lock'";
         open-nix = "nix-cd && code .";
