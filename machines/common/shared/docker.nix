@@ -14,7 +14,7 @@
   config = lib.mkIf config.modules.docker.enable {
     homebrew = lib.mkIf pkgs.stdenv.isDarwin {
       enable = true;
-      casks = [ "docker" ];
+      casks = [ "docker-desktop" ];
     };
 
     environment.systemPackages = with pkgs; [

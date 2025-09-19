@@ -50,7 +50,6 @@
       # "positron"
       # "postman"
       "quarto"
-      "r"
       "r-app"
       # "raspberry-pi-imager"
       "raycast"
