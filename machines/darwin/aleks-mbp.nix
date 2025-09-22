@@ -16,6 +16,7 @@
     "makemkv"
     "linear-linear"
     "gcloud-cli"
+    "tad"
   ];
 
   ids.gids.nixbld = 350;

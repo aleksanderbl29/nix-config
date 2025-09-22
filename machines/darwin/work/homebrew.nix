@@ -40,6 +40,7 @@
       "rstudio"
       "signal"
       "stats"
+      "tad"
       "todoist-app"
       "unnaturalscrollwheels"
       "vanilla"
