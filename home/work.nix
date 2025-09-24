@@ -44,7 +44,8 @@
     };
 
     zsh.shellAliases = {
-      workdrive = "cd '/Users/aleksander/Library/CloudStorage/ZohoWorkDriveTrueSync-1'";
+      workdrive = "cd '/Users/aleksander/Library/CloudStorage/ZohoWorkDriveTrueSync-TænketankenDigitalInfrastruktur
+'";
     };
   };
 
