@@ -28,6 +28,7 @@
       "firefox"
       "google-chrome"
       "ghostty"
+      "helium-browser"
       # "lm-studio"
       "meetingbar"
       # "MonitorControl"
