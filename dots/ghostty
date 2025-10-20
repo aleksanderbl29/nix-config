@@ -9,7 +9,7 @@ background-opacity = 0.9
 theme = Catppuccin Mocha
 
 # Fonts
-font-size = 18
+font-size = 16
 font-thicken = true
 
 # Shell
