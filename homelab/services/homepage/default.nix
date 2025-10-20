@@ -129,7 +129,7 @@ in
           # Convert services to homepage format
           formatServices =
             services:
-            lib.mapAttrsToList (name: service: {
+            lib.mapAttrsToList (_name: service: {
               "${service.homepage.name}" = {
                 icon = service.homepage.icon;
                 description = service.homepage.description;
