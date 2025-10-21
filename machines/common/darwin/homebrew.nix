@@ -55,6 +55,7 @@
       "r-app"
       # "raspberry-pi-imager"
       "raycast"
+      "readdle-spark"
       "rstudio"
       "signal"
       "slack"
