@@ -9,13 +9,6 @@
     ../../../modules/beszel-agent.nix
   ];
 
-  # Disabled for now - having configuration issues
-  # services.beszel-agent = {
-  #   enable = true;
-  #   port = 45876;
-  #   key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA8DxcwL0d1IFe5ILwczYXLM4YF6xLGxJBL8lTR6MUGf";
-  # };
-
   # Bootloader.
   boot.loader = {
     systemd-boot.enable = true;

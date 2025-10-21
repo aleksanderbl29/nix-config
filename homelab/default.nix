@@ -98,6 +98,7 @@ in
   imports = [
     ./caddy # Reverse proxy and HTTPS termination
     ./services # All homelab services
+    ../modules/beszel-agent.nix # Beszel agent service
   ];
 
   # Configure basic homelab infrastructure when enabled
@@ -112,6 +113,12 @@ in
         isSystemUser = true;
         group = cfg.group;
       };
+    };
+
+    services.beszel-agent = {
+      enable = true;
+      port = 45876;
+      key = "\"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJZ5KOjxmMf0QPHln20mOGXxN2QG6yP8pZgKUFyMymTV\"";
     };
 
     # Set system timezone

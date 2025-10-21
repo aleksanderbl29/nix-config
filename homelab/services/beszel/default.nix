@@ -60,9 +60,6 @@ in
       volumes = [
         "beszel_data:/beszel_data"
       ];
-      extraOptions = [
-        "--network=proxy"
-      ];
     };
 
     # Caddy virtual host configuration

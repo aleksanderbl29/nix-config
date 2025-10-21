@@ -17,8 +17,11 @@
   system.stateVersion = "24.11";
 
   proxy.enable = true;
-  homelab.publicExpose = {
-    bookmarks = true;
-    jellyfin = true;
+  homelab = {
+    enable = true;
+    publicExpose = {
+      bookmarks = true;
+      jellyfin = true;
+    };
   };
 }

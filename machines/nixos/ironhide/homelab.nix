@@ -22,6 +22,9 @@
       karakeep = {
         enable = true;
       };
+      beszel = {
+        enable = true;
+      };
     };
   };
 }
