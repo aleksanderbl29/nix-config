@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ../modules/home/tex.nix
+    ../modules/tex.nix
   ];
 
   home.packages = with pkgs; [

@@ -6,7 +6,6 @@
     ./networking.nix
     ./homelab.nix
     ./samba.nix
-    ../../../modules/docker
     ../../../modules/beszel-agent.nix
   ];
 
