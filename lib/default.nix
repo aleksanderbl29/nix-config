@@ -1,6 +1,5 @@
 {
   inputs,
-  myOverlays,
   nixpkgs,
   ...
 }:
@@ -27,7 +26,6 @@ in
         config = {
           allowUnfree = true;
         };
-        overlays = myOverlays;
       };
       modules = [
         ../machines/darwin # shared darwin config
@@ -78,7 +76,6 @@ in
         config = {
           allowUnfree = true;
         };
-        overlays = myOverlays;
       };
       modules = [
         ../machines/nixos # shared nixos config
@@ -120,7 +117,6 @@ in
         config = {
           allowUnfree = true;
         };
-        overlays = myOverlays;
       };
       modules = [
         ../machines/darwin/work # shared darwin config for work

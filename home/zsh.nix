@@ -60,6 +60,8 @@
         ls = "ls --color=auto -F";
         # Git
         lzg = "lazygit";
+        # Editor
+        c = "cursor .";
 
         # Nix specifics
         nixswitch =

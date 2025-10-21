@@ -15,11 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL/main";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
 
     catppuccin = {
@@ -49,8 +44,6 @@
     #   flake = false;
     # };
 
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-
     my-nvf = {
       url = "github:aleksanderbl29/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -69,11 +62,9 @@
         inherit
           inputs
           outputs
-          myOverlays
           nixpkgs
           ;
       };
-      myOverlays = [ inputs.nix-vscode-extensions.overlays.default ];
     in
     {
       darwinConfigurations = {
