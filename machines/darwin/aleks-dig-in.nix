@@ -13,6 +13,7 @@
     systemPath = [ "/opt/homebrew/bin" ];
     systemPackages = with pkgs; [
       bruno
+      air-formatter
     ];
   };
 
@@ -23,7 +24,7 @@
 
   system.defaults = lib.mkForce {
     loginwindow.LoginwindowText = ''
-      Tilhører 
+      Tilhører
       Tænketanken for Digital Infrastruktur
 
     '';

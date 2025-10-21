@@ -36,6 +36,7 @@
     systemPath = [ "/opt/homebrew/bin" ];
     systemPackages = with pkgs; [
       cachix
+      air-formatter
     ];
   };
 }

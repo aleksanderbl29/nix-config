@@ -92,7 +92,7 @@
         test-snapshot-update = ''
           git add tests/testthat/_snaps/ && git commit -m "Update test snapshots $(date '+%d %b %Y')"
         '';
-        r-format = "nix run nixpkgs#air-formatter format .";
+        r-format = "air format .";
       };
       oh-my-zsh = {
         enable = true;
