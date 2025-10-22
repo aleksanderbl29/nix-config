@@ -1,8 +1,12 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }:
+let
+  ai-tools = inputs.nix-ai-tools.packages.${pkgs.system};
+in
 {
   imports = [
     # ./work/default.nix
@@ -14,6 +18,8 @@
     systemPackages = with pkgs; [
       bruno
       air-formatter
+      ai-tools.cursor-agent
+      ai-tools.claude-code
     ];
   };
 

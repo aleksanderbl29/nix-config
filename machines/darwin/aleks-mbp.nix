@@ -1,7 +1,11 @@
 {
   pkgs,
+  inputs,
   ...
 }:
+let
+  ai-tools = inputs.nix-ai-tools.packages.${pkgs.system};
+in
 {
   imports = [
     ../common/shared/docker.nix
@@ -12,6 +16,7 @@
 
   homebrew.casks = [
     "private-internet-access"
+    "conductor"
     "cursor"
     "makemkv"
     "linear-linear"
@@ -37,6 +42,8 @@
     systemPackages = with pkgs; [
       cachix
       air-formatter
+      ai-tools.cursor-agent
+      ai-tools.claude-code
     ];
   };
 }
