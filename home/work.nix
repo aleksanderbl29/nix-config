@@ -44,23 +44,31 @@
     };
 
     zsh.shellAliases = {
-      workdrive = "cd '/Users/aleksander/Library/CloudStorage/ZohoWorkDriveTrueSync-TænketankenDigitalInfrastruktur
-'";
+      workdrive = "cd '/Users/aleksander/Library/CloudStorage/ZohoWorkDriveTrueSync-TænketankenDigitalInfrastruktur'";
     };
-  };
 
-  programs.git = {
-    enable = true;
-    userEmail = "aleksander@dig-in.dk";
-    userName = "aleksander-digin";
-    ignores = [ ".DS_Store" ];
-    lfs.enable = true;
-    diff-so-fancy.enable = true;
-    extraConfig = {
-      push.autoSetupRemote = true;
-      init.defaultBranch = "main";
-      pull.rebase = true;
-      safe.directory = "/etc/nixos";
+    git = {
+      enable = true;
+      settings = {
+        user = {
+          email = "aleksander@dig-in.dk";
+          name = "aleksander-digin";
+        };
+        push.autoSetupRemote = true;
+        init.defaultBranch = "main";
+        pull.rebase = true;
+        safe.directory = "/etc/nixos";
+      };
+      ignores = [ ".DS_Store" ];
+      lfs.enable = true;
+    };
+
+    difftastic = {
+      enable = true;
+      git = {
+        enable = true;
+        diffToolMode = true;
+      };
     };
   };
 
