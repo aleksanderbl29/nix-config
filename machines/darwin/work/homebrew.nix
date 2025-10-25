@@ -41,6 +41,7 @@
       "signal"
       "stats"
       "tad"
+      "tailscale"
       "todoist-app"
       "unnaturalscrollwheels"
       "vanilla"
