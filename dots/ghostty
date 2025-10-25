@@ -27,3 +27,6 @@ macos-icon-screen-color = green
 # Widnow height and width at startup
 window-height = 27
 window-width = 99
+
+# Claude code shortcut
+keybind = shift+enter=text:"\n"

@@ -3,6 +3,11 @@
   # Remove login message from shell
   home.file.".hushlogin".text = "";
 
+  # Auto-source parent .envrc if it exists
+  home.file.".config/direnv/direnvrc".text = ''
+    source_env_if_exists ../.envrc
+  '';
+
   home.packages = with pkgs; [
     zsh
     fzf
