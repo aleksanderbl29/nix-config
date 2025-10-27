@@ -67,6 +67,7 @@
         lzg = "lazygit";
         # Editor
         c = "cursor .";
+        ca = "cursor-agent";
 
         # Nix specifics
         nixswitch =
