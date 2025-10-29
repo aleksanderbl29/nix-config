@@ -46,7 +46,7 @@
     zsh.shellAliases = {
       workdrive = "cd '/Users/aleksander/Library/CloudStorage/ZohoWorkDriveTrueSync-TænketankenDigitalInfrastruktur'";
     };
-    
+
     git = {
       enable = true;
       settings = {
