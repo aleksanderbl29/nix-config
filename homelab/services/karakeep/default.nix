@@ -38,6 +38,12 @@ in
       type = lib.types.str;
       default = "Services";
     };
+
+    meilisearch.enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable Meilisearch for full text search";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -46,7 +52,7 @@ in
       enable = true;
 
       # Enable Meilisearch for full text search
-      meilisearch.enable = true;
+      meilisearch.enable = cfg.meilisearch.enable;
 
       # Enable browser service for screenshots
       browser.enable = true;
