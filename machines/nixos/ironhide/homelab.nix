@@ -13,9 +13,6 @@
         hardwareAcceleration.intel = true;
         enableSkipIntroButton = true;
       };
-      immich = {
-        enable = true;
-      };
       littlelink = {
         enable = true;
       };
