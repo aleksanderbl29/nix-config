@@ -15,7 +15,7 @@
       "/Applications/Cliq.app"
       "/Applications/Zoho Mail - Desktop.app"
       "/System/Applications/Preview.app"
-      "/Applications/Visual Studio Code.app"
+      "/Applications/Cursor.app"
       "/Applications/Obsidian.app"
       "/Applications/Ghostty.app"
       "/System/Applications/System Settings.app"
