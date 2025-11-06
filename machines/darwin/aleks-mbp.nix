@@ -14,15 +14,23 @@ in
 
   modules.docker.enable = true;
 
-  homebrew.casks = [
-    "private-internet-access"
-    "conductor"
-    "cursor"
-    "makemkv"
-    "linear-linear"
-    "gcloud-cli"
-    "tad"
-  ];
+  homebrew = {
+    casks = [
+      "private-internet-access"
+      "conductor"
+      "cursor"
+      "makemkv"
+      "linear-linear"
+      "gcloud-cli"
+      "tad"
+      "quarto"
+    ];
+    brews = [
+      "node"
+      "pnpm"
+      "uv"
+    ];
+  };
 
   ids.gids.nixbld = 350;
 
