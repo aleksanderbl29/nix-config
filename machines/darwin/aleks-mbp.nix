@@ -21,7 +21,7 @@ in
       "cursor"
       "makemkv"
       "linear-linear"
-      "gcloud-cli"
+      # "gcloud-cli"
       "tad"
       "quarto"
     ];
