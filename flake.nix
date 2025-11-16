@@ -48,6 +48,8 @@
       url = "github:aleksanderbl29/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
   outputs =
@@ -79,6 +81,7 @@
       nixosConfigurations = {
         ironhide = libs.mkNixosConfig { hostname = "ironhide"; };
         nix-proxy-1 = libs.mkNixosConfig { hostname = "nix-proxy-1"; };
+        hyperhdr = libs.mkNixosConfig { hostname = "hyperhdr"; rpiVersion = "rpi3";};
       };
 
       colmena = {
@@ -100,6 +103,7 @@
 
         ironhide = import ./machines/colmena/ironhide;
         nix-proxy-1 = import ./machines/colmena/nix-proxy-1;
+        hyperhdr = import ./machines/colmena/hyperhdr;
       };
     };
 }

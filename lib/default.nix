@@ -67,6 +67,7 @@ in
       hostname,
       user ? "aleksander",
       system ? "x86_64-linux",
+      rpiVersion ? "none", # Options: "none", "rpi3", "rpi4", "rpi5"
     }:
     nixpkgs.lib.nixosSystem {
       inherit system;
@@ -80,6 +81,10 @@ in
       modules = [
         ../machines/nixos # shared nixos config
         ../machines/nixos/${hostname} # machine-specific config
+
+        (if rpiVersion == "rpi3" then inputs.nixos-hardware.nixosModules.raspberry-pi-3 else {}),
+        (if rpiVersion == "rpi4" then inputs.nixos-hardware.nixosModules.raspberry-pi-4 else {}),
+        (if rpiVersion == "rpi5" then inputs.nixos-hardware.nixosModules.raspberry-pi-5 else {}),
 
         # Custom nvim config from nvf
         { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
