@@ -29,6 +29,8 @@ in
       "node"
       "pnpm"
       "uv"
+      "cmake"
+      "abseil"
     ];
   };
 
