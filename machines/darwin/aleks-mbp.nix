@@ -31,6 +31,13 @@ in
       "uv"
       "cmake"
       "abseil"
+      "udunits"
+      "pkg-config"
+      "proj"
+      "gdal"
+      "geos"
+      "udunits"
+      "expat"
     ];
   };
 
@@ -49,6 +56,9 @@ in
 
   environment = {
     systemPath = [ "/opt/homebrew/bin" ];
+    variables = {
+      QUARTO_R = "/opt/homebrew/bin/R";
+    };
     systemPackages = with pkgs; [
       cachix
       air-formatter
