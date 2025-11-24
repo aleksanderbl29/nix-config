@@ -15,6 +15,13 @@
 
   tex.enable = false;
 
+  programs = {
+    yazi = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+  };
+
   home.file.".Renviron" = {
     text = ''
       TESTTHAT_CPUS=6
