@@ -58,6 +58,7 @@ in
     systemPath = [ "/opt/homebrew/bin" ];
     variables = {
       QUARTO_R = "/opt/homebrew/bin/R";
+      EDITOR = "nvim";
     };
     systemPackages = with pkgs; [
       cachix
