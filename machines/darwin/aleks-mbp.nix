@@ -17,7 +17,6 @@ in
   homebrew = {
     casks = [
       "private-internet-access"
-      "conductor"
       "cursor"
       "makemkv"
       "linear-linear"
