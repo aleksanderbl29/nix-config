@@ -14,7 +14,7 @@
     masApps = {
       # "AdGuard for Safari" = 1440147259;
       # "Bitwarden" = 1352778147;
-      "Magnet" = 441258766;
+      # "Magnet" = 441258766;
     };
     casks = [
       # "microsoft-office"
