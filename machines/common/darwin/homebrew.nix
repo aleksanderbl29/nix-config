@@ -24,7 +24,6 @@
     };
     casks = [
       "microsoft-office"
-      "messenger"
       "aldente"
       "alt-tab"
       # "balenaetcher"

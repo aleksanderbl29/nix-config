@@ -13,7 +13,6 @@
       "/Applications/BusyCal.app"
       "${pkgs.spotify}/Applications/Spotify.app"
       "/System/Applications/Messages.app"
-      "/Applications/Messenger.app"
       "/Applications/Microsoft Outlook.app"
       "/System/Applications/Preview.app"
       # "/Applications/Visual Studio Code.app"
