@@ -11,17 +11,17 @@
       appdir = "/Applications";
     };
     global.brewfile = true;
-    masApps = {
-      "AdGuard for Safari" = 1440147259;
-      "Bitwarden" = 1352778147;
-      "Disk Speed Test" = 425264550;
-      "Flightly" = 1358823008;
-      "Numbers" = 409203825;
-      "Speedtest" = 1153157709;
-      "Magnet" = 441258766;
-      # "Trello" = 1278508951;
-      # "Unsplash Wallpapers" = 1284863847;
-    };
+    # masApps = {
+    #   "AdGuard for Safari" = 1440147259;
+    #   "Bitwarden" = 1352778147;
+    #   "Disk Speed Test" = 425264550;
+    #   "Flightly" = 1358823008;
+    #   "Numbers" = 409203825;
+    #   "Speedtest" = 1153157709;
+    #   "Magnet" = 441258766;
+    #   # "Trello" = 1278508951;
+    #   # "Unsplash Wallpapers" = 1284863847;
+    # };
     casks = [
       "microsoft-office"
       "aldente"
