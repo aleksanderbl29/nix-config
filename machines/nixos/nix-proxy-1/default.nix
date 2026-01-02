@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
     ./proxy.nix
+    ./status.nix
   ];
 
   boot.tmp.cleanOnBoot = true;
