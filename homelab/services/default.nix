@@ -40,5 +40,6 @@ in
     ./beszel
     ./littlelink
     ./karakeep
+    ./gatus
   ];
 }

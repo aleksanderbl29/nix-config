@@ -19,9 +19,13 @@
   proxy.enable = true;
   homelab = {
     enable = true;
+    services = {
+      gatus.enable = true;
+    };
     publicExpose = {
       bookmarks = true;
       jellyfin = true;
+      status = true;
     };
   };
 }
