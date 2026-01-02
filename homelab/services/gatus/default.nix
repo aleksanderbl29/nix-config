@@ -70,14 +70,43 @@ in
       default = [ ];
       description = "List of endpoints to monitor";
     };
+
+    storage = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Enable SQLite storage for persistent data";
+      };
+
+      dataDir = lib.mkOption {
+        type = lib.types.str;
+        default = "/var/lib/gatus";
+        description = "Directory where Gatus data and SQLite database will be stored";
+      };
+
+      databaseFile = lib.mkOption {
+        type = lib.types.str;
+        default = "gatus.db";
+        description = "SQLite database filename (stored in dataDir)";
+      };
+    };
   };
 
   config = lib.mkIf cfg.enable {
+    # Create data directory for SQLite database
+    systemd.tmpfiles.rules = lib.mkIf cfg.storage.enable [
+      "d ${cfg.storage.dataDir} 0750 gatus gatus - -"
+    ];
+
     services.gatus = {
       enable = true;
       settings = {
         web.port = cfg.port;
         endpoints = cfg.endpoints;
+      } // lib.optionalAttrs cfg.storage.enable {
+        storage = {
+          type = "sqlite";
+          path = "${cfg.storage.dataDir}/${cfg.storage.databaseFile}";
         };
       };
     };
