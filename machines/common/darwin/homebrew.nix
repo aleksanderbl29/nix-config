@@ -40,7 +40,7 @@
       # "latest"
       # "lm-studio"
       "meetingbar"
-      "microsoft-teams"
+      # "microsoft-teams"
       "MonitorControl"
       "obs"
       "obsidian"
