@@ -103,7 +103,8 @@ in
       settings = {
         web.port = cfg.port;
         endpoints = cfg.endpoints;
-      } // lib.optionalAttrs cfg.storage.enable {
+      }
+      // lib.optionalAttrs cfg.storage.enable {
         storage = {
           type = "sqlite";
           path = "${cfg.storage.dataDir}/${cfg.storage.databaseFile}";

@@ -10,7 +10,8 @@ let
   # Exclude status from homelab services since it runs locally on nix-proxy-1
   homelabServices = lib.filter (s: s != "status") exposedServices;
   homelabServiceMatcher = lib.concatStringsSep "|" homelabServices;
-  homelabServicePattern = if homelabServiceMatcher == "" then "(^$)" else "(" + homelabServiceMatcher + ")";
+  homelabServicePattern =
+    if homelabServiceMatcher == "" then "(^$)" else "(" + homelabServiceMatcher + ")";
 in
 {
   imports = [
@@ -65,10 +66,10 @@ in
 
             # Manual override: status/gatus runs locally on nix-proxy-1
             ${lib.optionalString (cfg.services.gatus.enable or false) ''
-            @status header_regexp Host ^status\.aleksanderbl\.dk
-            handle @status {
-              reverse_proxy http://127.0.0.1:${toString cfg.services.gatus.port}
-            }
+              @status header_regexp Host ^status\.aleksanderbl\.dk
+              handle @status {
+                reverse_proxy http://127.0.0.1:${toString cfg.services.gatus.port}
+              }
             ''}
 
             # Route homelab services to internal domain
