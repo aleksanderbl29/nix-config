@@ -55,9 +55,31 @@ in
               description = "URL of the endpoint to monitor";
             };
             interval = lib.mkOption {
-              type = lib.types.str;
+              type = lib.types.addCheck (lib.types.strMatching "^[0-9]+(ms|s|m|h|d)$") (
+                value:
+                let
+                  # Parse duration string to seconds
+                  parseDuration =
+                    s:
+                    let
+                      match = builtins.match "^([0-9]+)(ms|s|m|h|d)$" s;
+                      num = if match != null then builtins.fromJSON (builtins.elemAt match 0) else 0;
+                      unit = if match != null then builtins.elemAt match 1 else "";
+                      multipliers = {
+                        ms = 0.001;
+                        s = 1;
+                        m = 60;
+                        h = 3600;
+                        d = 86400;
+                      };
+                    in
+                    num * (multipliers.${unit} or 0);
+                  seconds = parseDuration value;
+                in
+                seconds >= 30 && seconds <= 3600
+              );
               default = "5m";
-              description = "Interval between checks (e.g., '5m', '1h')";
+              description = "Interval between checks (30s to 1h). Format: number followed by unit (ms, s, m, h, or d). Examples: '30s', '5m', '1h'";
             };
             conditions = lib.mkOption {
               type = lib.types.listOf lib.types.str;
