@@ -25,7 +25,7 @@
         conditions = [ "[STATUS] == 200" ];
       }
       {
-        name = "Hvem Vinder Valget?";
+        name = "Hvem Vinder Valget";
         group = "Side Projects";
         url = "https://hvemvindervalget.dk";
         interval = "5m";
