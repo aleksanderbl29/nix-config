@@ -8,7 +8,10 @@
         group = "Portfolio";
         url = "https://aleksanderbl.dk";
         interval = "5m";
-        conditions = [ "[STATUS] == 200" ];
+        conditions = [
+          "[STATUS] == 200"
+          "[CERTIFICATE_EXPIRATION] > 240h"
+        ];
       }
       {
         name = "Dev website";
@@ -33,21 +36,21 @@
       }
       {
         name = "dawaR";
-        group = "rpkgs";
+        group = "R Packages";
         url = "https://dawar.aleksanderbl.dk";
         interval = "5m";
         conditions = [ "[STATUS] == 200" ];
       }
       {
         name = "dkstat";
-        group = "rpkgs";
+        group = "R Packages";
         url = "https://ropengov.github.io/dkstat/";
         interval = "5m";
         conditions = [ "[STATUS] == 200" ];
       }
       {
         name = "geodk";
-        group = "rpkgs";
+        group = "R Packages";
         url = "https://ropengov.github.io/geodk/";
         interval = "5m";
         conditions = [ "[STATUS] == 200" ];
