@@ -31,6 +31,27 @@
         interval = "5m";
         conditions = [ "[STATUS] == 200" ];
       }
+      {
+        name = "dawaR";
+        group = "rpkgs";
+        url = "https://dawar.aleksanderbl.dk";
+        interval = "5m";
+        conditions = [ "[STATUS] == 200" ];
+      }
+      {
+        name = "dkstat";
+        group = "rpkgs";
+        url = "https://ropengov.github.io/dkstat/";
+        interval = "5m";
+        conditions = [ "[STATUS] == 200" ];
+      }
+      {
+        name = "geodk";
+        group = "rpkgs";
+        url = "https://ropengov.github.io/geodk/";
+        interval = "5m";
+        conditions = [ "[STATUS] == 200" ];
+      }
     ];
   };
 }
