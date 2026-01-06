@@ -7,8 +7,11 @@ let
   cfg = config.homelab;
   # Collect subdomains from homelab.publicExpose where value is true
   exposedServices = lib.attrNames (lib.filterAttrs (_: v: v == true) cfg.publicExpose);
-  exposedMatcher = lib.concatStringsSep "|" (lib.map (s: "(" + s + ")") exposedServices);
-  hostPattern = if exposedMatcher == "" then "(^$)" else exposedMatcher;
+  # Exclude status from homelab services since it runs locally on nix-proxy-1
+  homelabServices = lib.filter (s: s != "status") exposedServices;
+  homelabServiceMatcher = lib.concatStringsSep "|" homelabServices;
+  homelabServicePattern =
+    if homelabServiceMatcher == "" then "(^$)" else "(" + homelabServiceMatcher + ")";
 in
 {
   imports = [
@@ -61,8 +64,17 @@ in
           extraConfig = ''
             tls /var/lib/acme/aleksanderbl.dk/cert.pem /var/lib/acme/aleksanderbl.dk/key.pem
 
-            @sub header_regexp Host (^${hostPattern})\.aleksanderbl\.dk
-            handle @sub {
+            # Manual override: status/gatus runs locally on nix-proxy-1
+            ${lib.optionalString (cfg.services.gatus.enable or false) ''
+              @status header_regexp Host ^status\.aleksanderbl\.dk
+              handle @status {
+                reverse_proxy http://127.0.0.1:${toString cfg.services.gatus.port}
+              }
+            ''}
+
+            # Route homelab services to internal domain
+            @homelab header_regexp Host ^${homelabServicePattern}\.aleksanderbl\.dk
+            handle @homelab {
               reverse_proxy {http.regexp.sub.1}.${cfg.baseDomain}:443 {
                 transport http {
                   tls

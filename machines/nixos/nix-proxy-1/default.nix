@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
     ./proxy.nix
+    ./status.nix
   ];
 
   boot.tmp.cleanOnBoot = true;
@@ -19,9 +20,13 @@
   proxy.enable = true;
   homelab = {
     enable = true;
+    services = {
+      gatus.enable = true;
+    };
     publicExpose = {
       bookmarks = true;
       jellyfin = true;
+      status = true;
     };
   };
 }
