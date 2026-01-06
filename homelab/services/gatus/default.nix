@@ -125,6 +125,13 @@ in
       settings = {
         web.port = cfg.port;
         endpoints = cfg.endpoints;
+        ui = {
+          title = "Status Page | Aleksander Bang-Larsen";
+          header = "Status Page";
+          dashboard-heading = "Aleksanders Status Page";
+          dashboard-subheading = "Overview of the status of my services, websites and projects.";
+          link = "https://status.aleksanderbl.dk";
+        };
       }
       // lib.optionalAttrs cfg.storage.enable {
         storage = {
