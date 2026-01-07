@@ -66,7 +66,7 @@ in
     {
       hostname,
       user ? "aleksander",
-      system ? "x86_64-linux"
+      system ? "x86_64-linux",
     }:
     nixpkgs.lib.nixosSystem {
       inherit system;
@@ -151,7 +151,7 @@ in
     {
       hostname,
       user ? "aleksander",
-      system ? "aarch64-linux"
+      system ? "aarch64-linux",
     }:
     nixpkgs.lib.nixosSystem {
       inherit system;

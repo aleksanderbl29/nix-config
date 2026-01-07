@@ -11,9 +11,7 @@
       init.defaultBranch = "main";
       pull.rebase = true;
       safe.directory = "/etc/nixos";
-      credential.helper = "${
-          pkgs.git.override { withLibsecret = true; }
-        }/bin/git-credential-libsecret";
+      credential.helper = "${pkgs.git.override { withLibsecret = true; }}/bin/git-credential-libsecret";
     };
     ignores = [ ".DS_Store" ];
     lfs.enable = true;

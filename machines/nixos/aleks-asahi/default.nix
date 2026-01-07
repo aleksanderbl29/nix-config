@@ -1,11 +1,16 @@
-{ config, lib, pkgs, inputs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      inputs.nixos-asahi.nixosModules.apple-silicon-support
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    inputs.nixos-asahi.nixosModules.apple-silicon-support
+  ];
 
   hardware.asahi.setupAsahiSound = true;
 
@@ -67,7 +72,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     ghostty
     git
     gh
@@ -84,4 +89,3 @@
   system.stateVersion = "25.11"; # Did you read the comment?
 
 }
-
