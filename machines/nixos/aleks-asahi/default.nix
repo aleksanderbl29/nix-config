@@ -52,15 +52,18 @@
 
   console.keyMap = "dk-latin1";
 
-  users.users.aleksander = {
-    isNormalUser = true;
-    description = "aleksander";
-    initialPassword = "adgangskode";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
+  users = {
+    mutableUsers = true;
+    users.aleksander = {
+      isNormalUser = true;
+      description = "aleksander";
+      initialPassword = "adgangskode";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "docker"
+      ];
+    };
   };
 
   environment.systemPackages = with pkgs; [
