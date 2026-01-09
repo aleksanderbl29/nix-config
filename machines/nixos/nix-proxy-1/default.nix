@@ -28,6 +28,7 @@
       jellyfin = true;
       status = true;
       git = true;
+      ha = true;
     };
   };
 }
