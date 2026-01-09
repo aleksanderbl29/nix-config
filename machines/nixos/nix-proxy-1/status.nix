@@ -55,6 +55,13 @@
         interval = "5m";
         conditions = [ "[STATUS] == 200" ];
       }
+      {
+        name = "Git";
+        group = "Services";
+        url = "https://git.aleksanderbl.dk";
+        interval = "5m";
+        conditions = [ "[STATUS] == 200" ];
+      }
     ];
   };
 }

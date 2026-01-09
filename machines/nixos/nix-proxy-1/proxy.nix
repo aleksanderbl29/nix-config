@@ -73,13 +73,13 @@ in
             ''}
 
             # Route homelab services to internal domain
-            @homelab header_regexp Host ^${homelabServicePattern}\.aleksanderbl\.dk
+            @homelab header_regexp Host ^(${homelabServicePattern})\.aleksanderbl\.dk
             handle @homelab {
-              reverse_proxy {http.regexp.sub.1}.${cfg.baseDomain}:443 {
+              reverse_proxy {re.homelab.1}.${cfg.baseDomain}:443 {
                 transport http {
                   tls
                 }
-                header_up Host {http.regexp.sub.1}.${cfg.baseDomain}
+                header_up Host {re.homelab.1}.${cfg.baseDomain}
               }
             }
 

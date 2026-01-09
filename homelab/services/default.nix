@@ -41,5 +41,6 @@ in
     ./littlelink
     ./karakeep
     ./gatus
+    ./forgejo
   ];
 }

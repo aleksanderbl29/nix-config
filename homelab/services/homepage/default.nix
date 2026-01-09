@@ -113,6 +113,7 @@ in
             "Media"
             "Downloads"
             "Services"
+            "Development"
             "Smart Home"
           ];
           hl = config.homelab.services;
@@ -133,8 +134,9 @@ in
               "${service.homepage.name}" = {
                 icon = service.homepage.icon;
                 description = service.homepage.description;
-                href = "https://${service.url}";
-                siteMonitor = "https://${service.url}";
+                # Use proxyUrl if available, otherwise use internal url
+                href = "https://${service.proxyUrl or service.url}";
+                siteMonitor = "https://${service.proxyUrl or service.url}";
               };
             }) services;
         in
