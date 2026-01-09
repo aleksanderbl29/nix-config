@@ -22,6 +22,10 @@
       beszel = {
         enable = true;
       };
+      forgejo = {
+        enable = true;
+        proxyUrl = "git.aleksanderbl.dk";
+      };
     };
   };
 }

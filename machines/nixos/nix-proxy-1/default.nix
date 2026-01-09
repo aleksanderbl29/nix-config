@@ -27,6 +27,7 @@
       bookmarks = true;
       jellyfin = true;
       status = true;
+      git = true;
     };
   };
 }

@@ -82,8 +82,6 @@ in
       };
       extraOptions = [
         "--hostname=littlelink-server"
-        "--network-alias=little-link"
-        "--network=proxy"
         "--security-opt=no-new-privileges:true"
       ];
     };
