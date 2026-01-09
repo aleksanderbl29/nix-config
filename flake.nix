@@ -48,6 +48,9 @@
       url = "github:aleksanderbl29/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-asahi.url = "github:nix-community/nixos-apple-silicon";
+
   };
 
   outputs =
@@ -79,6 +82,7 @@
       nixosConfigurations = {
         ironhide = libs.mkNixosConfig { hostname = "ironhide"; };
         nix-proxy-1 = libs.mkNixosConfig { hostname = "nix-proxy-1"; };
+        aleks-asahi = libs.mkAsahiconfig { hostname = "aleks-asahi"; };
       };
 
       colmena = {

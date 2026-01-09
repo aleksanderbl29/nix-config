@@ -146,4 +146,47 @@ in
         }
       ];
     };
+
+  mkAsahiconfig =
+    {
+      hostname,
+      user ? "aleksander",
+      system ? "aarch64-linux",
+    }:
+    nixpkgs.lib.nixosSystem {
+      inherit system;
+      specialArgs = { inherit inputs; };
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
+      modules = [
+        ../machines/nixos # shared nixos config
+        ../machines/nixos/${hostname} # machine-specific config
+
+        inputs.nixos-asahi.nixosModules.apple-silicon-support
+
+        # Custom nvim config from nvf
+        { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
+
+        inputs.home-manager.nixosModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.${user} =
+              { ... }:
+              {
+                imports = [
+                  ../home # same shared home-manager config
+                  inputs.catppuccin.homeModules.catppuccin
+                ];
+                catppuccin = catppuccinConfig;
+              };
+          };
+        }
+      ];
+    };
 }
