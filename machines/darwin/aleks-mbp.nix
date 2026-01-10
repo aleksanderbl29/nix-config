@@ -23,6 +23,9 @@ in
       # "gcloud-cli"
       "tad"
       "quarto"
+
+      # needed for hammerspoon configured in home/aleks-mbp.nix
+      "hammerspoon"
     ];
     brews = [
       "node"
