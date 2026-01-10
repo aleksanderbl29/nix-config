@@ -27,4 +27,9 @@
       TESTTHAT_CPUS=6
     '';
   };
+
+  home.file.".hammerspoon" = {
+    source = ../dots/hammerspoon;
+    recursive = true;
+  };
 }
