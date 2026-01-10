@@ -2,10 +2,30 @@ local M = {}
 
 function M.updateDockVisibility()
   local externalDisplayCount = 0
-  local primaryScreenId = hs.screen.primaryScreen():id()
+
+  -- Helper function to check if a screen is built-in
+  -- Checks for built-in display patterns in English and Danish
+  -- Uses case-insensitive matching for robustness
+  local function isBuiltInDisplay(screenName)
+    local screenNameLower = screenName:lower()
+    local builtInPatterns = {
+      "built%-in",      -- English
+      "indbygget",      -- Danish
+    }
+    
+    for _, pattern in ipairs(builtInPatterns) do
+      if screenNameLower:match(pattern) then
+        return true
+      end
+    end
+    return false
+  end
 
   for _, screen in ipairs(hs.screen.allScreens()) do
-    if screen:id() ~= primaryScreenId then
+    local screenName = screen:name()
+    -- Skip built-in displays by checking for localized patterns
+    -- This works even when an external monitor is set as primary
+    if not isBuiltInDisplay(screenName) then
       externalDisplayCount = externalDisplayCount + 1
     end
   end
