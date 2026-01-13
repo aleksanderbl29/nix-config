@@ -48,6 +48,9 @@ in
       extraOptions = [
         "--security-opt=no-new-privileges:true"
       ];
+      environment = {
+        PUPPETEER_EXECUTABLE_PATH="/usr/bin/chromium";
+      };
     };
 
     services.caddy.virtualHosts."${cfg.url}" = {
