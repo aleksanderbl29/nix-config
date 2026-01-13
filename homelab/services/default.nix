@@ -42,5 +42,6 @@ in
     ./karakeep
     ./gatus
     ./forgejo
+    ./webcheck
   ];
 }
