@@ -26,6 +26,9 @@
         enable = true;
         proxyUrl = "git.aleksanderbl.dk";
       };
+      webcheck = {
+        enable = true;
+      };
     };
   };
 }
