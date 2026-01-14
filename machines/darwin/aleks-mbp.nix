@@ -67,6 +67,8 @@ in
       air-formatter
       ai-tools.cursor-agent
       ai-tools.claude-code
+      kubectl
+      fluxcd
     ];
   };
 }
