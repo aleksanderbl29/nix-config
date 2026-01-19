@@ -24,15 +24,19 @@
     # Extra flags for k3s server:
     # - write kubeconfig readable by root/wheel
     # - label the node so it is easy to target in workloads
+    # - bind to vlan99 (Management VLAN) so Traefik/servicelb use that interface
+    #   This allows Caddy to use 80/443 on the main interface while k3s uses vlan99
     extraFlags = toString [
       "--write-kubeconfig-mode=644"
       "--node-label=homelab=true"
       "--node-label=role=server"
       "--node-label=name=ironhide"
-      # Use Caddy on the host as the only ingress:
-      # disable k3s' bundled Traefik and servicelb that otherwise bind 80/443.
-      "--disable=traefik"
-      "--disable=servicelb"
+      # Bind k3s API server and services to vlan99 (Management VLAN) at 192.168.99.222
+      # This allows Traefik and servicelb to use 80/443 on vlan99
+      # while Caddy uses 80/443 on the main interface (enp1s0)
+      "--node-ip=192.168.99.222"
+      "--bind-address=192.168.99.222"
+      "--advertise-address=192.168.99.222"
     ];
   };
 
@@ -42,4 +46,5 @@
     kubectl
     fluxcd
   ];
+
 }
