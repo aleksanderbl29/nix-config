@@ -23,6 +23,10 @@
             address = "192.168.99.199";
             prefixLength = 24;
           }
+          {
+            address = "192.168.99.222";
+            prefixLength = 24;
+          }
         ];
       };
       vlan207 = {
