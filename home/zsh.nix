@@ -86,7 +86,7 @@
         fu-commit = "nix flake update && git add flake.lock && git commit -m 'Update flake.lock'";
         open-nix = "nix-cd && code .";
         nix-nvim = "nix-cd && nvim .";
-        nix-format = "nix run nixpkgs#nixfmt-rfc-style **/*.nix";
+        nix-format = "nix run nixpkgs#nixfmt -- **/*.nix";
 
         # cd shortcuts
         ".." = "cd ..";
