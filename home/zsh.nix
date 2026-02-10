@@ -68,6 +68,8 @@
         # Editor
         c = "cursor .";
         ca = "cursor-agent";
+        # Kubectl
+        k = "kubectl";
 
         # Nix specifics
         nixswitch =
