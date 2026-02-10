@@ -62,6 +62,7 @@
       "neofetch"
       "nmap"
       "tree"
+      "yazi"
     ];
   };
 }
