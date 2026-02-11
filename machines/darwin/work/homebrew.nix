@@ -31,7 +31,7 @@
       "helium-browser"
       # "lm-studio"
       "meetingbar"
-      # "MonitorControl"
+      "MonitorControl"
       "obsidian"
       "onlyoffice"
       # "orbstack"
