@@ -18,7 +18,6 @@
               };
             };
             root = {
-              type = "disk";
               size = "100%";
               content = {
                 type = "filesystem";
