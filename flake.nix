@@ -50,7 +50,7 @@
     };
 
     disko = {
-      url = "github:nix-community/disko";
+      url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -84,7 +84,7 @@
       nixosConfigurations = {
         ironhide = libs.mkNixosConfig { hostname = "ironhide"; };
         nix-proxy-1 = libs.mkNixosConfig { hostname = "nix-proxy-1"; };
-        soundwave = libs.mkNixosConfig { hostname = "soundwave"; };
+        soundwave = libs.mkNixosConfig { hostname = "soundwave"; disko = true; };
       };
 
       colmena = {

@@ -67,6 +67,7 @@ in
       hostname,
       user ? "aleksander",
       system ? "x86_64-linux",
+      disko ? false,
     }:
     nixpkgs.lib.nixosSystem {
       inherit system;
@@ -80,6 +81,8 @@ in
       modules = [
         ../machines/nixos # shared nixos config
         ../machines/nixos/${hostname} # machine-specific config
+
+        if disko then { imports = [ inputs.disko.nixosModules.disko ]; } else { };
 
         # Custom nvim config from nvf
         { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
