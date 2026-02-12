@@ -5,7 +5,7 @@
     ./hardware-configuration.nix
     ./networking.nix
     ./homelab.nix
-    ./samba.nix
+    # ./samba.nix
     ./disko-config.nix
     ../../../modules/beszel-agent.nix
   ];
