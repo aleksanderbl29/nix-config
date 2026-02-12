@@ -84,7 +84,7 @@
       nixosConfigurations = {
         ironhide = libs.mkNixosConfig { hostname = "ironhide"; };
         nix-proxy-1 = libs.mkNixosConfig { hostname = "nix-proxy-1"; };
-        soundwave = libs.mkNixosConfig { hostname = "soundwave" };
+        soundwave = libs.mkNixosConfig { hostname = "soundwave"; };
       };
 
       colmena = {
@@ -101,11 +101,13 @@
             imports = [
               inputs.home-manager.nixosModules.home-manager
               ./machines/colmena
+              inputs.disko.nixosModules.disko
             ];
           };
 
         ironhide = import ./machines/colmena/ironhide;
         nix-proxy-1 = import ./machines/colmena/nix-proxy-1;
+        soundwave = import ./machines/colmena/soundwave;
       };
     };
 }

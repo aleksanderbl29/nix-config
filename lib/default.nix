@@ -67,7 +67,6 @@ in
       hostname,
       user ? "aleksander",
       system ? "x86_64-linux",
-      disko ? false,
     }:
     nixpkgs.lib.nixosSystem {
       inherit system;
