@@ -30,6 +30,14 @@ in
           '';
         };
       }
+      {
+        "soundwave-jellyfin.${cfg.baseDomain}" = {
+          extraConfig = ''
+            tls ${cfg.tls.certFile} ${cfg.tls.keyFile}
+            reverse_proxy http://soundwave:8096
+          '';
+        };
+      }
       # {
       #   "another-service.${cfg.baseDomain}" = {
       #     extraConfig = ''
