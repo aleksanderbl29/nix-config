@@ -59,7 +59,7 @@
     htop
     btop
     ghostty
-    inputs.my-nvf.packages.${system}.default
+    inputs.my-nvf.packages.${stdenv.hostPlatform.system}.default
     systemctl-tui
     gh
   ];
