@@ -43,14 +43,29 @@
   # Configure console keymap
   console.keyMap = "dk-latin1";
 
-  users.users.aleksander = {
-    isNormalUser = true;
-    description = "aleksander";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
+  users = {
+    users = {
+      aleksander = {
+        isNormalUser = true;
+        description = "aleksander";
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "docker"
+        ];
+      };
+      media = {
+        isSystemUser = true;
+        description = "media";
+        extraGroups = [
+          "media"
+        ];
+        group = "media";
+      };
+    };
+    groups = {
+      media = { };
+    };
   };
 
   environment.systemPackages = with inputs.nix-ai-tools.packages.${pkgs.system}; [
