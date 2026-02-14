@@ -1,6 +1,10 @@
 {
+  config,
   ...
 }:
+let
+  homelab = config.homelab;
+in
 {
   homelab = {
     enable = true;
@@ -9,6 +13,7 @@
         enable = true;
         hardwareAcceleration.intel = true;
         enableSkipIntroButton = true;
+        url = "soundwave-jellyfin.${homelab.baseDomain}";
       };
     };
   };
