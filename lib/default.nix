@@ -34,10 +34,10 @@ in
         inputs.nix-homebrew.darwinModules.nix-homebrew
 
         # Custom nvim config from nvf
-        { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
+        { environment.systemPackages = [ inputs.my-nvf.packages.${stdenv.hostPlatform.system}.default ]; }
 
         # Colmena dev version
-        # { environment.systemPackages = [ inputs.colmena.packages.${system}.colmena ]; }
+        # { environment.systemPackages = [ inputs.colmena.packages.${stdenv.hostPlatform.system}.colmena ]; }
 
         inputs.home-manager.darwinModules.home-manager
         {
@@ -82,7 +82,7 @@ in
         ../machines/nixos/${hostname} # machine-specific config
 
         # Custom nvim config from nvf
-        { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
+        { environment.systemPackages = [ inputs.my-nvf.packages.${stdenv.hostPlatform.system}.default ]; }
 
         inputs.home-manager.nixosModules.home-manager
         {
@@ -125,7 +125,7 @@ in
         inputs.nix-homebrew.darwinModules.nix-homebrew
 
         # Custom nvim config from nvf
-        { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
+        { environment.systemPackages = [ inputs.my-nvf.packages.${stdenv.hostPlatform.system}.default ]; }
 
         inputs.home-manager.darwinModules.home-manager
         {
