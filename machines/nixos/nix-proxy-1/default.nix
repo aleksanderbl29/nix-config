@@ -24,9 +24,11 @@
       gatus.enable = true;
     };
     publicExpose = {
+      # true  → proxy foo.aleksanderbl.dk to foo.local.aleksanderbl.dk (ironhide)
+      # "x.y" → proxy foo.aleksanderbl.dk to foo.x.y (specific machine domain)
       bookmarks = true;
-      jellyfin = true;
-      status = true;
+      jellyfin = "soundwave.aleksanderbl.dk";
+      status = true; # handled locally by gatus on this machine
       git = true;
       ha = true;
     };

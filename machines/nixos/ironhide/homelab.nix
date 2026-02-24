@@ -30,5 +30,11 @@
         enable = true;
       };
     };
+    remoteProxies = {
+      "soundwave-jellyfin" = {
+        machine = "soundwave";
+        service = "jellyfin";
+      };
+    };
   };
 }

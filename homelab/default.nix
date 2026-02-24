@@ -84,13 +84,65 @@ in
     };
 
     publicExpose = lib.mkOption {
-      type = lib.types.attrsOf lib.types.bool;
+      type = lib.types.attrsOf (lib.types.either lib.types.bool lib.types.str);
       default = { };
       example = {
         homepage = true;
-        jellyfin = false;
+        jellyfin = "soundwave.aleksanderbl.dk";
       };
-      description = "Map of homelab service names to a boolean indicating if they should be exposed via the external proxy (*.aleksanderbl.dk).";
+      description = ''
+        Map of homelab service names to their public exposure target.
+        - true: proxy foo.aleksanderbl.dk → foo.<baseDomain> (the default machine domain)
+        - "machine.aleksanderbl.dk": proxy foo.aleksanderbl.dk → foo.machine.aleksanderbl.dk
+        - false / omitted: not publicly exposed
+      '';
+    };
+
+    remoteProxies = lib.mkOption {
+      type = lib.types.attrsOf (
+        lib.types.submodule (
+          { name, ... }:
+          {
+            options = {
+              machine = lib.mkOption {
+                type = lib.types.str;
+                description = ''
+                  Name of the remote machine (e.g. "soundwave"). The upstream domain
+                  is derived as <machine>.<parentDomain> where parentDomain is the
+                  second-level domain extracted from baseDomain.
+                '';
+              };
+              service = lib.mkOption {
+                type = lib.types.str;
+                default = name;
+                description = ''
+                  Subdomain of the service on the remote machine.
+                  Defaults to the attribute name so it does not need to be set
+                  when the local and remote subdomain names match.
+                '';
+              };
+            };
+          }
+        )
+      );
+      default = { };
+      example = {
+        jellyfin = {
+          machine = "soundwave";
+          # service defaults to "jellyfin"
+        };
+        foo = {
+          machine = "soundwave";
+          service = "bar"; # override when names differ
+        };
+      };
+      description = ''
+        Map of local subdomain names to remote machine/service pairs.
+        Creates a virtual host at <name>.<baseDomain> that reverse-proxies to
+        <service>.<machine>.<parentDomain> over HTTPS.
+        The parentDomain is automatically derived from baseDomain by dropping
+        the first label (e.g. "local.aleksanderbl.dk" → "aleksanderbl.dk").
+      '';
     };
   };
 
