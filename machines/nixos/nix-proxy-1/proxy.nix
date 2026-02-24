@@ -10,9 +10,7 @@ let
 
   # All publicExpose entries except "status" (handled locally via gatus)
   # Filter out false values (not exposed) and the local gatus service
-  remoteExposedServices = lib.filterAttrs (
-    name: v: name != "status" && v != false
-  ) cfg.publicExpose;
+  remoteExposedServices = lib.filterAttrs (name: v: name != "status" && v != false) cfg.publicExpose;
 
   # Build a Caddy virtual host for a service given its target machine domain
   makeServiceVhost =
