@@ -89,6 +89,25 @@
         soundwave = libs.mkNixosConfig { hostname = "soundwave"; };
       };
 
+      devShells = nixpkgs.lib.genAttrs [
+        "aarch64-darwin"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "x86_64-linux"
+      ] (system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        {
+          default = pkgs.mkShell {
+            packages = [
+              pkgs.sops
+              pkgs.age
+              colmena.packages.${system}.colmena
+            ];
+          };
+        });
+
       colmenaHive = colmena.lib.makeHive self.outputs.colmena;
 
       colmena = {
