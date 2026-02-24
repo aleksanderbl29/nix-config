@@ -5,22 +5,39 @@
 }:
 let
   cfg = config.homelab;
-  # Collect subdomains from homelab.publicExpose where value is true
-  exposedServices = lib.attrNames (lib.filterAttrs (_: v: v == true) cfg.publicExpose);
-  # Exclude status from homelab services since it runs locally on nix-proxy-1
-  homelabServices = lib.filter (s: s != "status") exposedServices;
-  homelabServiceMatcher = lib.concatStringsSep "|" homelabServices;
-  homelabServicePattern =
-    if homelabServiceMatcher == "" then "(^$)" else "(" + homelabServiceMatcher + ")";
+  tlsCert = "/var/lib/acme/aleksanderbl.dk/cert.pem";
+  tlsKey = "/var/lib/acme/aleksanderbl.dk/key.pem";
+
+  # All publicExpose entries except "status" (handled locally via gatus)
+  # Filter out false values (not exposed) and the local gatus service
+  remoteExposedServices = lib.filterAttrs (name: v: name != "status" && v != false) cfg.publicExpose;
+
+  # Build a Caddy virtual host for a service given its target machine domain
+  makeServiceVhost =
+    name: target:
+    let
+      targetDomain = if target == true then cfg.baseDomain else target;
+    in
+    lib.nameValuePair "${name}.aleksanderbl.dk" {
+      extraConfig = ''
+        tls ${tlsCert} ${tlsKey}
+        reverse_proxy ${name}.${targetDomain}:443 {
+          transport http {
+            tls
+          }
+          header_up Host ${name}.${targetDomain}
+        }
+      '';
+    };
 in
 {
   imports = [
-    # Reuse homelab options (baseDomain, tls, etc.)
+    # Reuse homelab options (baseDomain, tls, publicExpose, etc.)
     ../../../homelab
   ];
 
   options.proxy = {
-    enable = lib.mkEnableOption "Enable wildcard reverse proxy from *.aleksanderbl.dk to selected *.${cfg.baseDomain} based on homelab.publicExpose flags";
+    enable = lib.mkEnableOption "Enable public reverse proxy from *.aleksanderbl.dk to per-service machine domains";
   };
 
   config = lib.mkIf config.proxy.enable {
@@ -59,41 +76,40 @@ in
         debug
       '';
 
-      virtualHosts = {
-        "*.aleksanderbl.dk" = {
-          extraConfig = ''
-            tls /var/lib/acme/aleksanderbl.dk/cert.pem /var/lib/acme/aleksanderbl.dk/key.pem
+      virtualHosts = lib.mkMerge [
+        # Per-service vhosts: foo.aleksanderbl.dk → foo.<machineDomain>:443
+        (lib.mapAttrs' makeServiceVhost remoteExposedServices)
 
-            # Manual override: status/gatus runs locally on nix-proxy-1
-            ${lib.optionalString (cfg.services.gatus.enable or false) ''
-              @status header_regexp Host ^status\.aleksanderbl\.dk
-              handle @status {
-                reverse_proxy http://127.0.0.1:${toString cfg.services.gatus.port}
-              }
-            ''}
+        # Status/gatus runs locally on nix-proxy-1 itself
+        (lib.optionalAttrs (cfg.services.gatus.enable or false) {
+          "status.aleksanderbl.dk" = {
+            extraConfig = ''
+              tls ${tlsCert} ${tlsKey}
+              reverse_proxy http://127.0.0.1:${toString cfg.services.gatus.port}
+            '';
+          };
+        })
 
-            # Route homelab services to internal domain
-            @homelab header_regexp Host ^(${homelabServicePattern})\.aleksanderbl\.dk
-            handle @homelab {
-              reverse_proxy {re.homelab.1}.${cfg.baseDomain}:443 {
-                transport http {
-                  tls
-                }
-                header_up Host {re.homelab.1}.${cfg.baseDomain}
-              }
-            }
+        # aleksanderbl.dk → baseDomain redirect
+        {
+          "aleksanderbl.dk" = {
+            extraConfig = ''
+              tls ${tlsCert} ${tlsKey}
+              redir https://${cfg.baseDomain} permanent
+            '';
+          };
+        }
 
-            respond 404
-          '';
-        };
-
-        "aleksanderbl.dk" = {
-          extraConfig = ''
-            tls /var/lib/acme/aleksanderbl.dk/cert.pem /var/lib/acme/aleksanderbl.dk/key.pem
-            redir https://${cfg.baseDomain} permanent
-          '';
-        };
-      };
+        # Catch-all 404 for any other *.aleksanderbl.dk subdomain
+        {
+          "*.aleksanderbl.dk" = {
+            extraConfig = ''
+              tls ${tlsCert} ${tlsKey}
+              respond 404
+            '';
+          };
+        }
+      ];
     };
 
     services.journald.extraConfig = ''
