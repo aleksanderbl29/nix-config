@@ -19,7 +19,7 @@ in
       "private-internet-access"
       "cursor"
       "makemkv"
-      "linear-linear"
+      # "linear-linear"
       # "gcloud-cli"
       "tad"
       "quarto"
