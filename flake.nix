@@ -17,6 +17,8 @@
 
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
 
+    colmena.url = "github:zhaofengli/colmena";
+
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -86,6 +88,8 @@
         nix-proxy-1 = libs.mkNixosConfig { hostname = "nix-proxy-1"; };
         soundwave = libs.mkNixosConfig { hostname = "soundwave"; };
       };
+
+      colmenaHive = colmena.lib.makeHive self.outputs.colmena;
 
       colmena = {
         meta = {
