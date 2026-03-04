@@ -62,6 +62,13 @@
         interval = "5m";
         conditions = [ "[STATUS] == 200" ];
       }
+      {
+        name = "Umami";
+        group = "Services";
+        url = "https://umami.aleksanderbl.dk";
+        interval = "5m";
+        conditions = [ "[STATUS] == 200" ];
+      }
     ];
   };
 }

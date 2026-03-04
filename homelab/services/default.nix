@@ -43,5 +43,6 @@ in
     ./gatus
     ./forgejo
     ./webcheck
+    ./umami
   ];
 }

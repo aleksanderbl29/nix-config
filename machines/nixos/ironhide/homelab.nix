@@ -29,6 +29,9 @@
       webcheck = {
         enable = true;
       };
+      umami = {
+        enable = true;
+      };
     };
     remoteProxies = {
       "soundwave-jellyfin" = {

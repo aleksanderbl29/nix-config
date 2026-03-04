@@ -31,6 +31,7 @@
       status = true; # handled locally by gatus on this machine
       git = true;
       ha = true;
+      umami = true;
     };
   };
 }
