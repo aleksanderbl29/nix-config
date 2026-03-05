@@ -69,6 +69,20 @@
         interval = "5m";
         conditions = [ "[STATUS] == 200" ];
       }
+      {
+        name = "digitalinfrastruktur.dk";
+        group = "Work";
+        url = "https://dig-in.dk";
+        interval = "5m";
+        conditions = [ "[STATUS] == 200" ];
+      }
+      {
+        name = "youthCTRL";
+        group = "Work";
+        url = "https://youthctrl.dk";
+        interval = "5m";
+        conditions = [ "[STATUS] == 200" ];
+      }
     ];
   };
 }
