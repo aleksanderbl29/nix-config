@@ -73,7 +73,11 @@ in
     services.caddy.virtualHosts."${cfg.url}" = {
       extraConfig = ''
         tls ${homelab.tls.certFile} ${homelab.tls.keyFile}
-        reverse_proxy http://127.0.0.1:${toString cfg.port}
+        reverse_proxy http://127.0.0.1:${toString cfg.port} {
+          header_up X-Real-IP {http.request.header.X-Real-IP}
+          header_up X-Forwarded-For {http.request.header.X-Forwarded-For}
+          header_up X-Forwarded-Proto {http.request.scheme}
+        }
       '';
     };
   };

@@ -26,6 +26,9 @@ let
             tls
           }
           header_up Host ${name}.${targetDomain}
+          header_up X-Real-IP {remote_host}
+          header_up X-Forwarded-For {remote_host}
+          header_up X-Forwarded-Host {http.request.host}
         }
       '';
     };
