@@ -78,6 +78,7 @@
     gh
     vscode-fhs
     yazi
+    obsidian
   ];
 
   programs.firefox.enable = true;
