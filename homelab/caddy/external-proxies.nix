@@ -40,6 +40,14 @@ in
         };
       }
       {
+        "vinyl.${cfg.baseDomain}" = {
+          extraConfig = ''
+            tls ${cfg.tls.certFile} ${cfg.tls.keyFile}
+            reverse_proxy http://hyperhdr:8000
+          '';
+        };
+      }
+      {
         "ha.${cfg.baseDomain}" = {
           extraConfig = ''
             tls ${cfg.tls.certFile} ${cfg.tls.keyFile}
