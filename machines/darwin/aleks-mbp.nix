@@ -23,6 +23,7 @@ in
       # "gcloud-cli"
       "tad"
       "quarto"
+      "radiola"
 
       # needed for hammerspoon configured in home/aleks-mbp.nix
       "hammerspoon"
