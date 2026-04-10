@@ -44,5 +44,6 @@ in
     ./forgejo
     ./webcheck
     ./umami
+    ./labelstudio
   ];
 }

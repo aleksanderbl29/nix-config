@@ -34,6 +34,10 @@
       };
     };
     remoteProxies = {
+      labelstudio = {
+        machine = "soundwave";
+        service = "labelstudio";
+      };
       "soundwave-jellyfin" = {
         machine = "soundwave";
         service = "jellyfin";
