@@ -14,7 +14,6 @@
     openFirewall = true;
     settings = {
       global = {
-        securityType = "user";
         workgroup = "WORKGROUP";
         "server string" = "ironhide";
         "netbios name" = "ironhide";
@@ -39,13 +38,9 @@
         "unix extensions" = "yes";
         "unix charset" = "UTF-8";
         "dos charset" = "CP932";
-        "display charset" = "UTF-8";
         # Disk space reporting settings
         "dfree command" = "/usr/bin/dfree";
         "dfree cache time" = "30";
-        "dfree" = "yes";
-        "dfree:disk_free" = "yes";
-        "dfree:disk_total" = "yes";
       };
       private = {
         path = "/mnt/private";
@@ -63,10 +58,6 @@
         "ea support" = "yes";
         "inherit owner" = "yes";
         "inherit permissions" = "yes";
-        # Disk space reporting
-        "dfree" = "yes";
-        "dfree:disk_free" = "yes";
-        "dfree:disk_total" = "yes";
       };
       media = {
         path = "/mnt/media";
@@ -77,7 +68,6 @@
         "directory mask" = "0755";
         "force user" = "media";
         "force group" = "media";
-        "max depth" = "99"; # Limit directory depth to 10 levels
         # macOS specific share settings
         # "fruit:time machine" = "yes";
         # "fruit:time machine max size" = "536870912000";  # 500GB in bytes
@@ -89,10 +79,6 @@
         "valid users" = "media aleksander";
         "write list" = "media aleksander";
         "read list" = "media aleksander";
-        # Disk space reporting
-        "dfree" = "yes";
-        "dfree:disk_free" = "yes";
-        "dfree:disk_total" = "yes";
       };
     };
   };
