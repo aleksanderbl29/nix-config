@@ -20,7 +20,7 @@
         security = "user";
         "map to guest" = "bad user";
         "dns proxy" = "no";
-        "hosts allow" = "127.0.0.1 192.168.0.0/16 10.0.0.0/8 192.168.20.0/24";
+        "hosts allow" = "127.0.0.1 192.168.0.0/16 10.0.0.0/8 192.168.20.0/24 100.64.0.0/10";
         "hosts deny" = "0.0.0.0/0";
         # macOS specific settings
         "vfs objects" = "catia fruit streams_xattr";
