@@ -79,8 +79,13 @@
   system.activationScripts.samba-dirs = ''
     mkdir -p /mnt/private
     mkdir -p /mnt/media
+    mkdir -p /mnt/media/music
+    mkdir -p /mnt/media/movies
+    mkdir -p /mnt/media/tv
+    mkdir -p /var/lib/jellyfin/data/collections
     chown -R aleksander:users /mnt/private
     chown -R media:media /mnt/media
+    chown -R media:media /var/lib/jellyfin/data/collections
     chmod 700 /mnt/private
     chmod 777 /mnt/media
   '';

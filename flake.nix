@@ -55,6 +55,11 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    jellarr = {
+      url = "github:venkyr77/jellarr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

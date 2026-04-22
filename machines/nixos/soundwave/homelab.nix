@@ -14,6 +14,8 @@
       };
       jellyfin = {
         enable = true;
+        jellarr.enable = true;
+        jellarr.environmentFile = "/var/lib/jellyfin/jellarr.env";
         hardwareAcceleration.intel = true;
         enableSkipIntroButton = true;
       };
