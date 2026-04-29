@@ -25,6 +25,14 @@
       dates = "weekly";
       options = "--delete-older-than 5";
     };
+    substituters = [
+      "https://cache.nixos.org"
+      "https://aleksanderbl.cachix.org"
+    ];
+    trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "aleksanderbl.cachix.org-1:qt6zlsWxJ5XNVmSGnhPuMzXKBiY02pQIzLTCSK42hRM="
+    ];
   };
 
   networking.networkmanager.enable = true;

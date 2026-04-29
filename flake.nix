@@ -113,6 +113,7 @@
                   pkgs.sops
                   pkgs.age
                   colmena.packages.${system}.colmena
+                  pkgs.cachix
                 ];
               };
             }
