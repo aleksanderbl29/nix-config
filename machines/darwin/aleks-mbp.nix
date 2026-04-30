@@ -2,11 +2,9 @@
   pkgs,
   inputs,
   ...
-}:
-let
+}: let
   ai-tools = inputs.nix-ai-tools.packages.${pkgs.system};
-in
-{
+in {
   imports = [
     ../common/shared/docker.nix
     ../../modules/ollama.nix
@@ -19,10 +17,11 @@ in
       "private-internet-access"
       "cursor"
       "makemkv"
-      "linear-linear"
+      # "linear-linear"
       # "gcloud-cli"
       "tad"
       "quarto"
+      "radiola"
 
       # needed for hammerspoon configured in home/aleks-mbp.nix
       "hammerspoon"
@@ -40,6 +39,7 @@ in
       "geos"
       "udunits"
       "expat"
+      "libgit2"
     ];
   };
 
@@ -47,7 +47,7 @@ in
 
   nix = {
     settings = {
-      trusted-users = [ "aleksander" ];
+      trusted-users = ["aleksander"];
     };
   };
 
@@ -57,7 +57,7 @@ in
   };
 
   environment = {
-    systemPath = [ "/opt/homebrew/bin" ];
+    systemPath = ["/opt/homebrew/bin"];
     variables = {
       QUARTO_R = "/opt/homebrew/bin/R";
       EDITOR = "nvim";
@@ -69,6 +69,7 @@ in
       ai-tools.claude-code
       kubectl
       fluxcd
+      ai-tools.codex
     ];
   };
 }

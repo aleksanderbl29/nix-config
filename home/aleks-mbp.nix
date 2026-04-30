@@ -25,6 +25,7 @@
   home.file.".Renviron" = {
     text = ''
       TESTTHAT_CPUS=6
+      RSTUDIO_WHICH_R=/opt/homebrew/bin/R
     '';
   };
 

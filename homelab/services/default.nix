@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   ...
 }:
@@ -34,6 +35,7 @@ in
   # - Homepage metadata for auto-discovery
   # - Automatic Caddy virtual host configuration
   imports = [
+    inputs.jellarr.nixosModules.default
     ./homepage
     ./immich
     ./jellyfin
@@ -43,5 +45,7 @@ in
     ./gatus
     ./forgejo
     ./webcheck
+    ./umami
+    ./labelstudio
   ];
 }

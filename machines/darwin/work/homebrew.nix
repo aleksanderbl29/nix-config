@@ -23,6 +23,7 @@
       "alt-tab"
       # "bentobox"
       "busycal"
+      "canva"
       "cursor"
       "displaylink"
       "firefox"
@@ -30,8 +31,9 @@
       "ghostty"
       "helium-browser"
       # "lm-studio"
+      "localsend"
       "meetingbar"
-      # "MonitorControl"
+      "MonitorControl"
       "obsidian"
       "onlyoffice"
       # "orbstack"
@@ -62,6 +64,7 @@
       "neofetch"
       "nmap"
       "tree"
+      "yazi"
     ];
   };
 }

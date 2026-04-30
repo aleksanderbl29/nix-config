@@ -81,6 +81,8 @@ in
         ../machines/nixos # shared nixos config
         ../machines/nixos/${hostname} # machine-specific config
 
+        inputs.disko.nixosModules.disko
+
         # Custom nvim config from nvf
         { environment.systemPackages = [ inputs.my-nvf.packages.${system}.default ]; }
 

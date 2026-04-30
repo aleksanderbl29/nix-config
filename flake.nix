@@ -17,6 +17,8 @@
 
     nix-ai-tools.url = "github:numtide/nix-ai-tools";
 
+    colmena.url = "github:zhaofengli/colmena";
+
     catppuccin = {
       url = "github:catppuccin/nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -46,6 +48,16 @@
 
     my-nvf = {
       url = "github:aleksanderbl29/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    jellarr = {
+      url = "github:venkyr77/jellarr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -79,7 +91,35 @@
       nixosConfigurations = {
         ironhide = libs.mkNixosConfig { hostname = "ironhide"; };
         nix-proxy-1 = libs.mkNixosConfig { hostname = "nix-proxy-1"; };
+        soundwave = libs.mkNixosConfig { hostname = "soundwave"; };
       };
+
+      devShells =
+        nixpkgs.lib.genAttrs
+          [
+            "aarch64-darwin"
+            "aarch64-linux"
+            "x86_64-darwin"
+            "x86_64-linux"
+          ]
+          (
+            system:
+            let
+              pkgs = import nixpkgs { inherit system; };
+            in
+            {
+              default = pkgs.mkShell {
+                packages = [
+                  pkgs.sops
+                  pkgs.age
+                  colmena.packages.${system}.colmena
+                  pkgs.cachix
+                ];
+              };
+            }
+          );
+
+      colmenaHive = colmena.lib.makeHive self.outputs.colmena;
 
       colmena = {
         meta = {
@@ -95,11 +135,13 @@
             imports = [
               inputs.home-manager.nixosModules.home-manager
               ./machines/colmena
+              inputs.disko.nixosModules.disko
             ];
           };
 
         ironhide = import ./machines/colmena/ironhide;
         nix-proxy-1 = import ./machines/colmena/nix-proxy-1;
+        soundwave = import ./machines/colmena/soundwave;
       };
     };
 }

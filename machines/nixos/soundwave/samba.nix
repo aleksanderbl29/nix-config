@@ -1,22 +1,13 @@
 { ... }:
-
 {
-  # Create media user and group
-  users.groups.media = { };
-  users.users.media = {
-    isSystemUser = true;
-    group = "media";
-    description = "Media share user";
-  };
-
   services.samba = {
     enable = true;
     openFirewall = true;
     settings = {
       global = {
         workgroup = "WORKGROUP";
-        "server string" = "ironhide";
-        "netbios name" = "ironhide";
+        "server string" = "soundwave";
+        "netbios name" = "soundwave";
         security = "user";
         "map to guest" = "bad user";
         "dns proxy" = "no";
@@ -83,12 +74,18 @@
     };
   };
 
-  # Create necessary directories
+  # Disko currently mounts only "/" on soundwave.
+  # Ensure Samba share directories exist on that filesystem.
   system.activationScripts.samba-dirs = ''
     mkdir -p /mnt/private
     mkdir -p /mnt/media
+    mkdir -p /mnt/media/music
+    mkdir -p /mnt/media/movies
+    mkdir -p /mnt/media/tv
+    mkdir -p /var/lib/jellyfin/data/collections
     chown -R aleksander:users /mnt/private
     chown -R media:media /mnt/media
+    chown -R media:media /var/lib/jellyfin/data/collections
     chmod 700 /mnt/private
     chmod 777 /mnt/media
   '';
