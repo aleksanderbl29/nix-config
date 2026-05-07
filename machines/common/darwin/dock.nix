@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   system.defaults.dock = {
     autohide = false;
     expose-group-apps = true;
@@ -17,7 +16,8 @@
       "/System/Applications/Preview.app"
       # "/Applications/Visual Studio Code.app"
       "/Applications/Cursor.app"
-      "/Applications/RStudio.app"
+      # "/Applications/RStudio.app"
+      "/Applications/Positron.app"
       "/Applications/Obsidian.app"
       # "/Applications/Iterm.app"
       "/Applications/Ghostty.app"

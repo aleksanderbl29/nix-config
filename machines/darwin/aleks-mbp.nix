@@ -22,6 +22,7 @@ in {
       "tad"
       "quarto"
       "radiola"
+      "positron"
 
       # needed for hammerspoon configured in home/aleks-mbp.nix
       "hammerspoon"

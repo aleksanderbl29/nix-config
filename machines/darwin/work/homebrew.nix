@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   homebrew = {
     enable = true;
     onActivation = {
@@ -37,6 +36,7 @@
       "obsidian"
       "onlyoffice"
       # "orbstack"
+      "positron"
       "r-app"
       "raycast"
       "rstudio"

@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # Remove login message from shell
   home.file.".hushlogin".text = "";
 
@@ -74,11 +73,13 @@
 
         # Nix specifics
         nixswitch =
-          if pkgs.stdenv.isDarwin then
-            "sudo darwin-rebuild switch --flake ~/nix-config/"
-          else
-            "sudo nixos-rebuild switch --flake /etc/nixos/";
-        nix-cd = if pkgs.stdenv.isDarwin then "cd ~/nix-config/" else "cd /etc/nixos/";
+          if pkgs.stdenv.isDarwin
+          then "sudo darwin-rebuild switch --flake ~/nix-config/"
+          else "sudo nixos-rebuild switch --flake /etc/nixos/";
+        nix-cd =
+          if pkgs.stdenv.isDarwin
+          then "cd ~/nix-config/"
+          else "cd /etc/nixos/";
         nix-gc = ''
           sudo nix-env -p /nix/var/nix/profiles/system --list-generations
           sudo nix-env -p /nix/var/nix/profiles/system --delete-generations old
@@ -105,6 +106,7 @@
           git add tests/testthat/_snaps/ && git commit -m "Update test snapshots $(date '+%d %b %Y')"
         '';
         r-format = "air format .";
+        posit = "open -a 'Positron' .";
       };
       oh-my-zsh = {
         enable = true;
