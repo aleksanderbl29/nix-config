@@ -81,10 +81,6 @@
     {
       darwinConfigurations = {
         aleks-mbp = libs.mkDarwinConfig { hostname = "aleks-mbp"; };
-        aleks-air = libs.mkDarwinConfig {
-          hostname = "aleks-air";
-          system = "x86_64-darwin";
-        };
         aleks-dig-in = libs.mkWorkconfig { hostname = "aleks-dig-in"; };
       };
 
