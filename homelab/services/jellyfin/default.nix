@@ -10,9 +10,10 @@ let
   jellarrLibraryPaths =
     let
       virtualFolders =
-        if cfg.jellarr.config ? library && cfg.jellarr.config.library ? virtualFolders
-        then cfg.jellarr.config.library.virtualFolders
-        else [ ];
+        if cfg.jellarr.config ? library && cfg.jellarr.config.library ? virtualFolders then
+          cfg.jellarr.config.library.virtualFolders
+        else
+          [ ];
     in
     lib.flatten (
       map (folder: map (pathInfo: pathInfo.path) (folder.libraryOptions.pathInfos or [ ])) virtualFolders
@@ -204,29 +205,31 @@ in
 
     # Expand environment variables inside the generated YAML config so
     # secrets can come from environmentFile at runtime.
-    systemd.services.jellarr.preStart = lib.mkIf cfg.jellarr.enable (lib.mkAfter ''
-      tmp_cfg="$(${pkgs.coreutils}/bin/mktemp)"
-      ${pkgs.gettext}/bin/envsubst < ${config.services.jellarr.dataDir}/config/config.yml > "$tmp_cfg"
-      ${pkgs.coreutils}/bin/install -m 0644 "$tmp_cfg" ${config.services.jellarr.dataDir}/config/config.yml
-      ${pkgs.coreutils}/bin/chown ${config.services.jellarr.user}:${config.services.jellarr.group} ${config.services.jellarr.dataDir}/config/config.yml
-      ${pkgs.coreutils}/bin/rm -f "$tmp_cfg"
+    systemd.services.jellarr.preStart = lib.mkIf cfg.jellarr.enable (
+      lib.mkAfter ''
+        tmp_cfg="$(${pkgs.coreutils}/bin/mktemp)"
+        ${pkgs.gettext}/bin/envsubst < ${config.services.jellarr.dataDir}/config/config.yml > "$tmp_cfg"
+        ${pkgs.coreutils}/bin/install -m 0644 "$tmp_cfg" ${config.services.jellarr.dataDir}/config/config.yml
+        ${pkgs.coreutils}/bin/chown ${config.services.jellarr.user}:${config.services.jellarr.group} ${config.services.jellarr.dataDir}/config/config.yml
+        ${pkgs.coreutils}/bin/rm -f "$tmp_cfg"
 
-      echo "Jellarr preflight: validating library paths from config"
-      missing_paths=0
-      for library_path in ${lib.concatStringsSep " " (map lib.escapeShellArg jellarrLibraryPaths)}; do
-        if [ -d "$library_path" ]; then
-          echo "Jellarr preflight: library path exists: $library_path"
-        else
-          echo "Jellarr preflight: missing library path: $library_path"
-          missing_paths=1
+        echo "Jellarr preflight: validating library paths from config"
+        missing_paths=0
+        for library_path in ${lib.concatStringsSep " " (map lib.escapeShellArg jellarrLibraryPaths)}; do
+          if [ -d "$library_path" ]; then
+            echo "Jellarr preflight: library path exists: $library_path"
+          else
+            echo "Jellarr preflight: missing library path: $library_path"
+            missing_paths=1
+          fi
+        done
+
+        if [ "$missing_paths" -ne 0 ]; then
+          echo "Jellarr preflight: one or more library paths are missing; aborting before apply."
+          exit 1
         fi
-      done
-
-      if [ "$missing_paths" -ne 0 ]; then
-        echo "Jellarr preflight: one or more library paths are missing; aborting before apply."
-        exit 1
-      fi
-    '');
+      ''
+    );
 
     systemd.services.jellarr.wantedBy = lib.mkIf (cfg.jellarr.enable && cfg.jellarr.runOnBoot) [
       "multi-user.target"

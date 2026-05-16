@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   system.defaults.dock = {
     autohide = false;
     expose-group-apps = true;
