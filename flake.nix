@@ -63,10 +63,7 @@
   };
 
   outputs =
-    inputs@{
-      nixpkgs,
-      ...
-    }:
+    inputs@{ nixpkgs, ... }:
     with inputs;
     let
       inherit (self) outputs;
@@ -102,6 +99,9 @@
             system:
             let
               pkgs = import nixpkgs { inherit system; };
+              updateBrew = pkgs.writeShellScriptBin "update-brew" ''
+                exec nix flake update homebrew-bundle homebrew-cask homebrew-core homebrew-services nix-homebrew "$@"
+              '';
             in
             {
               default = pkgs.mkShell {
@@ -110,7 +110,11 @@
                   pkgs.age
                   colmena.packages.${system}.colmena
                   pkgs.cachix
+                  updateBrew
                 ];
+                shellHook = ''
+                  alias update-brew="nix flake update homebrew-bundle homebrew-cask homebrew-core homebrew-services nix-homebrew"
+                '';
               };
             }
           );
