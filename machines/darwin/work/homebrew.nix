@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   homebrew = {
     enable = true;
     onActivation = {
@@ -25,7 +24,6 @@
       "busycal"
       "canva"
       "cursor"
-      "displaylink"
       "firefox"
       "google-chrome"
       "ghostty"
