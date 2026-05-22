@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -6,6 +11,7 @@
     ./networking.nix
     ./homelab.nix
     ./samba.nix
+    ./k3s.nix
     ../../../modules/beszel-agent.nix
   ];
 

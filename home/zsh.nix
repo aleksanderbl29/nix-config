@@ -68,6 +68,8 @@
         # Editor
         c = "cursor .";
         ca = "cursor-agent";
+        # Kubectl
+        k = "kubectl";
 
         # Temporary
         speciale = "cd '/Users/aleksander/Library/CloudStorage/OneDrive-AarhusUniversitet/10 - Speciale'";

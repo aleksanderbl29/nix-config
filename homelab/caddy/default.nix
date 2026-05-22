@@ -30,6 +30,8 @@ in
         extraDomainNames = [
           "*.${cfg.baseDomain}"
           "aleksanderbl.dk"
+          "k3s.aleksanderbl.dk"
+          "*.k3s.aleksanderbl.dk"
         ];
         dnsProvider = "cloudflare";
         dnsResolver = "1.1.1.1:53";
