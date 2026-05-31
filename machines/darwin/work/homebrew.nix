@@ -59,6 +59,7 @@
       "cowsay"
       "gh"
       "git"
+      "k3d"
       "mas"
       "neofetch"
       "nmap"
