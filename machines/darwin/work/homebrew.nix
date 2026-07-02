@@ -65,6 +65,7 @@
       "nmap"
       "tree"
       "yazi"
+      "ripgrep"
     ];
   };
 }

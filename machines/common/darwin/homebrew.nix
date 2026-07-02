@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   homebrew = {
     enable = true;
     onActivation = {
@@ -86,6 +85,7 @@
       "openjdk"
       "pandoc"
       "r"
+      "ripgrep"
       "starship"
       "tailscale"
       "tree"
