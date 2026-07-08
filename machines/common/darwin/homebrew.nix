@@ -35,7 +35,6 @@
       "ghostty"
       "home-assistant"
       "iterm2"
-      "legcord"
       # "latest"
       # "lm-studio"
       "meetingbar"
@@ -44,7 +43,6 @@
       "obs"
       "obsidian"
       # "orbstack"
-      "pgadmin4"
       # "positron"
       "quarto"
       "r-app"
@@ -64,7 +62,7 @@
       "vanilla"
       "visual-studio-code"
       "zotero"
-      "zoom"
+      # "zoom"
       "zen"
     ];
     brews = [
