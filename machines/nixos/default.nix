@@ -76,6 +76,9 @@
     inputs.my-nvf.packages.${stdenv.hostPlatform.system}.default
     systemctl-tui
     gh
+    duf
+    inxi
+    ncdu
   ];
 
   services.tailscale.enable = true;
