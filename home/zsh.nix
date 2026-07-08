@@ -67,6 +67,8 @@
         # Editor
         c = "cursor .";
         ca = "cursor-agent";
+        # Kubectl
+        k = "kubectl";
 
         # Temporary
         speciale = "cd '/Users/aleksander/OneDrive - Aarhus universitet/10 - Speciale'";
