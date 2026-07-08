@@ -68,8 +68,6 @@
         c = "cursor .";
         ca = "cursor-agent";
 
-        # Temporary
-        speciale = "cd '/Users/aleksander/OneDrive - Aarhus universitet/10 - Speciale'";
         # Nix specifics
         nixswitch =
           if pkgs.stdenv.isDarwin then
