@@ -76,8 +76,8 @@
     inputs.my-nvf.packages.${stdenv.hostPlatform.system}.default
     systemctl-tui
     gh
-		duf
-		inxi
+    duf
+    inxi
     ncdu
   ];
 
