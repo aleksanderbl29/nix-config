@@ -78,6 +78,7 @@
     gh
 		duf
 		inxi
+    ncdu
   ];
 
   services.tailscale.enable = true;
