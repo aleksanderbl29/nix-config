@@ -28,6 +28,7 @@
       # "balenaetcher"
       "bentobox"
       "busycal"
+      "codexbar"
       "cyberduck"
       "dropbox"
       "element"

@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   homebrew = {
     enable = true;
     onActivation = {
@@ -23,6 +23,7 @@
       # "bentobox"
       "busycal"
       "canva"
+      "codexbar"
       "cursor"
       "firefox"
       "google-chrome"
