@@ -68,7 +68,9 @@
     };
   };
 
-  environment.systemPackages = with inputs.nix-ai-tools.packages.${pkgs.system}; [
+  environment.systemPackages = with inputs.nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}; [
+    codex
+    cursor-agent
   ];
 
   # Enable the OpenSSH daemon.
