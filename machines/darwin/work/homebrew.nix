@@ -11,6 +11,11 @@
       appdir = "/Applications";
     };
     global.brewfile = true;
+    taps = [
+      "homebrew/bundle"
+      "homebrew/cask"
+      "homebrew/services"
+    ];
     masApps = {
       # "AdGuard for Safari" = 1440147259;
       # "Bitwarden" = 1352778147;
@@ -26,6 +31,8 @@
       "canva"
       "codexbar"
       "cursor"
+      "cursor-cli"
+      "codex"
       "firefox"
       "google-chrome"
       "ghostty"

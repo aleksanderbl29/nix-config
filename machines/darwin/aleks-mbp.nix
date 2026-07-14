@@ -3,9 +3,6 @@
   inputs,
   ...
 }:
-let
-  ai-tools = inputs.nix-ai-tools.packages.${pkgs.system};
-in
 {
   imports = [
     ../common/shared/docker.nix
@@ -18,6 +15,8 @@ in
     casks = [
       "private-internet-access"
       "cursor"
+      "cursor-cli"
+      "codex"
       "makemkv"
       # "linear-linear"
       # "gcloud-cli"
@@ -68,9 +67,6 @@ in
     systemPackages = with pkgs; [
       cachix
       air-formatter
-      ai-tools.cursor-agent
-      ai-tools.claude-code
-      ai-tools.codex
     ];
   };
 }
