@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Remove login message from shell
   home.file.".hushlogin".text = "";
 
