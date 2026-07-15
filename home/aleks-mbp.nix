@@ -8,7 +8,9 @@
     # minikube
     # kubectl
     compose2nix
-    supersonic
+    # supersonic currently fails to link on aarch64-darwin with nixpkgs-unstable.
+    # Re-enable once the package builds again.
+    # supersonic
     bruno
     # positron-bin
   ];
@@ -19,6 +21,7 @@
     yazi = {
       enable = true;
       enableZshIntegration = true;
+      shellWrapperName = "yy";
     };
   };
 
