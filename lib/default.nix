@@ -6,6 +6,7 @@
 let
   catppuccinConfig = {
     enable = true;
+    autoEnable = true;
     flavor = "mocha";
   };
 in
