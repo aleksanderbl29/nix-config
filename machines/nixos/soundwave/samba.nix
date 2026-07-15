@@ -74,19 +74,14 @@
     };
   };
 
-  # Disko currently mounts only "/" on soundwave.
-  # Ensure Samba share directories exist on that filesystem.
+  # The media ZFS dataset mounts at /mnt/media.
+  # Keep its required library directories present without recursively changing files.
   system.activationScripts.samba-dirs = ''
-    mkdir -p /mnt/private
-    mkdir -p /mnt/media
-    mkdir -p /mnt/media/music
-    mkdir -p /mnt/media/movies
-    mkdir -p /mnt/media/tv
-    mkdir -p /var/lib/jellyfin/data/collections
-    chown -R aleksander:users /mnt/private
-    chown -R media:media /mnt/media
-    chown -R media:media /var/lib/jellyfin/data/collections
-    chmod 700 /mnt/private
-    chmod 777 /mnt/media
+    install -d -o aleksander -g users -m 0700 /mnt/private
+    install -d -o media -g media -m 0777 /mnt/media
+    install -d -o media -g media -m 0777 /mnt/media/music
+    install -d -o media -g media -m 0777 /mnt/media/movies
+    install -d -o media -g media -m 0777 /mnt/media/tv
+    install -d -o media -g media -m 0777 /var/lib/jellyfin/data/collections
   '';
 }

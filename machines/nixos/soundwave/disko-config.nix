@@ -28,65 +28,67 @@
           };
         };
       };
-      # stor1 = {
-      #   device = "/dev/....";
-      #   content = {
-      #     type = "gpt";
-      #     partitions = {
-      #       zfs = {
-      #         size = "100%";
-      #         content = {
-      #           type = "zfs";
-      #           pool = "storage";
-      #         };
-      #       };
-      #     };
-      #   };
-      # };
-      # stor2 = {
-      #   device = "/dev/....";
-      #   content = {
-      #     type = "gpt";
-      #     partitions = {
-      #       zfs = {
-      #         size = "100%";
-      #         content = {
-      #           type = "zfs";
-      #           pool = "storage";
-      #         };
-      #       };
-      #     };
-      #   };
-      # };
-      # stor3 = {
-      #   device = "/dev/....";
-      #   content = {
-      #     type = "gpt";
-      #     partitions = {
-      #       zfs = {
-      #         size = "100%";
-      #         content = {
-      #           type = "zfs";
-      #           pool = "storage";
-      #         };
-      #         };
-      #       };
-      #     };
-      #   };
-      # };
-      # zpool = {
-      #   storage = {
-      #     type = "zpool";
-      #     mode = "raidz1";
-      #     mountpoint = "/storage";
+      stor1 = {
+        # Replace this with the actual /dev/disk/by-id path before deployment.
+        device = "/dev/disk/by-id/REPLACE_WITH_STORAGE_DISK_1";
+        type = "disk";
+        content = {
+          type = "gpt";
+          partitions.zfs = {
+            size = "100%";
+            content = {
+              type = "zfs";
+              pool = "storage";
+            };
+          };
+        };
+      };
+      stor2 = {
+        # Replace this with the actual /dev/disk/by-id path before deployment.
+        device = "/dev/disk/by-id/REPLACE_WITH_STORAGE_DISK_2";
+        type = "disk";
+        content = {
+          type = "gpt";
+          partitions.zfs = {
+            size = "100%";
+            content = {
+              type = "zfs";
+              pool = "storage";
+            };
+          };
+        };
+      };
+      stor3 = {
+        # Replace this with the actual /dev/disk/by-id path before deployment.
+        device = "/dev/disk/by-id/REPLACE_WITH_STORAGE_DISK_3";
+        type = "disk";
+        content = {
+          type = "gpt";
+          partitions.zfs = {
+            size = "100%";
+            content = {
+              type = "zfs";
+              pool = "storage";
+            };
+          };
+        };
+      };
+    };
+    zpool = {
+      storage = {
+        type = "zpool";
+        mode = "raidz1";
+        mountpoint = "none";
 
-      #     datasets = {
-      #       dataset = {
-      #         type = "zfs_fs";
-      #         mountpoint = "/storage/dataset";
-      #       };
-      #     };
-      #   };
+        datasets.private = {
+          type = "zfs_fs";
+          mountpoint = "/mnt/private";
+        };
+        datasets.media = {
+          type = "zfs_fs";
+          mountpoint = "/mnt/media";
+        };
+      };
     };
   };
 }
