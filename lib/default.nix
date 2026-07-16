@@ -9,6 +9,52 @@ let
     autoEnable = true;
     flavor = "mocha";
   };
+
+  nixosOverlays = [
+    (
+      final: prev:
+      let
+        karakeepPnpm10Patch = ''
+          substituteInPlace pnpm-lock.yaml \
+            --replace-fail 7nc6rwxl5vjub4hxnqupqavqpi cc2a1c1903e66d7f6cea77c615cb9ae3b36a694502c1c588c3e34d28aa925aac \
+            --replace-fail kvggi4abfe6iel7wt6iiemonyq 725863c0591d89ca053226c49fe7bc321f320391ec5f78b6c2e8e41ab1868805
+        '';
+      in
+      {
+        fetchPnpmDeps =
+          args:
+          prev.fetchPnpmDeps (
+            args
+            //
+              final.lib.optionalAttrs ((args.pname or null) == "jellarr" && (args.version or null) == "0.1.0")
+                {
+                  hash = "sha256-DA4PFpH+CZRHtreOlRHz0S3/93LdqlHVvsUyw9WAwII=";
+                }
+          );
+
+        # Work around insecure pnpm pins until nixpkgs updates Karakeep.
+        karakeep = (prev.karakeep.override { pnpm_9 = final.pnpm_10; }).overrideAttrs (old: {
+          postPatch = old.postPatch + karakeepPnpm10Patch;
+          pnpmDeps = final.fetchPnpmDeps {
+            inherit (old)
+              patches
+              pname
+              src
+              version
+              ;
+            fetcherVersion = 3;
+            hash = "sha256-fd9eMvTPHER1lp8tlXEMrnEf4cQsT/qtJbSwEiy64fY=";
+            pnpm = final.pnpm_10;
+            postPatch = karakeepPnpm10Patch;
+          };
+        });
+
+        # The jellarr flake still uses fetchPnpmDeps fetcherVersion 3, which is
+        # incompatible with the current pnpm_11 default.
+        pnpm = prev.pnpm_10;
+      }
+    )
+  ];
 in
 {
 
@@ -74,9 +120,8 @@ in
       specialArgs = { inherit inputs; };
       pkgs = import nixpkgs {
         inherit system;
-        config = {
-          allowUnfree = true;
-        };
+        config.allowUnfree = true;
+        overlays = nixosOverlays;
       };
       modules = [
         ../machines/nixos # shared nixos config
