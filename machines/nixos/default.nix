@@ -45,6 +45,11 @@
 
   programs.zsh.enable = true;
 
+  users.groups.nix-admin.members = [
+    "aleksander"
+    "root"
+  ];
+
   users.users.aleksander = {
     isNormalUser = true;
     description = "aleksander";
@@ -65,6 +70,17 @@
     # consoleFont = "Lat2-Terminus16";
     defaultLocale = "en_DK.UTF-8";
     # supportedLocales = [ "all" ];
+  };
+
+  system.activationScripts.nixAdminPermissions = {
+    deps = [ "users" ];
+    text = ''
+      if [ -d /etc/nixos ]; then
+        chown -R root:nix-admin /etc/nixos
+        chmod -R g+rwX /etc/nixos
+        chmod g+s /etc/nixos
+      fi
+    '';
   };
 
   environment.systemPackages = with pkgs; [
