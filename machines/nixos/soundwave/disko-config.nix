@@ -29,7 +29,6 @@
         };
       };
       stor1 = {
-        # Replace this with the actual /dev/disk/by-id path before deployment.
         device = "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U9NU0Y923601X";
         type = "disk";
         content = {
@@ -44,7 +43,6 @@
         };
       };
       stor2 = {
-        # Replace this with the actual /dev/disk/by-id path before deployment.
         device = "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U9NU0Y910848W";
         type = "disk";
         content = {
@@ -59,7 +57,6 @@
         };
       };
       stor3 = {
-        # Replace this with the actual /dev/disk/by-id path before deployment.
         device = "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U9NU0Y910866N";
         type = "disk";
         content = {
@@ -78,7 +75,8 @@
       storage = {
         type = "zpool";
         mode = "raidz1";
-        mountpoint = "none";
+        # Don't mount the pool root; datasets mount under /mnt/{private,media}.
+        mountpoint = null;
 
         datasets.private = {
           type = "zfs_fs";
