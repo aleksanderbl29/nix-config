@@ -30,7 +30,7 @@
       };
       stor1 = {
         # Replace this with the actual /dev/disk/by-id path before deployment.
-        device = "/dev/disk/by-id/REPLACE_WITH_STORAGE_DISK_1";
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U9NU0Y923601X";
         type = "disk";
         content = {
           type = "gpt";
@@ -45,7 +45,7 @@
       };
       stor2 = {
         # Replace this with the actual /dev/disk/by-id path before deployment.
-        device = "/dev/disk/by-id/REPLACE_WITH_STORAGE_DISK_2";
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U9NU0Y910848W";
         type = "disk";
         content = {
           type = "gpt";
@@ -60,7 +60,7 @@
       };
       stor3 = {
         # Replace this with the actual /dev/disk/by-id path before deployment.
-        device = "/dev/disk/by-id/REPLACE_WITH_STORAGE_DISK_3";
+        device = "/dev/disk/by-id/nvme-Samsung_SSD_990_EVO_Plus_4TB_S7U9NU0Y910866N";
         type = "disk";
         content = {
           type = "gpt";
