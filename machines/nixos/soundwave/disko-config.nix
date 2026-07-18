@@ -77,6 +77,9 @@
         mode = "raidz1";
         # Don't mount the pool root; datasets mount under /mnt/{private,media}.
         mountpoint = null;
+        options = {
+          autotrim = "on";
+        };
 
         datasets.private = {
           type = "zfs_fs";

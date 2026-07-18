@@ -19,6 +19,14 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.forceImportRoot = false;
 
+  # Cap ARC so ZFS does not eat most of RAM - 4 GiB
+  boot.kernelParams = [ "zfs.zfs_arc_max=${toString (4 * 1024 * 1024 * 1024)}" ];
+
+  services.zfs = {
+    trim.enable = true;
+    autoScrub.enable = true;
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
 
