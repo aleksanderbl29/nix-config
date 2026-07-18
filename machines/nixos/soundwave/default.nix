@@ -69,6 +69,7 @@
           "networkmanager"
           "wheel"
           "docker"
+          "media"
         ];
       };
       media = {
