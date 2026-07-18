@@ -16,6 +16,9 @@
     efi.canTouchEfiVariables = true;
   };
 
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportRoot = false;
+
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
 
