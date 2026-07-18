@@ -16,6 +16,23 @@
     efi.canTouchEfiVariables = true;
   };
 
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.zfs.forceImportRoot = false;
+
+  # Cap ARC so ZFS does not eat most of RAM - 4 GiB
+  boot.kernelParams = [ "zfs.zfs_arc_max=${toString (4 * 1024 * 1024 * 1024)}" ];
+
+  services.zfs = {
+    trim.enable = true;
+    autoScrub.enable = true;
+  };
+
+  services.beszel-agent.extraFilesystems = [
+    "/"
+    "/mnt/media__Media"
+    "/mnt/private__Private"
+  ];
+
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
 
@@ -68,10 +85,14 @@
     };
   };
 
-  environment.systemPackages = with inputs.nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}; [
-    codex
-    cursor-agent
-  ];
+  environment.systemPackages =
+    (with inputs.nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}; [
+      codex
+      cursor-agent
+    ])
+    ++ (with pkgs; [
+      rsync
+    ]);
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
