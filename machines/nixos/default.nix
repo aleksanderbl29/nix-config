@@ -95,6 +95,7 @@
     duf
     inxi
     ncdu
+    ripgrep
   ];
 
   services.tailscale.enable = true;
