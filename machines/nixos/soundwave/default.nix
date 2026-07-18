@@ -27,6 +27,12 @@
     autoScrub.enable = true;
   };
 
+  services.beszel-agent.extraFilesystems = [
+    "/"
+    "/mnt/media__Media"
+    "/mnt/private__Private"
+  ];
+
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
 
