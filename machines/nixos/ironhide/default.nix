@@ -52,10 +52,12 @@
     ];
   };
 
-  environment.systemPackages = with inputs.nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}; [
-    codex
-    cursor-agent
-  ];
+  environment.systemPackages =
+    (with inputs.nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}; [
+      codex
+      cursor-agent
+    ])
+    ++ (with pkgs; [ rsync ]);
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
