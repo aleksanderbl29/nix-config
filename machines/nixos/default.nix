@@ -96,6 +96,7 @@
     inxi
     ncdu
     ripgrep
+    jq
   ];
 
   services.tailscale.enable = true;
