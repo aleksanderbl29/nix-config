@@ -78,10 +78,10 @@
   # Keep its required library directories present without recursively changing files.
   system.activationScripts.samba-dirs = ''
     install -d -o aleksander -g users -m 0700 /mnt/private
-    install -d -o media -g media -m 0777 /mnt/media
-    install -d -o media -g media -m 0777 /mnt/media/music
-    install -d -o media -g media -m 0777 /mnt/media/movies
-    install -d -o media -g media -m 0777 /mnt/media/tv
-    install -d -o media -g media -m 0777 /var/lib/jellyfin/data/collections
+    install -d -o media -g media -m 2775 /mnt/media
+    install -d -o media -g media -m 2775 /mnt/media/music
+    install -d -o media -g media -m 2775 /mnt/media/movies
+    install -d -o media -g media -m 2775 /mnt/media/tv
+    install -d -o media -g media -m 2775 /var/lib/jellyfin/data/collections
   '';
 }
