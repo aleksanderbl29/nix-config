@@ -8,11 +8,6 @@
       homepage = {
         enable = true;
       };
-      jellyfin = {
-        enable = true;
-        hardwareAcceleration.intel = true;
-        enableSkipIntroButton = true;
-      };
       littlelink = {
         enable = true;
       };
@@ -38,9 +33,8 @@
         machine = "soundwave";
         service = "labelstudio";
       };
-      "soundwave-jellyfin" = {
+      jellyfin = {
         machine = "soundwave";
-        service = "jellyfin";
       };
     };
   };
