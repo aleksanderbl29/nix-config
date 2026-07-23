@@ -55,8 +55,10 @@
         browseable = "yes";
         "read only" = "no";
         "guest ok" = "no";
-        "create mask" = "0644";
-        "directory mask" = "0755";
+        "create mask" = "0664";
+        "directory mask" = "2775";
+        "force create mode" = "0664";
+        "force directory mode" = "2775";
         "force user" = "media";
         "force group" = "media";
         # macOS specific share settings
