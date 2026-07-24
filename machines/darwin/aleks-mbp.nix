@@ -12,6 +12,7 @@
 
   homebrew = {
     casks = [
+      "brave-browser"
       "private-internet-access"
       "cursor"
       "cursor-cli"
