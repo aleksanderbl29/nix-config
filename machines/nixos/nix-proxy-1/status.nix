@@ -2,6 +2,16 @@
 {
   homelab.services.gatus = {
     enable = true;
+
+    alerting = {
+      enable = true;
+      environmentFile = "/var/lib/gatus/secrets.env";
+      providers.slack = {
+        enable = true;
+        settings.webhook-url = "\${SLACK_WEBHOOK_URL}";
+      };
+    };
+
     endpoints = [
       {
         name = "Website";
