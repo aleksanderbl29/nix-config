@@ -2,6 +2,32 @@
 let
   cfg = config.homelab.services.gatus;
   homelab = config.homelab;
+
+  enabledProviders = lib.filterAttrs (_: provider: provider.enable) cfg.alerting.providers;
+  enabledProviderNames = lib.attrNames enabledProviders;
+
+  alertingSettings = lib.mapAttrs (
+    _: provider:
+    provider.settings
+    // lib.optionalAttrs (cfg.alerting.defaultAlert != { }) {
+      default-alert = cfg.alerting.defaultAlert;
+    }
+  ) enabledProviders;
+
+  endpoints = map (
+    endpoint:
+    let
+      base = builtins.removeAttrs endpoint [ "alerts" ];
+      alerts =
+        if endpoint.alerts != null then
+          endpoint.alerts
+        else if cfg.alerting.enable then
+          map (type: { inherit type; }) enabledProviderNames
+        else
+          null;
+    in
+    base // lib.optionalAttrs (alerts != null) { inherit alerts; }
+  ) cfg.endpoints;
 in
 {
   options.homelab.services.gatus = {
@@ -86,6 +112,21 @@ in
               default = [ "[STATUS] == 200" ];
               description = "List of conditions that must be met for the endpoint to be considered healthy";
             };
+            alerts = lib.mkOption {
+              type = lib.types.nullOr (lib.types.listOf lib.types.attrs);
+              default = null;
+              description = ''
+                Per-endpoint alert overrides. null (default) attaches one alert per
+                enabled alerting provider. Set to [] to disable alerts for this endpoint.
+              '';
+              example = [
+                { type = "slack"; }
+                {
+                  type = "discord";
+                  failure-threshold = 5;
+                }
+              ];
+            };
           };
         }
       );
@@ -112,9 +153,89 @@ in
         description = "SQLite database filename (stored in dataDir)";
       };
     };
+
+    alerting = {
+      enable = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Enable alerting and attach enabled providers to endpoints";
+      };
+
+      environmentFile = lib.mkOption {
+        type = lib.types.nullOr lib.types.path;
+        default = null;
+        description = ''
+          Systemd environment file with secrets for alerting providers.
+          Reference variables in provider settings with ''${VAR_NAME}
+          (e.g. webhook-url = "''${SLACK_WEBHOOK_URL}").
+        '';
+        example = "/var/lib/gatus/secrets.env";
+      };
+
+      defaultAlert = lib.mkOption {
+        type = lib.types.attrs;
+        default = {
+          enabled = true;
+          failure-threshold = 1;
+          success-threshold = 2;
+          send-on-resolved = true;
+          description = "health check failed";
+        };
+        description = ''
+          Shared default-alert applied to every enabled provider.
+          See https://github.com/TwiN/gatus#setting-a-default-alert
+        '';
+      };
+
+      providers = lib.mkOption {
+        type = lib.types.attrsOf (
+          lib.types.submodule {
+            options = {
+              enable = lib.mkEnableOption "this Gatus alerting provider";
+
+              settings = lib.mkOption {
+                type = lib.types.attrs;
+                default = { };
+                description = ''
+                  Provider-specific settings passed through to Gatus (kebab-case keys).
+                  Provider name must match a Gatus alerting type (slack, discord, telegram, …).
+                  See https://github.com/TwiN/gatus#alerting
+                '';
+                example = {
+                  webhook-url = "\${SLACK_WEBHOOK_URL}";
+                  title = "Homelab status";
+                };
+              };
+            };
+          }
+        );
+        default = { };
+        description = ''
+          Alerting providers keyed by Gatus provider name. Enable the ones you want;
+          switching providers is just enable/disable (and settings).
+        '';
+        example = {
+          slack = {
+            enable = true;
+            settings.webhook-url = "\${SLACK_WEBHOOK_URL}";
+          };
+          discord = {
+            enable = false;
+            settings.webhook-url = "\${DISCORD_WEBHOOK_URL}";
+          };
+        };
+      };
+    };
   };
 
   config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = !cfg.alerting.enable || enabledProviders != { };
+        message = "homelab.services.gatus.alerting.enable requires at least one enabled entry in alerting.providers";
+      }
+    ];
+
     # Create data directory for SQLite database
     systemd.tmpfiles.rules = lib.mkIf cfg.storage.enable [
       "d ${cfg.storage.dataDir} 0750 gatus gatus - -"
@@ -122,9 +243,10 @@ in
 
     services.gatus = {
       enable = true;
+      environmentFile = cfg.alerting.environmentFile;
       settings = {
         web.port = cfg.port;
-        endpoints = cfg.endpoints;
+        inherit endpoints;
         ui = {
           title = "Status Page | Aleksander Bang-Larsen";
           header = "Status Page";
@@ -138,6 +260,9 @@ in
           type = "sqlite";
           path = "${cfg.storage.dataDir}/${cfg.storage.databaseFile}";
         };
+      }
+      // lib.optionalAttrs cfg.alerting.enable {
+        alerting = alertingSettings;
       };
     };
 
