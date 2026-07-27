@@ -22,6 +22,8 @@
   # Cap ARC so ZFS does not eat most of RAM - 4 GiB
   boot.kernelParams = [ "zfs.zfs_arc_max=${toString (4 * 1024 * 1024 * 1024)}" ];
 
+  boot.kernelModules = [ "sg" ];
+
   services.zfs = {
     trim.enable = true;
     autoScrub.enable = true;
