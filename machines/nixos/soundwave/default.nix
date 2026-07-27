@@ -19,8 +19,8 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.forceImportRoot = false;
 
-  # Cap ARC so ZFS does not eat most of RAM - 4 GiB
-  boot.kernelParams = [ "zfs.zfs_arc_max=${toString (4 * 1024 * 1024 * 1024)}" ];
+  # Cap ARC so ZFS does not eat most of RAM - 8 GiB
+  boot.kernelParams = [ "zfs.zfs_arc_max=${toString (8 * 1024 * 1024 * 1024)}" ];
 
   boot.kernelModules = [ "sg" ];
 
