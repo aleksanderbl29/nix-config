@@ -56,9 +56,22 @@ in
       default = false;
       description = "Sets env var to enable GPU monitoring.";
     };
+
+    smartData = mkOption {
+      type = types.bool;
+      default = true;
+      description = ''
+        Enable S.M.A.R.T. disk monitoring via smartctl.
+        Installs smartmontools and grants the agent CAP_SYS_RAWIO / CAP_SYS_ADMIN
+        (required for SATA and NVMe respectively). See https://beszel.dev/guide/smart-data
+      '';
+    };
   };
 
   config = mkIf cfg.enable {
+    # SCSI generic: needed for smartctl on SATA/ATA (ironhide); harmless on NVMe.
+    boot.kernelModules = mkIf cfg.smartData [ "sg" ];
+
     systemd.services.beszel-agent = {
       description = "Beszel Agent Service";
       after = [ "network.target" ];
@@ -68,20 +81,29 @@ in
         Environment = [
           "KEY=${cfg.key}"
           "EXTRA_FILESYSTEMS=${concatStringsSep "," cfg.extraFilesystems}"
-          "PATH=/run/current-system/sw/bin:$PATH"
-        ];
+          "PATH=${makeBinPath (optionals cfg.smartData [ pkgs.smartmontools ])}:/run/current-system/sw/bin"
+        ]
+        ++ optional cfg.gpu "GPU=true";
         ExecStart = "${pkgs.beszel}/bin/beszel-agent";
         User = cfg.user;
         Group = builtins.head cfg.groups;
         Restart = "always";
         RestartSec = cfg.restartSec;
+      }
+      // optionalAttrs cfg.smartData {
+        # SATA/ATA via SG_IO needs CAP_SYS_RAWIO; NVMe admin passthrough needs CAP_SYS_ADMIN.
+        # AmbientCapabilities is enough when running as root; needed if user is ever dropped.
+        AmbientCapabilities = "CAP_SYS_RAWIO CAP_SYS_ADMIN";
       };
     };
 
     networking.firewall.allowedTCPPorts = [ cfg.port ];
 
-    environment.systemPackages = with pkgs; [
-      beszel
-    ];
+    environment.systemPackages =
+      with pkgs;
+      [
+        beszel
+      ]
+      ++ optional cfg.smartData smartmontools;
   };
 }

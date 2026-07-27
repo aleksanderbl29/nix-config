@@ -53,7 +53,7 @@ in
 
     # Configure Docker container
     virtualisation.oci-containers.containers.beszel = {
-      image = "henrygd/beszel";
+      image = "henrygd/beszel:0.18.7";
       ports = [
         "${toString cfg.port}:8090"
       ];
