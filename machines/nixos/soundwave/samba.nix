@@ -84,6 +84,17 @@
     install -d -o media -g media -m 2775 /mnt/media/music
     install -d -o media -g media -m 2775 /mnt/media/movies
     install -d -o media -g media -m 2775 /mnt/media/tv
+
+    # MakeMKV: writable by Samba's forced media user and the container's media group.
+    install -d -o media -g media -m 2775 /mnt/media/makemkv
+    install -d -o media -g media -m 2775 /mnt/media/makemkv/config
+    install -d -o media -g media -m 2775 /mnt/media/makemkv/storage
+    install -d -o media -g media -m 2775 /mnt/media/makemkv/output
+
+    chgrp -R media /mnt/media/makemkv
+    find /mnt/media/makemkv -type d -exec chmod 2775 {} +
+    find /mnt/media/makemkv -type f -exec chmod 0664 {} +
+
     install -d -o media -g media -m 2775 /var/lib/jellyfin/data/collections
   '';
 }
