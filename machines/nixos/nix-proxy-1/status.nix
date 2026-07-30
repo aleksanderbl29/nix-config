@@ -28,21 +28,30 @@
         group = "Portfolio";
         url = "https://dev.aleksanderbl.dk";
         interval = "5m";
-        conditions = [ "[STATUS] == 200" ];
+        conditions = [
+          "[STATUS] == 200"
+          "[CERTIFICATE_EXPIRATION] > 240h"
+        ];
       }
       {
         name = "Website API";
         group = "Portfolio";
         url = "https://api.aleksanderbl.dk";
         interval = "5m";
-        conditions = [ "[STATUS] == 200" ];
+        conditions = [
+          "[STATUS] == 200"
+          "[CERTIFICATE_EXPIRATION] > 240h"
+        ];
       }
       {
         name = "Hvem Vinder Valget";
         group = "Side Projects";
         url = "https://hvemvindervalget.dk";
         interval = "5m";
-        conditions = [ "[STATUS] == 200" ];
+        conditions = [
+          "[STATUS] == 200"
+          "[CERTIFICATE_EXPIRATION] > 240h"
+        ];
       }
       {
         name = "dawaR";
@@ -70,28 +79,40 @@
         group = "Services";
         url = "https://git.aleksanderbl.dk";
         interval = "5m";
-        conditions = [ "[STATUS] == 200" ];
+        conditions = [
+          "[STATUS] == 200"
+          "[CERTIFICATE_EXPIRATION] > 240h"
+        ];
       }
       {
         name = "Umami";
         group = "Services";
         url = "https://umami.aleksanderbl.dk";
         interval = "5m";
-        conditions = [ "[STATUS] == 200" ];
+        conditions = [
+          "[STATUS] == 200"
+          "[CERTIFICATE_EXPIRATION] > 240h"
+        ];
       }
       {
         name = "digitalinfrastruktur.dk";
         group = "Work";
         url = "https://dig-in.dk";
         interval = "5m";
-        conditions = [ "[STATUS] == 200" ];
+        conditions = [
+          "[STATUS] == 200"
+          "[CERTIFICATE_EXPIRATION] > 240h"
+        ];
       }
       {
         name = "youthCTRL";
         group = "Work";
         url = "https://youthctrl.dk";
         interval = "5m";
-        conditions = [ "[STATUS] == 200" ];
+        conditions = [
+          "[STATUS] == 200"
+          "[CERTIFICATE_EXPIRATION] > 240h"
+        ];
       }
     ];
   };
