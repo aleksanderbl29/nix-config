@@ -50,6 +50,8 @@
       "rstudio"
       "signal"
       "stats"
+      "t3-code"
+      "tablepro"
       "tad"
       "tailscale"
       "todoist-app"
