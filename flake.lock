@@ -352,11 +352,11 @@
         "nvf": "nvf"
       },
       "locked": {
-        "lastModified": 1784121044,
-        "narHash": "sha256-PghXmttD5/9FBmt4qw+NyHYKP2R/C7GoLjyQAVVvxx0=",
+        "lastModified": 1784351443,
+        "narHash": "sha256-rOImIpIcZKgtI/E/LmfyAXjc2Cgrd8qdcmhy0knvsjM=",
         "owner": "aleksanderbl29",
         "repo": "nvf",
-        "rev": "2037763fb9563ec8a6fea9cfdab53824fdffe59f",
+        "rev": "25404fa505662b0bd8591bb36f15fcb7c9202c33",
         "type": "github"
       },
       "original": {
