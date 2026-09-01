@@ -45,6 +45,7 @@
   users.users.aleksander = {
     isNormalUser = true;
     description = "aleksander";
+    linger = true;
     extraGroups = [
       "networkmanager"
       "wheel"
