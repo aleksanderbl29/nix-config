@@ -54,6 +54,14 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
 
+      sessionVariables = {
+        EDITOR = "nvim";
+      };
+
+      initContent = ''
+        eval "$(devenv hook zsh)"
+      '';
+
       loginExtra = ''
         if [[ -o interactive ]]; then
           ${pkgs.figurine}/bin/figurine -f "smslant.flf" "''${HOST%%.local}"
