@@ -43,6 +43,7 @@
       "MonitorControl"
       "obsidian"
       "onlyoffice"
+      "obs"
       # "orbstack"
       "positron"
       "r-app"
