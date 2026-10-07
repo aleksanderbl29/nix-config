@@ -18,6 +18,7 @@ shell-integration = zsh
 # Working directory
 working-directory = "/Users/aleksander/Developer"
 window-inherit-working-directory = false
+tab-inherit-working-directory = false
 
 # MacOS Icon
 macos-icon = custom-style
