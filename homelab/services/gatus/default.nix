@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.homelab.services.gatus;
   homelab = config.homelab;
@@ -35,10 +40,7 @@ let
     let
       mapped = attachAlerts endpoint;
     in
-    if endpoint.heartbeat == null then
-      builtins.removeAttrs mapped [ "heartbeat" ]
-    else
-      mapped
+    if endpoint.heartbeat == null then builtins.removeAttrs mapped [ "heartbeat" ] else mapped
   ) cfg.externalEndpoints;
 in
 {
