@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let
   cfg = config.homelab.services.gatus;
   homelab = config.homelab;
@@ -14,7 +14,7 @@ let
     }
   ) enabledProviders;
 
-  endpoints = map (
+  attachAlerts =
     endpoint:
     let
       base = builtins.removeAttrs endpoint [ "alerts" ];
@@ -26,8 +26,20 @@ let
         else
           null;
     in
-    base // lib.optionalAttrs (alerts != null) { inherit alerts; }
-  ) cfg.endpoints;
+    base // lib.optionalAttrs (alerts != null) { inherit alerts; };
+
+  endpoints = map attachAlerts cfg.endpoints;
+
+  externalEndpoints = map (
+    endpoint:
+    let
+      mapped = attachAlerts endpoint;
+    in
+    if endpoint.heartbeat == null then
+      builtins.removeAttrs mapped [ "heartbeat" ]
+    else
+      mapped
+  ) cfg.externalEndpoints;
 in
 {
   options.homelab.services.gatus = {
@@ -134,6 +146,52 @@ in
       description = "List of endpoints to monitor";
     };
 
+    externalEndpoints = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.submodule {
+          options = {
+            name = lib.mkOption {
+              type = lib.types.str;
+              description = "Name of the external endpoint";
+            };
+            group = lib.mkOption {
+              type = lib.types.str;
+              description = "Group name for organizing endpoints";
+            };
+            token = lib.mkOption {
+              type = lib.types.str;
+              description = ''
+                Bearer token required to push status. Use ''${VAR} to read from
+                alerting.environmentFile (e.g. "''${GATUS_AUTOMAILER_TOKEN}").
+              '';
+            };
+            heartbeat = lib.mkOption {
+              type = lib.types.nullOr (
+                lib.types.submodule {
+                  options.interval = lib.mkOption {
+                    type = lib.types.strMatching "^[0-9]+(ms|s|m|h|d)$";
+                    description = "Fail if no push arrives within this interval. Minimum 10s.";
+                  };
+                }
+              );
+              default = null;
+              description = "Heartbeat monitoring. null disables it.";
+            };
+            alerts = lib.mkOption {
+              type = lib.types.nullOr (lib.types.listOf lib.types.attrs);
+              default = null;
+              description = ''
+                Per-endpoint alert overrides. null (default) attaches one alert per
+                enabled alerting provider. Set to [] to disable alerts for this endpoint.
+              '';
+            };
+          };
+        }
+      );
+      default = [ ];
+      description = "Push-based endpoints (Gatus does not probe these)";
+    };
+
     storage = {
       enable = lib.mkOption {
         type = lib.types.bool;
@@ -165,8 +223,8 @@ in
         type = lib.types.nullOr lib.types.path;
         default = null;
         description = ''
-          Systemd environment file with secrets for alerting providers.
-          Reference variables in provider settings with ''${VAR_NAME}
+          Systemd environment file with secrets for alerting providers and
+          external-endpoint tokens. Reference variables with ''${VAR_NAME}
           (e.g. webhook-url = "''${SLACK_WEBHOOK_URL}").
         '';
         example = "/var/lib/gatus/secrets.env";
@@ -241,30 +299,62 @@ in
       "d ${cfg.storage.dataDir} 0750 gatus gatus - -"
     ];
 
-    services.gatus = {
-      enable = true;
-      environmentFile = cfg.alerting.environmentFile;
-      settings = {
-        web.port = cfg.port;
-        inherit endpoints;
-        ui = {
-          title = "Status Page | Aleksander Bang-Larsen";
-          header = "Status Page";
-          dashboard-heading = "Aleksanders Status Page";
-          dashboard-subheading = "Overview of the status of my services, websites and projects.";
-          link = "https://status.aleksanderbl.dk";
+    services.gatus =
+      let
+        gatusSettings = {
+          web.port = cfg.port;
+          inherit endpoints;
+          ui = {
+            title = "Status Page | Aleksander Bang-Larsen";
+            header = "Status Page";
+            dashboard-heading = "Aleksanders Status Page";
+            dashboard-subheading = "Overview of the status of my services, websites and projects.";
+            link = "https://status.aleksanderbl.dk";
+          };
+        }
+        // lib.optionalAttrs (cfg.externalEndpoints != [ ]) {
+          external-endpoints = externalEndpoints;
+        }
+        // lib.optionalAttrs cfg.storage.enable {
+          storage = {
+            type = "sqlite";
+            path = "${cfg.storage.dataDir}/${cfg.storage.databaseFile}";
+          };
+        }
+        // lib.optionalAttrs cfg.alerting.enable {
+          alerting = alertingSettings;
         };
-      }
-      // lib.optionalAttrs cfg.storage.enable {
-        storage = {
-          type = "sqlite";
-          path = "${cfg.storage.dataDir}/${cfg.storage.databaseFile}";
-        };
-      }
-      // lib.optionalAttrs cfg.alerting.enable {
-        alerting = alertingSettings;
+        # JSON keeps ${VAR} placeholders in quotes. The NixOS YAML generator
+        # emits `token: ${VAR}` unquoted; Gatus expands the env var and then
+        # parses YAML, which can coerce a hex token into a number.
+        gatusConfigFile = pkgs.writeText "gatus.json" (builtins.toJSON gatusSettings);
+      in
+      {
+        enable = true;
+        environmentFile = cfg.alerting.environmentFile;
+        settings = gatusSettings;
+        configFile = lib.mkForce gatusConfigFile;
       };
-    };
+
+    # secrets.env is often edited by hand; a trailing CR/space survives
+    # hash-with-strip comparisons but makes Gatus reject the bearer token.
+    systemd.services.gatus.serviceConfig.ExecStart = lib.mkForce (
+      pkgs.writeShellScript "gatus-wrapped" ''
+        set -eu
+        strip() {
+          printf '%s' "$1" | tr -d '\r\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
+        }
+        if [ -n "''${GATUS_AUTOMAILER_TOKEN-}" ]; then
+          GATUS_AUTOMAILER_TOKEN="$(strip "$GATUS_AUTOMAILER_TOKEN")"
+          export GATUS_AUTOMAILER_TOKEN
+        fi
+        if [ -n "''${GATUS_CONFERENCE_TOOLS_INGEST_TOKEN-}" ]; then
+          GATUS_CONFERENCE_TOOLS_INGEST_TOKEN="$(strip "$GATUS_CONFERENCE_TOOLS_INGEST_TOKEN")"
+          export GATUS_CONFERENCE_TOOLS_INGEST_TOKEN
+        fi
+        exec ${lib.getExe config.services.gatus.package}
+      ''
+    );
 
     services.caddy.virtualHosts."${cfg.url}" = {
       extraConfig = ''

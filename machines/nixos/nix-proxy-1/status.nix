@@ -115,5 +115,20 @@
         ];
       }
     ];
+
+    externalEndpoints = [
+      {
+        name = "Automailer inbox";
+        group = "Work";
+        token = "\${GATUS_AUTOMAILER_TOKEN}";
+        heartbeat.interval = "45m";
+      }
+      {
+        name = "Conference-tools ingest";
+        group = "Work";
+        token = "\${GATUS_CONFERENCE_TOOLS_INGEST_TOKEN}";
+        heartbeat.interval = "45m";
+      }
+    ];
   };
 }
