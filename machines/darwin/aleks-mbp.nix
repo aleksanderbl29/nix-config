@@ -12,7 +12,6 @@
 
   homebrew = {
     casks = [
-      "brave-browser"
       "private-internet-access"
       "cursor"
       "cursor-cli"
@@ -20,7 +19,6 @@
       "makemkv"
       # "linear-linear"
       # "gcloud-cli"
-      "tad"
       "quarto"
       "radiola"
       "positron"
@@ -36,9 +34,9 @@
       "abseil"
       "udunits"
       "pkg-config"
-      "proj"
-      "gdal"
-      "geos"
+      # "proj"
+      # "gdal"
+      # "geos"
       "udunits"
       "expat"
       "libgit2"
