@@ -106,6 +106,21 @@ in
       "render"
       "video"
     ];
+
+    # ErsatzTV persists absolute tool paths in its database and prefers them
+    # over PATH. Keep those settings aligned with the package selected above.
+    # A new database needs no update because ErsatzTV discovers both tools
+    # from PATH during its first startup.
+    systemd.services.ersatztv.preStart = lib.mkBefore ''
+      database="$ETV_CONFIG_FOLDER/ersatztv.sqlite3"
+      if [ -f "$database" ]; then
+        ${pkgs.sqlite}/bin/sqlite3 "$database" \
+          "INSERT INTO ConfigElement (\"Key\", \"Value\") VALUES ('ffmpeg.ffmpeg_path', '${ersatztv-ffmpeg}/bin/ffmpeg') ON CONFLICT(\"Key\") DO UPDATE SET \"Value\" = excluded.\"Value\";"
+        ${pkgs.sqlite}/bin/sqlite3 "$database" \
+          "INSERT INTO ConfigElement (\"Key\", \"Value\") VALUES ('ffmpeg.ffprobe_path', '${ersatztv-ffmpeg}/bin/ffprobe') ON CONFLICT(\"Key\") DO UPDATE SET \"Value\" = excluded.\"Value\";"
+      fi
+    '';
+
     systemd.services.ersatztv.path = [
       pkgs.bash
       ersatztv-ffmpeg
