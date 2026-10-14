@@ -20,14 +20,36 @@ let
       hash = "sha256-/Upgsu92G6fw+mrWkXWzC3IWxYjsqbMUDmObAqgbNwk=";
     };
 
-    nativeBuildInputs = [ pkgs.autoPatchelfHook ];
-    buildInputs = [ pkgs.stdenv.cc.cc.lib ];
+    nativeBuildInputs = [
+      pkgs.autoPatchelfHook
+      pkgs.makeWrapper
+    ];
+    buildInputs = [
+      pkgs.stdenv.cc.cc.lib
+      (lib.getLib pkgs.libva)
+      pkgs.libdrm
+      pkgs.libx11
+    ];
 
     installPhase = ''
       runHook preInstall
       mkdir -p "$out"
       cp -r bin doc man presets LICENSE.txt "$out/"
       runHook postInstall
+    '';
+
+    # The upstream binaries load VAAPI through dlopen, so autoPatchelf cannot
+    # discover these runtime dependencies from the ELF metadata.
+    postFixup = ''
+      for program in ffmpeg ffprobe; do
+        wrapProgram "$out/bin/$program" \
+          --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [
+            pkgs.libva
+            pkgs.libdrm
+            pkgs.libx11
+          ]} \
+          --set LIBVA_DRIVERS_PATH ${pkgs.intel-media-driver}/lib/dri
+      done
     '';
 
     meta = {
