@@ -7,6 +7,37 @@
 let
   cfg = config.homelab.services.ersatztv;
   homelab = config.homelab;
+
+  # ErsatzTV's build carries patches that are not part of stock FFmpeg (in
+  # particular fixes for VAAPI/QSV pipelines). Keep this in sync with the
+  # version expected by the ErsatzTV health check.
+  ersatztv-ffmpeg = pkgs.stdenvNoCC.mkDerivation {
+    pname = "ersatztv-ffmpeg";
+    version = "8.1.2-etv.4";
+
+    src = pkgs.fetchurl {
+      url = "https://github.com/ErsatzTV/ErsatzTV-ffmpeg/releases/download/8.1.2-4/ffmpeg-n8.1.2-etv.4-linux64-gpl-8.1.tar.xz";
+      hash = "sha256-/Upgsu92G6fw+mrWkXWzC3IWxYjsqbMUDmObAqgbNwk=";
+    };
+
+    nativeBuildInputs = [ pkgs.autoPatchelfHook ];
+    buildInputs = [ pkgs.stdenv.cc.cc.lib ];
+
+    installPhase = ''
+      runHook preInstall
+      mkdir -p "$out"
+      cp -r bin doc man presets LICENSE.txt "$out/"
+      runHook postInstall
+    '';
+
+    meta = {
+      description = "FFmpeg build patched and tested for ErsatzTV";
+      homepage = "https://github.com/ErsatzTV/ErsatzTV-ffmpeg";
+      license = lib.licenses.gpl3Plus;
+      platforms = [ "x86_64-linux" ];
+      sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
+    };
+  };
 in
 {
   options.homelab.services.ersatztv = {
@@ -55,7 +86,7 @@ in
 
     services.ersatztv = {
       enable = true;
-      package = pkgs.ersatztv.override { ffmpeg = pkgs.ffmpeg_8; };
+      package = pkgs.ersatztv.override { ffmpeg = ersatztv-ffmpeg; };
       environment = {
         ETV_UI_PORT = cfg.port;
         TZ = homelab.timeZone;
@@ -71,6 +102,7 @@ in
     ];
     systemd.services.ersatztv.path = [
       pkgs.bash
+      ersatztv-ffmpeg
       pkgs.libva-utils
     ];
 
