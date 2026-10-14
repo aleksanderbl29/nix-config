@@ -55,6 +55,7 @@ in
 
     services.ersatztv = {
       enable = true;
+      package = pkgs.ersatztv.override { ffmpeg = pkgs.ffmpeg_8; };
       environment = {
         ETV_UI_PORT = cfg.port;
         TZ = homelab.timeZone;
