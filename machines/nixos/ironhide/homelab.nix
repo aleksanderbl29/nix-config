@@ -36,6 +36,9 @@
       jellyfin = {
         machine = "soundwave";
       };
+      tv = {
+        machine = "soundwave";
+      };
     };
   };
 }

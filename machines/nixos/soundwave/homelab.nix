@@ -21,7 +21,6 @@
       };
       ersatztv = {
         enable = true;
-        url = "tv.local.aleksanderbl.dk";
       };
     };
   };
