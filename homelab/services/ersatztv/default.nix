@@ -68,7 +68,10 @@ in
       "render"
       "video"
     ];
-    systemd.services.ersatztv.path = [ pkgs.libva-utils ];
+    systemd.services.ersatztv.path = [
+      pkgs.bash
+      pkgs.libva-utils
+    ];
 
     services.caddy.virtualHosts."${cfg.url}".extraConfig = ''
       tls ${homelab.tls.certFile} ${homelab.tls.keyFile}
