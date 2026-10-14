@@ -45,8 +45,14 @@ in
 
     url = lib.mkOption {
       type = lib.types.str;
-      default = "tv.${homelab.baseDomain}";
+      default = "ersatz.${homelab.baseDomain}";
       description = "Hostname where ErsatzTV is accessible";
+    };
+
+    iptvUrl = lib.mkOption {
+      type = lib.types.str;
+      default = "tv.${homelab.baseDomain}";
+      description = "Hostname serving ErsatzTV's IPTV playlist, guide, and streams";
     };
 
     port = lib.mkOption {
@@ -106,9 +112,20 @@ in
       pkgs.libva-utils
     ];
 
-    services.caddy.virtualHosts."${cfg.url}".extraConfig = ''
-      tls ${homelab.tls.certFile} ${homelab.tls.keyFile}
-      reverse_proxy http://127.0.0.1:${toString cfg.port}
-    '';
+    services.caddy.virtualHosts = {
+      "${cfg.url}".extraConfig = ''
+        tls ${homelab.tls.certFile} ${homelab.tls.keyFile}
+        reverse_proxy http://127.0.0.1:${toString cfg.port}
+      '';
+
+      "${cfg.iptvUrl}".extraConfig = ''
+        tls ${homelab.tls.certFile} ${homelab.tls.keyFile}
+        redir / /iptv/channels.m3u
+        handle /iptv/* {
+          reverse_proxy http://127.0.0.1:${toString cfg.port}
+        }
+        respond 404
+      '';
+    };
   };
 }
