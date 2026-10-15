@@ -43,11 +43,13 @@ let
     postFixup = ''
       for program in ffmpeg ffprobe; do
         wrapProgram "$out/bin/$program" \
-          --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [
-            pkgs.libva
-            pkgs.libdrm
-            pkgs.libx11
-          ]} \
+          --prefix LD_LIBRARY_PATH : ${
+            lib.makeLibraryPath [
+              pkgs.libva
+              pkgs.libdrm
+              pkgs.libx11
+            ]
+          } \
           --set LIBVA_DRIVERS_PATH ${pkgs.intel-media-driver}/lib/dri
       done
     '';
