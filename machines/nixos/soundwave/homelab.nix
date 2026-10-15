@@ -19,6 +19,9 @@
         hardwareAcceleration.intel = true;
         enableSkipIntroButton = true;
       };
+      ersatztv = {
+        enable = true;
+      };
     };
   };
 }

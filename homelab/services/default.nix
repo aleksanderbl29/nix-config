@@ -39,6 +39,7 @@ in
     ./homepage
     ./immich
     ./jellyfin
+    ./ersatztv
     ./beszel
     ./littlelink
     ./karakeep

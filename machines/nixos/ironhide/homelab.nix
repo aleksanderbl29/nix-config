@@ -36,6 +36,12 @@
       jellyfin = {
         machine = "soundwave";
       };
+      ersatz = {
+        machine = "soundwave";
+      };
+      tv = {
+        machine = "soundwave";
+      };
     };
   };
 }
