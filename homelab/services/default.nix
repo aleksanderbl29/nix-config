@@ -48,5 +48,6 @@ in
     ./webcheck
     ./umami
     ./labelstudio
+    ./t3code
   ];
 }
