@@ -42,7 +42,6 @@ in
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.webcheck = {
       image = "lissy93/web-check:latest";
-      pull = "newer";
       ports = [
         "${toString cfg.port}:3000/tcp"
       ];
