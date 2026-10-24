@@ -10,6 +10,7 @@
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
       pull.rebase = true;
+      url."git@github.com:".insteadOf = "https://github.com/";
       safe.directory = "/etc/nixos";
     };
     ignores = [ ".DS_Store" ];
