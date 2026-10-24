@@ -22,6 +22,12 @@ in
       type = lib.types.str;
       description = "Existing user whose home and T3 credentials the server uses.";
     };
+    codexAgentsFile = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
+      default = ./codex-agents.md;
+      defaultText = lib.literalExpression "./codex-agents.md";
+      description = "Markdown file to install as the user's global Codex AGENTS.md.";
+    };
     url = lib.mkOption {
       type = lib.types.str;
       default = "t3code.${homelab.baseDomain}";
@@ -36,6 +42,10 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [ cfg.package ];
+
+    home-manager.users.${cfg.user}.home.file = lib.mkIf (cfg.codexAgentsFile != null) {
+      ".codex/AGENTS.md".source = cfg.codexAgentsFile;
+    };
 
     systemd.services.t3code = {
       description = "T3 Code remote coding environment";
