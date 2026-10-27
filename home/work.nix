@@ -53,7 +53,10 @@
         user = {
           email = "aleksander@dig-in.dk";
           name = "aleksander-digin";
+          signingkey = "~/.ssh/github.pub";
         };
+        gpg.format = "ssh";
+        commit.gpgsign = true;
         push.autoSetupRemote = true;
         init.defaultBranch = "main";
         pull.rebase = true;
