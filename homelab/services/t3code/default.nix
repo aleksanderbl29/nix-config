@@ -52,7 +52,29 @@ in
       wantedBy = [ "multi-user.target" ];
       wants = [ "network-online.target" ];
       after = [ "network-online.target" ];
-      environment.HOME = home;
+      environment = {
+        HOME = home;
+        # T3 downloads Chrome for Testing, which needs an explicit library path on NixOS.
+        LD_LIBRARY_PATH = lib.makeLibraryPath [
+          pkgs.glib
+          pkgs.nspr
+          pkgs.nss
+          pkgs.at-spi2-core
+          pkgs.dbus
+          pkgs.libX11
+          pkgs.libXcomposite
+          pkgs.libXdamage
+          pkgs.libXext
+          pkgs.libXfixes
+          pkgs.libXrandr
+          pkgs.libgbm
+          pkgs.expat
+          pkgs.libxcb
+          pkgs.libxkbcommon
+          pkgs.systemd
+          pkgs.alsa-lib
+        ];
+      };
       script = ''
         exec ${lib.getExe cfg.package} serve \
           --host 127.0.0.1 \
