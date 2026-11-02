@@ -1,3 +1,8 @@
+# Project agent instructions
+
+Use existing project agent instruction files. If a project has none, do not
+create one (such as `AGENTS.md` or `CLAUDE.md`) unless the user explicitly asks.
+
 # Project development environments
 
 Before running project commands, inspect repository instructions and existing
@@ -20,8 +25,8 @@ environment when an existing setup already serves this purpose.
 Keep dependencies declarative. Update the environment when adding a tool rather
 than installing it globally or making an undocumented ad hoc installation.
 Commit applicable lock files, ignore local environment state, and document how
-to enter the environment and run common checks. Add repository-level agent
-instructions to use the environment if those instructions are missing.
+to enter the environment and run common checks. If a repository-level agent
+instruction file already exists, update it to require using the environment.
 
 Validate that the environment evaluates and run the relevant checks through it.
 If Nix or another required environment tool is unavailable, report the concrete
