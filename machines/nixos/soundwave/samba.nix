@@ -50,6 +50,23 @@
         "inherit owner" = "yes";
         "inherit permissions" = "yes";
       };
+      tidsmaskine = {
+        path = "/mnt/tidsmaskine";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "valid users" = "aleksander";
+        "force user" = "aleksander";
+        "force group" = "users";
+        "create mask" = "0600";
+        "directory mask" = "0700";
+        "fruit:aapl" = "yes";
+        "fruit:time machine" = "yes";
+        "fruit:time machine max size" = "950000000000";
+        "vfs objects" = "catia fruit streams_xattr";
+        # Use the dataset's real free space and quota instead of the global helper.
+        "dfree command" = "";
+      };
       media = {
         path = "/mnt/media";
         browseable = "yes";
@@ -75,6 +92,32 @@
       };
     };
   };
+
+  services.avahi = {
+    enable = true;
+    openFirewall = true;
+    publish.enable = true;
+    publish.userServices = true;
+    extraServiceFiles.timemachine = ''
+      <?xml version="1.0" standalone='no'?>
+      <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+      <service-group>
+        <name replace-wildcards="yes">%h</name>
+        <service>
+          <type>_smb._tcp</type>
+          <port>445</port>
+        </service>
+        <service>
+          <type>_adisk._tcp</type>
+          <txt-record>dk0=adVN=tidsmaskine,adVF=0x82</txt-record>
+          <txt-record>sys=waMa=0,adVF=0x100</txt-record>
+        </service>
+      </service-group>
+    '';
+  };
+
+  systemd.services.samba-smbd.unitConfig.RequiresMountsFor = [ "/mnt/tidsmaskine" ];
+  systemd.tmpfiles.rules = [ "d /mnt/tidsmaskine 0700 aleksander users -" ];
 
   # The media ZFS dataset mounts at /mnt/media.
   # Keep its required library directories present without recursively changing files.

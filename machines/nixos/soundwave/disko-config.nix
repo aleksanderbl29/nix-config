@@ -75,7 +75,7 @@
       storage = {
         type = "zpool";
         mode = "raidz1";
-        # Don't mount the pool root; datasets mount under /mnt/{private,media}.
+        # Don't mount the pool root; datasets mount under /mnt.
         mountpoint = null;
         options = {
           autotrim = "on";
@@ -88,6 +88,12 @@
         datasets.media = {
           type = "zfs_fs";
           mountpoint = "/mnt/media";
+        };
+        datasets.tidsmaskine = {
+          type = "zfs_fs";
+          mountpoint = "/mnt/tidsmaskine";
+          # Decimal GB; quota also includes snapshots and child datasets.
+          options.quota = "950000000000";
         };
       };
     };
