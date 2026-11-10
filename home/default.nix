@@ -29,7 +29,15 @@
 
   programs = {
     home-manager.enable = true;
-    lazygit.enable = true;
+    lazygit = {
+      enable = true;
+      settings.git = {
+        diffRenderers = [
+          { type = "extDiff"; }
+        ];
+        overrideGpg = true;
+      };
+    };
 
     bat.enable = true;
     htop.enable = true;
