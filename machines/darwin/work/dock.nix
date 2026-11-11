@@ -8,14 +8,12 @@
     orientation = "bottom";
     persistent-apps = [
       "/Applications/Zen.app"
-      # "/Applications/Fantastical.app"
-      # "/System/Applications/Calendar.app"
       "/Applications/BusyCal.app"
       "${pkgs.spotify}/Applications/Spotify.app"
       "/Applications/Cliq.app"
       "/Applications/Zoho Mail - Desktop.app"
       "/System/Applications/Preview.app"
-      "/Applications/Cursor.app"
+      "/Applications/Visual Studio Code.app"
       "/Applications/Obsidian.app"
       "/Applications/Ghostty.app"
       "/System/Applications/System Settings.app"
