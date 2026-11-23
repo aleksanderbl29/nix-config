@@ -49,5 +49,7 @@ in
     ./umami
     ./labelstudio
     ./t3code
+    ./actual
+    ./wealthfolio
   ];
 }

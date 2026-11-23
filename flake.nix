@@ -108,6 +108,12 @@
                 packages = [
                   pkgs.sops
                   pkgs.age
+                  pkgs.nixfmt-rfc-style
+                  pkgs.deadnix
+                  pkgs.caddy
+                  pkgs.curl
+                  pkgs.openssl
+                  pkgs.libargon2
                   colmena.packages.${system}.colmena
                   pkgs.cachix
                   updateBrew
