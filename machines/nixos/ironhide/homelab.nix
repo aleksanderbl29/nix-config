@@ -5,6 +5,8 @@
   homelab = {
     enable = true;
     services = {
+      actual.enable = true;
+      wealthfolio.enable = true;
       t3code = {
         enable = true;
         user = "aleksander";
