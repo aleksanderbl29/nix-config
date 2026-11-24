@@ -37,6 +37,8 @@ in
   imports = [
     inputs.jellarr.nixosModules.default
     ./homepage
+    ./actual
+    ./wealthfolio
     ./immich
     ./jellyfin
     ./ersatztv
